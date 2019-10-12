@@ -12,7 +12,7 @@
 </h1>
 야 기억하자
 멘토님 잘할께요
-
+ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
 야 정소연 진짜 잘하자 
 화이팅 ! 
 
