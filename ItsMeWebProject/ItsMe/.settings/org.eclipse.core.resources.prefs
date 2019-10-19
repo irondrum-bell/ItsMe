@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
 encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
+encoding//src/main/webapp/templates/itsme/memberlist/tpl_content_memberlist.html=UTF-8
+encoding//src/main/webapp/templates/itsme/noticeManage/tpl_content_noticemanage.html=UTF-8
