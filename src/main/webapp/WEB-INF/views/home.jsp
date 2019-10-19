@@ -1,12 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/taglibs.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/taglibs.jsp"%>
 
+<!-- Bootstrap CSS CDN -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
 	integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
 	crossorigin="anonymous">
 <!-- Our Custom CSS -->
 <link rel="stylesheet" href="css/menubar/style2.css">
+
+<!-- schedule CSS -->
+<link rel="stylesheet"
+	href="vendor/schedule/vendor/css/fullcalendar.min.css">
+<link rel="stylesheet"
+	href="vendor/schedule/vendor/css/bootstrap.min.css">
+<link rel="stylesheet" href='vendor/schedule/vendor/css/select2.min.css'>
+<link rel="stylesheet"
+	href='vendor/schedule/vendor/css/bootstrap-datetimepicker.min.css'>
+
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="css/schedule/main.css">
+
 
 <!-- Font Awesome JS -->
 <script defer
@@ -18,23 +36,51 @@
 	integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
 	crossorigin="anonymous"></script>
 
-<script src="${ctx}/scripts/itsme/home/ctrl_home.js" type="text/javascript"></script>
-<script src="${ctx}/scripts/itsme/attenManage/ctrl_atten_manage.js" type="text/javascript"></script>
-<script src="${ctx}/scripts/itsme/classManage/ctrl_class_manage.js" type="text/javascript"></script>
-<script src="${ctx}/scripts/itsme/memberlist/ctrl_member_list.js" type="text/javascript"></script>
-<script src="${ctx}/scripts/itsme/noticeManage/ctrl_notice_manage.js" type="text/javascript"></script>
-<script src="${ctx}/scripts/itsme/scheduleManage/ctrl_schedule_manage.js" type="text/javascript"></script>
+<script src="${ctx}/scripts/itsme/home/ctrl_home.js"
+	type="text/javascript"></script>
+<script src="${ctx}/scripts/itsme/attenManage/ctrl_atten_manage.js"
+	type="text/javascript"></script>
+<script src="${ctx}/scripts/itsme/classManage/ctrl_class_manage.js"
+	type="text/javascript"></script>
+<script src="${ctx}/scripts/itsme/memberlist/ctrl_member_list.js"
+	type="text/javascript"></script>
+<script src="${ctx}/scripts/itsme/noticeManage/ctrl_notice_manage.js"
+	type="text/javascript"></script>
+<script
+	src="${ctx}/scripts/itsme/scheduleManage/ctrl_schedule_manage.js"
+	type="text/javascript"></script>
 
-
+<!-- schedule js -->
+<script src="${ctx}/vendor/schedule/vendor/js/jquery.min.js"
+	type="text/javascript"></script>
+<script src="${ctx}/vendor/schedule/vendor/js/bootstrap.min.js"
+	type="text/javascript"></script>
+<script src="${ctx}/vendor/schedule/vendor/js/moment.min.js"
+	type="text/javascript"></script>
+<script src="${ctx}/vendor/schedule/vendor/js/fullcalendar.min.js"
+	type="text/javascript"></script>
+<script src="${ctx}/vendor/schedule/vendor/js/ko.js"
+	type="text/javascript"></script>
+<script src="${ctx}/vendor/schedule/vendor/js/select2.min.js"
+	type="text/javascript"></script>
+<script src="${ctx}/vendor/schedule/vendor/js/bootstrap.min.js"
+	type="text/javascript"></script>
+<script
+	src="${ctx}/vendor/schedule/vendor/js/bootstrap-datetimepicker.min.js"
+	type="text/javascript"></script>
+<script src="${ctx}/js/schedule/js/main.js" type="text/javascript"></script>
+<script src="${ctx}/js/schedule/js/addEvent.js" type="text/javascript"></script>
+<script src="${ctx}/js/schedule/js/editEvent.js" type="text/javascript"></script>
+<script src="${ctx}/js/schedule/js/etcSetting.js" type="text/javascript"></script>
 
 
 <html ng-app="appHome">
 <head>
-	<title>ItsMe</title>
+<title>ItsMe</title>
 </head>
 <body ng-controller="appHomeCtrl">
 
-	<div class="wrapper" style="width:250px;height:100%;float:left;">
+	<div class="wrapper" style="width: 250px; height: 100%; float: left;">
 		<!-- Sidebar  -->
 		<nav id="sidebar">
 			<div class="sidebar-header">
@@ -42,16 +88,18 @@
 			</div>
 
 			<ul class="list-unstyled components">
-				<li ng-repeat="menu in routeContents"><a href="{{menu.url}}">{{menu.display}}</a></li> 
+				<li ng-repeat="menu in routeContents"><a href="{{menu.url}}">{{menu.display}}</a></li>
 			</ul>
 
-			 <ul class="list-unstyled CTAs">
-				<li><a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">로그아웃</a></li>
+			<ul class="list-unstyled CTAs">
+				<li><a
+					href="https://bootstrapious.com/tutorial/files/sidebar.zip"
+					class="download">로그아웃</a></li>
 			</ul>
 		</nav>
 
 	</div>
-	<div style="width:calc(100% - 250px);height:100%;float:left;">
+	<div style="width: calc(100% - 250px); height: 100%; float: left;">
 		<div ng-view></div>
 	</div>
 </body>
