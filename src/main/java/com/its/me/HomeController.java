@@ -25,7 +25,7 @@ public class HomeController {
 	public ModelAndView home(Locale locale, Model model) {
 		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("login");
+		mv.setViewName("home");
 		
 		return mv;
 	}
