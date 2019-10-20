@@ -49,8 +49,7 @@
 
 			 <ul class="list-unstyled CTAs">
 				<li><a
-					href="https://bootstrapious.com/tutorial/files/sidebar.zip"
-					class="download">로그아웃</a></li>
+					href="/j_spring_security_logout">로그아웃</a></li>
 				<!--<li><a href="https://bootstrapious.com/p/bootstrap-sidebar"
 					class="article">Back to article</a></li>
 			</ul> -->
