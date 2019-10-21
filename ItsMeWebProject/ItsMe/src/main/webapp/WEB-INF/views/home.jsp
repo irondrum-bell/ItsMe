@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/taglibs.jsp"%>
 
+
+<!-- menubar CSS -->
 <!-- Bootstrap CSS CDN -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -9,9 +11,13 @@
 	crossorigin="anonymous">
 <!-- Our Custom CSS -->
 <link rel="stylesheet" href="css/menubar/style2.css">
+<!-- 여기까지 -->
+
+
+
 
 <!-- schedule CSS -->
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
 	href="vendor/schedule/vendor/css/fullcalendar.min.css">
 <link rel="stylesheet"
 	href="vendor/schedule/vendor/css/bootstrap.min.css">
@@ -23,7 +29,8 @@
 	href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="css/schedule/main.css">
+
+<link rel="stylesheet" href="css/schedule/main.css"> -->
 
 
 <!-- Font Awesome JS -->
@@ -51,27 +58,18 @@
 	type="text/javascript"></script>
 
 <!-- schedule js -->
-<script src="${ctx}/vendor/schedule/vendor/js/jquery.min.js"
-	type="text/javascript"></script>
-<script src="${ctx}/vendor/schedule/vendor/js/bootstrap.min.js"
-	type="text/javascript"></script>
-<script src="${ctx}/vendor/schedule/vendor/js/moment.min.js"
-	type="text/javascript"></script>
-<script src="${ctx}/vendor/schedule/vendor/js/fullcalendar.min.js"
-	type="text/javascript"></script>
-<script src="${ctx}/vendor/schedule/vendor/js/ko.js"
-	type="text/javascript"></script>
-<script src="${ctx}/vendor/schedule/vendor/js/select2.min.js"
-	type="text/javascript"></script>
-<script src="${ctx}/vendor/schedule/vendor/js/bootstrap.min.js"
-	type="text/javascript"></script>
-<script
-	src="${ctx}/vendor/schedule/vendor/js/bootstrap-datetimepicker.min.js"
-	type="text/javascript"></script>
-<script src="${ctx}/js/schedule/js/main.js" type="text/javascript"></script>
-<script src="${ctx}/js/schedule/js/addEvent.js" type="text/javascript"></script>
-<script src="${ctx}/js/schedule/js/editEvent.js" type="text/javascript"></script>
-<script src="${ctx}/js/schedule/js/etcSetting.js" type="text/javascript"></script>
+<!-- <script src="vendor/schedule/vendor/js/jquery.min.js"></script>
+	<script src="vendor/schedule/vendor/js/bootstrap.min.js"></script>
+	<script src="vendor/schedule/vendor/js/moment.min.js"></script>
+	<script src="vendor/schedule/vendor/js/fullcalendar.min.js"></script>
+	<script src="vendor/schedule/vendor/js/ko.js"></script>
+	<script src="vendor/schedule/vendor/js/select2.min.js"></script>
+	<script
+		src="vendor/schedule/vendor/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="js/schedule/js/main.js"></script>
+	<script src="js/schedule/js/addEvent.js"></script>
+	<script src="js/schedule/js/editEvent.js"></script>
+	<script src="resources/js/schedule/js/etcSetting.js"></script> -->
 
 
 <html ng-app="appHome">
@@ -93,7 +91,7 @@
 
 			<ul class="list-unstyled CTAs">
 				<li><a
-					href="https://bootstrapious.com/tutorial/files/sidebar.zip"
+					href="/j_spring_security_logout"
 					class="download">로그아웃</a></li>
 			</ul>
 		</nav>
