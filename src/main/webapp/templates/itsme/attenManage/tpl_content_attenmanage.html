@@ -1,42 +1,15 @@
-<!-- datapicker 사용하기 -->
-<!-- <link rel="stylesheet"
-	href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> -->
-<script>
-	$.datepicker.setDefaults({
-		dateFormat : 'yy-mm-dd',
-		prevText : '이전 달',
-		nextText : '다음 달',
-		monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월',
-				'10월', '11월', '12월' ],
-		monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월',
-				'9월', '10월', '11월', '12월' ],
-		dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
-		dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
-		dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-		showMonthAfterYear : true,
-		yearSuffix : '년'
-	});
-
-	$(function() {
-		$("#datepicker1, #datepicker2").datepicker();
-	});
-</script>
-<!-- datapicker 여기까지 -->
 <div>
 	<form action="adminMemberRemove.jsp" method="post" id="checkForm">
-		<hr color="#7B7EDD" width=100%>
+		<hr color="#7B7EDD" width=90%>
 		<table align="center" cellspacing="0" width="1300" class="t2"
 			height="100" frame=void>
 			<!-- <tr bgcolor="#85A0F2"> -->
-
-
-			<th>조회기간: <input type="text" id="datepicker1" style = "width:150px"> ~ <input
-				type="text" id="datepicker2" style = "width:150px">
+			<th>조회기간: <input type="text" id="datepicker1"
+				style="width: 150px"> ~ <input type="text" id="datepicker2"
+				style="width: 150px">
 			</th>
-			<th>과목: <input type="text" style = "width:150px"></th>
-			<th>이름 : <input type="text" style = "width:100px"></th>
+			<th>과목: <input type="text" style="width: 150px"></th>
+			<th>이름 : <input type="text" style="width: 100px"></th>
 			<th>소 속/학 과 : <select>
 
 					<option>선택</option>
@@ -105,17 +78,18 @@
 			<th width="100"><input type='button' value='검색'
 				class="btn btn-info" /></th>
 		</table>
-		<hr color="#7B7EDD" width=100%>
+		<hr color="#7B7EDD" width=90%>
 	</form>
 	<form action='login_page.php'></form>
 </div>
 <br>
 <br>
-<form action="adminMemberRemove.jsp" method="post" id="checkForm">
-	<table align="center" cellspacing="0" width="1000" class="t2">
+<!-- <form action="adminMemberRemove.jsp" method="post" id="checkForm"> -->
+	<table 
+			style="cellspacing: 0; width: 1300; class: t2; margin : auto; text-align : center; height : 100;">
 
 		<tr bgcolor="#85A0F2">
-			<th width="100"><input type="checkbox" id="allCheck"></th>
+			<th width="80"><input type="checkbox" id="allCheck"></th>
 			<th width="150" style="color: white">학번</th>
 			<th width="300" style="color: white">학과</th>
 			<th width="250" style="color: white">과목</th>
@@ -141,11 +115,9 @@
 		</tr>
 		<tr>
 			<td>
-				<button type="button" class="btn btn-info">
-					추가<i class="fa fa-check spaceLeft"></i>
-				</button>
-				<button type="button" class="btn btn-warning">
-					수정<i class="fa fa-times spaceLeft"></i>
+				<button type="button" class="btn btn-warning" value="alert"
+					onclick="func_confirm()">
+					수정<i class="fa fa-times spaceLeft" value="alert"></i>
 				</button>
 				<button type="button" class="btn btn-warning">
 					삭제<i class="fa fa-times spaceLeft"></i>
@@ -154,4 +126,5 @@
 			</td>
 		</tr>
 	</table>
-</form>
+<!-- </form> -->
+
