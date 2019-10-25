@@ -1,6 +1,6 @@
 <div style="align: center">
 	<form action="adminMemberRemove.jsp" method="post" id="checkForm">
-		<hr color="#7B7EDD" width=100%>
+		<hr color="#7B7EDD" width=90%>
 		<table align="center" cellspacing="0" width="1300" class="t2"
 			height="100" frame=void>
 			<!-- <tr bgcolor="#85A0F2"> -->
@@ -14,22 +14,27 @@
 			<th width="100"><input type='button' value='검색'
 				class="btn btn-info" /></th>
 		</table>
-		<hr color="#7B7EDD" width=100%>
+		<hr color="#7B7EDD" width=90%>
 	</form>
 	<form action='login_page.php'></form>
 </div>
-<form action="adminMemberRemove.jsp" method="post" id="checkForm">
-	<table align="center" cellspacing="0" width="1000" class="t2">
+<br>
+<br>
+<!-- <form action="adminMemberRemove.jsp" method="post" id="checkForm"> -->
+	<table style = "cellspacing:0; width : 1300; margin : auto; text-align : center; height : 100;" class="t2">
 
 		<tr bgcolor="#85A0F2">
+			<th width="80"><input type="checkbox" id="allCheck"></th>
 			<th width="50" style="color: white">번호</th>
 			<th width="300" style="color: white">제목</th>
 			<th width="100" style="color: white">작성자</th>
 			<th width="100" style="color: white">작성일</th>
 			<th width="100" style="color: white">조회수</th>
 		</tr>
-		
+
 		<tr>
+			<td width="80" align="center"><input type="checkbox"
+				name="checkId" class="check"></td>
 			<td width="50" align="center">01</td>
 			<td width="300" align="center">이 편지는 영국으로부터 시작되어,,,,,,</td>
 			<td width="100" align="center">김정태</td>
@@ -43,81 +48,10 @@
 		</tr>
 		<tr>
 			<td>
-				<button type="button" class="btn btn-info">
+				<button type="button" class="btn btn-info" id = "notice-dialog">
 					글쓰기<i class="fa fa-check spaceLeft"></i>
 				</button>
 			</td>
 		</tr>
 	</table>
-</form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- //게시판 목록 영역 -->
-
-			<!-- 버튼 영역 -->
-
-
-			</p>
-			<!-- 게시판 -->
-
-
-			<div class="container">
-
-				<div class="row">
-
-					<form method="post" action="writeAction.jsp">
-
-						<table class="table table-striped"
-							style="text-align: center; border: 1px solid #dddddd">
-
-							<thead>
-
-								<tr>
-									<table align="center">
-										<th colspan="2"
-											style="background-color: #eeeeee; text-align: center;">공지사항
-											등록</th>
-
-										</tr>
-
-										</thead>
-
-										<tbody>
-
-											<tr>
-
-												<td><input type="text" class="form-control"
-													placeholder="글 제목" name="bbsTitle" maxlength="50" /></td>
-
-											</tr>
-
-											<tr>
-
-												<td><textarea class="form-control" placeholder="글 내용"
-														name="bbsContent" maxlength="2048" style="height: 200px;"></textarea></td>
-
-											</tr>
-
-										</tbody>
-
-									</table>
-									<div align="center">
-										<input type="submit" class="btn btn-primary pull-right"
-											value="저장" /> <input type="submit"
-											class="btn btn-primary pull-right" value="닫기" />
-									</div>
+<!-- </form> -->
