@@ -11,27 +11,24 @@
 	crossorigin="anonymous">
 <!-- Our Custom CSS -->
 <link rel="stylesheet" href="css/menubar/style2.css">
-<!-- 여기까지 -->
-
-
 
 
 <!-- schedule CSS -->
-<!-- <link rel="stylesheet"
-	href="vendor/schedule/vendor/css/fullcalendar.min.css">
+<%-- <link rel="stylesheet"
+	href="${ctx}/vendor/schedule/vendor/css/fullcalendar.min.css">
 <link rel="stylesheet"
-	href="vendor/schedule/vendor/css/bootstrap.min.css">
-<link rel="stylesheet" href='vendor/schedule/vendor/css/select2.min.css'>
+	href="${ctx}/vendor/schedule/vendor/css/bootstrap.min.css">
+<link rel="stylesheet" href='${ctx}/vendor/schedule/vendor/css/select2.min.css'>
 <link rel="stylesheet"
-	href='vendor/schedule/vendor/css/bootstrap-datetimepicker.min.css'>
+	href='${ctx}/vendor/schedule/vendor/css/bootstrap-datetimepicker.min.css'>
 
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-<link rel="stylesheet" href="css/schedule/main.css"> -->
-
+<link rel="stylesheet" href="${ctx}/css/schedule/main.css">
+ --%>
 
 <!-- Font Awesome JS -->
 <script defer
@@ -57,19 +54,27 @@
 	src="${ctx}/scripts/itsme/scheduleManage/ctrl_schedule_manage.js"
 	type="text/javascript"></script>
 
+<!-- datapicekr 사용 -->
+<script type="text/javascript" src="${ctx}/scripts/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="${ctx}/scripts/jquery/jquery-ui.js"></script>
+<link rel="stylesheet" href="${ctx}/scripts/jquery/jquery-ui.css">
+
+<!-- 회원등록 주소 API -->
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+
 <!-- schedule js -->
-<!-- <script src="vendor/schedule/vendor/js/jquery.min.js"></script>
-	<script src="vendor/schedule/vendor/js/bootstrap.min.js"></script>
-	<script src="vendor/schedule/vendor/js/moment.min.js"></script>
-	<script src="vendor/schedule/vendor/js/fullcalendar.min.js"></script>
-	<script src="vendor/schedule/vendor/js/ko.js"></script>
-	<script src="vendor/schedule/vendor/js/select2.min.js"></script>
+<!-- <script src="${ctx}/vendor/schedule/vendor/js/jquery.min.js"></script>
+	<script src="${ctx}/vendor/schedule/vendor/js/bootstrap.min.js"></script>
+	<script src="${ctx}/vendor/schedule/vendor/js/moment.min.js"></script>
+	<script src="${ctx}/vendor/schedule/vendor/js/fullcalendar.min.js"></script>
+	<script src="${ctx}/vendor/schedule/vendor/js/ko.js"></script>
+	<script src="${ctx}/vendor/schedule/vendor/js/select2.min.js"></script>
 	<script
-		src="vendor/schedule/vendor/js/bootstrap-datetimepicker.min.js"></script>
-	<script src="js/schedule/js/main.js"></script>
-	<script src="js/schedule/js/addEvent.js"></script>
-	<script src="js/schedule/js/editEvent.js"></script>
-	<script src="resources/js/schedule/js/etcSetting.js"></script> -->
+		src="${ctx}/vendor/schedule/vendor/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="${ctx}/js/schedule/js/main.js"></script>
+	<script src="${ctx}/js/schedule/js/addEvent.js"></script>
+	<script src="${ctx}/js/schedule/js/editEvent.js"></script>
+	<script src="${ctx}/js/schedule/js/etcSetting.js"></script> -->
 
 
 <html ng-app="appHome">
@@ -90,9 +95,7 @@
 			</ul>
 
 			<ul class="list-unstyled CTAs">
-				<li><a
-					href="/j_spring_security_logout"
-					class="download">로그아웃</a></li>
+				<li><a href="/j_spring_security_logout" class="download">로그아웃</a></li>
 			</ul>
 		</nav>
 
