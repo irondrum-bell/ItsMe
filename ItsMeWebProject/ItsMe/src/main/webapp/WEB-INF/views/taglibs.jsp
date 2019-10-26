@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="${ctx}/css/datepicker.css" />
 
 <link rel="stylesheet" href="${ctx}/css/bootstrap/bootstrap.css" />
-
+<script src="${ctx}/scripts/common/ctrl_common.js" type="text/javascript"></script>
 
 <!-- 일정부분 -->
 <%-- <script src="${ctx}/vendor/schedule/vendor/js/jquery.min.js"></script>
