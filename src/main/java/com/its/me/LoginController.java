@@ -25,6 +25,7 @@ import com.its.me.util.EncryptionUtil;
 public class LoginController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	//eclipse console창에 해당 로그가 찍힌다. 
 	
 	@Autowired
 	private LoginUserService userService;
@@ -33,12 +34,16 @@ public class LoginController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/sso/login", method = RequestMethod.POST)
-	@ResponseBody
-	@Consumes(MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
 	public ResResult login(HttpServletRequest httpServletRequest) {
 		
 		String id = httpServletRequest.getParameter("id");
 		String pwd = httpServletRequest.getParameter("pwd");
+		/*httpServletRequest : 클라이언트의 요청과 관련된 정보와 동작을 가지고 있는 객체. 
+		- 요청 파라미터 조회.
+		- HttpSession 객체 조회 
+		- request scope 상의 component간의 데이터 공유 지원*/
 		
 		LoginUser user = userService.get(id, pwd);
 		

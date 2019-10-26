@@ -81,7 +81,7 @@
 				<label for="InputAdress">주소</label>
 				<table>
 					<tr>
-						<td><input type="text" name="zip" class="form-control"></td>
+						<td><input type="text" name="zip" class="form-control" readonly></td>
 						<td><button type="button" class="btn btn-info"
 								onclick="openZipSearch()">검색</button></td>
 					</tr>
@@ -190,6 +190,4 @@
 			}
 		}).open();
 	}
-</script>
-
 </script>

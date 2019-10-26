@@ -11,23 +11,23 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>FullCalendar Example</title>
-<link rel=" shortcut icon" href="image/favicon.ico">
+<link rel=" shortcut icon" href="image/favicon.ico" >
 
 <link rel="stylesheet"
-	href="resources/vendor/schedule/vendor/css/fullcalendar.min.css" />
+	href="vendor/schedule/vendor/css/fullcalendar.min.css" >
 <link rel="stylesheet"
-	href="resources/vendor/schedule/vendor/css/bootstrap.min.css">
+	href="vendor/schedule/vendor/css/bootstrap.min.css" >
 <link rel="stylesheet"
-	href='resources/vendor/schedule/vendor/css/select2.min.css' />
+	href='vendor/schedule/vendor/css/select2.min.css' >
 <link rel="stylesheet"
-	href='resources/vendor/schedule/vendor/css/bootstrap-datetimepicker.min.css' />
+	href='vendor/schedule/vendor/css/bootstrap-datetimepicker.min.css' >
 
 <link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
+	href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600" >
 <link rel="stylesheet"
-	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	href="https://fonts.googleapis.com/icon?family=Material+Icons" >
 
-<link rel="stylesheet" href="resources/css/schedule/main.css">
+<link rel="stylesheet" href="css/schedule/main.css" >
 
 
 </head>
@@ -193,17 +193,17 @@
 	</div>
 	<!-- /.container -->
 
-	<script src="resources/vendor/schedule/vendor/js/jquery.min.js"></script>
-	<script src="resources/vendor/schedule/vendor/js/bootstrap.min.js"></script>
-	<script src="resources/vendor/schedule/vendor/js/moment.min.js"></script>
-	<script src="resources/vendor/schedule/vendor/js/fullcalendar.min.js"></script>
-	<script src="resources/vendor/schedule/vendor/js/ko.js"></script>
-	<script src="resources/vendor/schedule/vendor/js/select2.min.js"></script>
+	<script src="vendor/schedule/vendor/js/jquery.min.js"></script>
+	<script src="vendor/schedule/vendor/js/bootstrap.min.js"></script>
+	<script src="vendor/schedule/vendor/js/moment.min.js"></script>
+	<script src="vendor/schedule/vendor/js/fullcalendar.min.js"></script>
+	<script src="vendor/schedule/vendor/js/ko.js"></script>
+	<script src="vendor/schedule/vendor/js/select2.min.js"></script>
 	<script
-		src="resources/vendor/schedule/vendor/js/bootstrap-datetimepicker.min.js"></script>
-	<script src="resources/js/schedule/js/main.js"></script>
-	<script src="resources/js/schedule/js/addEvent.js"></script>
-	<script src="resources/js/schedule/js/editEvent.js"></script>
+		src="vendor/schedule/vendor/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="js/schedule/js/main.js"></script>
+	<script src="js/schedule/js/addvent.js"></script>
+	<script src="js/schedule/js/editEvent.js"></script>
 	<script src="resources/js/schedule/js/etcSetting.js"></script>
 </body>
 
