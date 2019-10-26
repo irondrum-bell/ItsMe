@@ -61,7 +61,7 @@ public class LoginUserDaoImpl extends GenericDaoImpl<LoginUser, String> implemen
 	public LoginUser get(String userId) {
 		final String sql = getQuery("userDao.get.userid");
 		JdbcTemplate jdbcTemplate = getJdbcTemplate();
-
+		// JdbcTemplate : jdbc의 반복적인 코드들을 제거하기 위해 쓰인다. 
 		try {
 			return jdbcTemplate.queryForObject(sql, new Object[] { userId }, getRowMapper());
 		} catch (DataAccessException e) {
@@ -69,7 +69,11 @@ public class LoginUserDaoImpl extends GenericDaoImpl<LoginUser, String> implemen
 		}
 
 		return null;
+		/*queryForObject : 한 개의 레코드를 가져온다. 
+		1개 이상을 반환할 시 예외처리. 값이 없으면 null을 반환한다. 
 		
+		queryForList : 한 개이상의 레코드를 가져온다 
+		List로 받는다.*/
 		
 /*		try {
 			String userInfo = getUsers();
