@@ -23,7 +23,7 @@
  -->
 
 <div style="align: center">
-	<form action="adminMemberRemove.jsp" method="post" id="checkForm">
+	<!-- <form action="adminMemberRemove.jsp" method="post" id="checkForm"> -->
 		<table align="center" cellspacing="0" width="1300" class="t2"
 			height="100" frame=void>
 			<!-- <tr bgcolor="#85A0F2"> -->
@@ -99,17 +99,16 @@
 			<th width="100"><input type='button' value='검색'
 				class="btn btn-info" /></th>
 		</table>
-	</form>
-	<form action='login_page.php'></form>
+<!-- 	</form>
+	<form action='login_page.php'></form> -->
 	<hr color="#7B7EDD" width=90%>
 </div>
 <br>
 <br>
 <center>
 	<!-- <form action="adminMemberRemove.jsp" method="post" id="checkForm"> -->
-		<table 
-			style="cellspacing: 0; width: 1300; class: t2; margin : auto; text-align : center; height : 100;">
-
+		<table style="cellspacing: 0; width: 1300; class: t2; margin : auto; text-align : center; height : 100;">
+			<thead>
 			<tr bgcolor="#85A0F2">
 				<th width="80"><input type="checkbox" id="allCheck"></th>
 				<th width="200" align="center" style="color: white">소속/학과</th>
@@ -119,18 +118,18 @@
 				<th width="100" align="center" style="color: white">담당교수</th>
 				<th width="100" align="center" style="color: white">강의시간</th>
 			</tr>
-
-			<tr>
-				<td width="80" align="center"><input type="checkbox"
-					name="checkId" class="check"></td>
-				<td width="200" align="center">공과대학/전자공학과</td>
-				<td width="130" align="center">전자회로실험(1)</td>
-				<td width="100" align="center">964883</td>
-				<td width="100" align="center">3</td>
-				<td width="100" align="center">박세훈</td>
-				<td width="100" align="center">월 5,6,7,8</td>
-			</tr>
-
+			</thead>
+			<tbody>
+				<tr ng-repeat = "obj in  classManage.obj.classList track by $index">
+					<td width="80" align="center"><input type="checkbox" name="checkId" class="check"></td>
+					<td width="200" align="center">{{obj.lrcode}}/{{obj.depcode}}</td>
+					<td width="130" align="center">{{obj.cname}}</td>
+					<td width="100" align="center">{{obj.ccode}}</td>
+					<td width="100" align="center">{{obj.scr}}</td>
+					<td width="100" align="center">{{obj.prof}}</td>
+					<td width="100" align="center">{{obj.ctime}}</td>
+				</tr>
+			</tbody>
 		</table>
 		<table align="right">
 		<tr>

@@ -30,3 +30,4 @@ public class LoginUserRole {
 		this.name = name;
 	}
 }
+
