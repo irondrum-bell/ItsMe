@@ -35,9 +35,41 @@ app.controller("ClassManageCtrl", function($scope, $http) {
 			});
 		});
 	});
+	
+	
+	
+	$scope.classManage = {
+			obj : {
+				classList : "",
+				searchName : ""
+			},
+			func : {
+				getMemberList : function(){
+					
+					var param = {
+							searchName : $scope.classManage.obj.searchName
+					}
+					
+					req_http_rest_api.func.req_get_message($http, "/getClassList", param, function(response){
+						$scope.classManage.obj.searchName = "bbbbb";0
+						if(response.data.code == 500){
+							alert(response.data.msg);
+						}else{
+							$scope.classManage.obj.classList = response.data.value;
+						}
+						
+					}, function(response){
+						alert("서버와 연결을 할 수 없습니다.");
+					})
+				}
+			}
+	}
+	
+	
+	$scope.classManage.func.getMemberList();
 
 });
-function openZipSearch() {
+/*function openZipSearch() {
 	new daum.Postcode({
 		oncomplete : function(data) {
 			$('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
@@ -46,3 +78,4 @@ function openZipSearch() {
 		}
 	}).open();
 }
+*/

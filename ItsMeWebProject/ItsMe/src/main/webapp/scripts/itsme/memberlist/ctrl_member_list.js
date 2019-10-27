@@ -13,7 +13,7 @@ app.controller("MemberListCtrl",function($scope, $http) {
 					}
 					
 					req_http_rest_api.func.req_get_message($http, "/getMemberList", param, function(response){
-						$scope.memberManage.obj.searchName = "bbbbb";
+						$scope.memberManage.obj.searchName = "bbbbb";0
 						if(response.data.code == 500){
 							alert(response.data.msg);
 						}else{

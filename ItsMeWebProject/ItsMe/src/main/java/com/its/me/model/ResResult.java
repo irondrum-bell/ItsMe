@@ -1,4 +1,4 @@
-package com.its.me.model;
+ package com.its.me.model;
 
 public class ResResult {
 
