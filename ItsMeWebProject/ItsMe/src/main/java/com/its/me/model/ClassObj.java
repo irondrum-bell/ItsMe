@@ -9,6 +9,16 @@ public class ClassObj{
 	 private int scr;
 	 private String ctime;
 	 private String prof;
+	 private String depname;
+	 private String belname;
+	
+	 
+	 public String getBelname() {
+		return belname;
+	}
+	public void setBelname(String belname) {
+		this.belname = belname;
+	}
 	public String getCname() {
 		return cname;
 	}
@@ -33,10 +43,10 @@ public class ClassObj{
 	public void setLrcode(String lrcode) {
 		this.lrcode = lrcode;
 	}
-	public int getSrc() {
+	public int getScr() {
 		return scr;
 	}
-	public void setSrc(int scr) {
+	public void setScr(int scr) {
 		this.scr = scr;
 	}
 	public String getCtime() {
@@ -51,6 +61,14 @@ public class ClassObj{
 	public void setProf(String prof) {
 		this.prof = prof;
 	}
+	public String getDepname() {
+		return depname;
+	}
+	public void setDepname(String depname) {
+		this.depname = depname;
+	}
+	 
+	 
 	 
 	 
 	

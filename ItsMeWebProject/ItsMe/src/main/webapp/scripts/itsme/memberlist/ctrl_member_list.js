@@ -13,7 +13,7 @@ app.controller("MemberListCtrl",function($scope, $http) {
 					}
 					
 					req_http_rest_api.func.req_get_message($http, "/getMemberList", param, function(response){
-						$scope.memberManage.obj.searchName = "bbbbb";0
+						$scope.memberManage.obj.searchName = "bbbbb";
 						if(response.data.code == 500){
 							alert(response.data.msg);
 						}else{
@@ -38,7 +38,7 @@ app.controller("MemberListCtrl",function($scope, $http) {
 		// 버튼의 이벤트 핸들러를 붙입니다.
 		$("#dynamic-dialog").button().on("click", function() {
 			// 다이얼로그 내용을 가져올 URL입니다.
-			var url = "scripts/dialog/memberlist.html";
+			var url = "templates/itsme/memberlist/memberlist.html";
 			// 다이얼로그를 생성합니다.
 			$('<div id="DialogDiv">').dialog({
 				// 커스텀 스타일을 줍니다.
