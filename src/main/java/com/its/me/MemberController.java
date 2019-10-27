@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,6 +55,28 @@ public class MemberController {
 		rr.setValue(memberList);
 		
 		return rr;
-	}
+	}	
 	
+	
+	@RequestMapping(value = "/addMember", method = RequestMethod.POST)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult addMember(@RequestBody String body) {
+		MemberObj memberObj = new MemberObj();
+		
+		boolean result = memberService.addMember(memberObj);
+		
+		ResResult rr = new ResResult();
+		
+		if(result == false) {
+			rr.setCode(500);
+			rr.setMsg("회원을 등록할 수 없습니다.");
+			return rr;
+		}
+		
+		rr.setCode(200);
+		rr.setValue(result);
+		
+		return rr;
+	}	
 }

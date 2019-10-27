@@ -34,7 +34,10 @@ public class ClassDaoImpl extends GenericDaoImpl<ClassObj, String> implements Cl
 				classObj.setDepcode(rs.getString("DEPCODE"));
 				classObj.setLrcode(rs.getString("LRCODE"));
 				classObj.setProf(rs.getString("PROF"));
-				classObj.setSrc(rs.getInt("SCR"));
+				classObj.setScr(rs.getInt("SCR"));
+				classObj.setBelname(rs.getString("BELNAME"));
+				classObj.setDepname(rs.getString("DEPNAME"));
+				
 	
 				return classObj;
 			}

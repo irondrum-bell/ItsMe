@@ -63,7 +63,7 @@
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 
 <!-- schedule js -->
-<!-- <script src="${ctx}/vendor/schedule/vendor/js/jquery.min.js"></script>
+<%-- <script src="${ctx}/vendor/schedule/vendor/js/jquery.min.js"></script>
 	<script src="${ctx}/vendor/schedule/vendor/js/bootstrap.min.js"></script>
 	<script src="${ctx}/vendor/schedule/vendor/js/moment.min.js"></script>
 	<script src="${ctx}/vendor/schedule/vendor/js/fullcalendar.min.js"></script>
@@ -74,7 +74,7 @@
 	<script src="${ctx}/js/schedule/js/main.js"></script>
 	<script src="${ctx}/js/schedule/js/addEvent.js"></script>
 	<script src="${ctx}/js/schedule/js/editEvent.js"></script>
-	<script src="${ctx}/js/schedule/js/etcSetting.js"></script> -->
+	<script src="${ctx}/js/schedule/js/etcSetting.js"></script> --%>
 
 
 <html ng-app="appHome">
@@ -90,8 +90,8 @@
 				<h3>It's Me !</h3>
 			</div>
 
-			<ul class="list-unstyled components">
-				<li ng-repeat="menu in routeContents"><a href="{{menu.url}}">{{menu.display}}</a></li>
+			<ul class="list-unstyled components" style="padding: 20px 0;border-bottom:1px solid #47748b;">
+				<li ng-repeat="menu in routeContents"><a href="{{menu.url}}" style="padding: 10px;font-size: 1.1em;display: block;">{{menu.display}}</a></li>
 			</ul>
 
 			<ul class="list-unstyled CTAs">

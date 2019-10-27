@@ -26,4 +26,10 @@ public class MemberService {
 		return memberList;
 	}
 	
+	public boolean addMember(MemberObj data) {
+		 
+		return memberDao.save(data);
+	}
 }
+
+

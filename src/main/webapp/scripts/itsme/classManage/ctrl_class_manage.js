@@ -4,7 +4,7 @@ app.controller("ClassManageCtrl", function($scope, $http) {
 		// 버튼의 이벤트 핸들러를 붙입니다.
 		$("#class-dialog").button().on("click", function() {
 			// 다이얼로그 내용을 가져올 URL입니다.
-			var url = "scripts/dialog/class.html";
+			var url = "templates/itsme/classManage/class.html";
 			// 다이얼로그를 생성합니다.
 			$('<div id="DialogDiv">').dialog({
 				// 커스텀 스타일을 줍니다.
@@ -35,8 +35,6 @@ app.controller("ClassManageCtrl", function($scope, $http) {
 			});
 		});
 	});
-	
-	
 	
 	$scope.classManage = {
 			obj : {
@@ -77,5 +75,4 @@ app.controller("ClassManageCtrl", function($scope, $http) {
 			$('[name=addr2]').val(data.buildingName);
 		}
 	}).open();
-}
-*/
+}*/

@@ -13,6 +13,7 @@ public class MemberObj{
 	private String belname;
 	private String depcode;
 	private String depname;
+	private String address;
 	
 	public String getNum() {
 		return num;
@@ -74,8 +75,10 @@ public class MemberObj{
 	public void setDepname(String depname) {
 		this.depname = depname;
 	}
-	
-	
-	
-	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 }
