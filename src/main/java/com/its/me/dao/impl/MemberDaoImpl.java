@@ -32,6 +32,7 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 				member.setAuth(rs.getInt("AUTH"));
 				member.setEmail(rs.getString("EMAIL"));
 				member.setPhone(rs.getString("PHONE"));
+				member.setAddress(rs.getString("ADDRESS"));
 				member.setBelcode(rs.getString("BELCODE"));
 				member.setBelname(rs.getString("BELNAME"));
 				member.setDepcode(rs.getString("DEPCODE"));
