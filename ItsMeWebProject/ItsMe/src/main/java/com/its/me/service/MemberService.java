@@ -26,9 +26,9 @@ public class MemberService {
 		return memberList;
 	}
 	
-	public boolean addMember(MemberObj data) {
+	public boolean addMember(MemberObj obj) {
 		 
-		return memberDao.save(data);
+		return memberDao.save(obj);
 	}
 }
 

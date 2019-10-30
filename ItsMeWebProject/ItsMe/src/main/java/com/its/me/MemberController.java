@@ -36,6 +36,7 @@ public class MemberController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/getMemberList", method = RequestMethod.GET)
+	/*클라이언트에서 요청하는 URL을 MVC 패턴의 컨트롤러 내의 클래스 혹은 메소드에 매핑. 해당 URL에 해당하는 경로를 지정하고 처리를 가능케 해주는 어노테이션*/
 	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
 	public ResResult getMemberList(@RequestParam("searchName") String searchName) {
@@ -63,20 +64,18 @@ public class MemberController {
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
 	public ResResult addMember(@RequestBody String body) {
 		MemberObj memberObj = new MemberObj();
-		
 		boolean result = memberService.addMember(memberObj);
 		
-		ResResult rr = new ResResult();
 		
+		
+		ResResult rr = new ResResult();
 		if(result == false) {
 			rr.setCode(500);
 			rr.setMsg("회원을 등록할 수 없습니다.");
 			return rr;
 		}
-		
 		rr.setCode(200);
 		rr.setValue(result);
-		
 		return rr;
 	}	
 }
