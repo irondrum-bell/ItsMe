@@ -1,3 +1,4 @@
+
 package com.its.me.dao.impl;
 
 
@@ -92,4 +93,6 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 		}
 		return new ArrayList<MemberObj>();
 	}
+	
+	
 }
