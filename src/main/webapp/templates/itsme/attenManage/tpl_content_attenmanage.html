@@ -80,53 +80,56 @@
 		</table>
 		<hr color="#7B7EDD" width=90%>
 	</form>
-	<form action='login_page.php'></form>
 </div>
 <br>
 <br>
 <!-- <form action="adminMemberRemove.jsp" method="post" id="checkForm"> -->
-	<table 
-			style="cellspacing: 0; width: 1300; class: t2; margin : auto; text-align : center; height : 100;">
-
+<table
+	style="cellspacing: 0; width: 1300; class: t2; margin: auto; text-align: center; height: 100;">
+	<thead>
 		<tr bgcolor="#85A0F2">
 			<th width="80"><input type="checkbox" id="allCheck"></th>
 			<th width="150" style="color: white">학번</th>
-			<th width="300" style="color: white">학과</th>
-			<th width="250" style="color: white">과목</th>
+			<th width="250" style="color: white">학과</th>
+			<th width="200" style="color: white">과목</th>
 			<th width="100" style="color: white">날짜</th>
 			<th width="100" style="color: white">이름</th>
+			<th width="100" style="color: white">출석</th>
 			<th width="100" style="color: white">퇴실</th>
 			<th width="100" style="color: white">입실</th>
-			<th width="100" style="color: white">출석여부</th>
-		<tr>
-			<td width="80" align="center"><input type="checkbox"
-				name="checkId" class="check"></td>
-			<td width="80" align="center">20140000</td>
-			<td width="80" align="center">기계자동차공학과</td>
-			<td width="140" align="center">프로그래밍</td>
-			<td width="140" align="center">2019.10.09</td>
-			<td width="140" align="center">박용석</td>
-			<td width="140" align="center">12:00</td>
-			<td width="140" align="center">18:00</td>
-			<td width="100" align="center">O</td>
 		</tr>
-	</table>
-	<table align="right">
-		<tr>
-			<td>&nbsp;</td>
+	</thead>
+	<tbody>
+		<tr
+			ng-repeat="obj in  attendanceManage.obj.attendanceList track by $index">
+			<td width="80" align="center"><input type="checkbox"></td>
+			<td width="150" align="center">{{obj.num}}</td>
+			<td width="250" align="center">{{obj.depname}}</td>
+			<td width="100" align="center">{{obj.cname}}</td>
+			<td width="100" align="center">{{obj.atdate}}</td>
+			<td width="300" align="center">{{obj.name}}</td>
+			<td width="100" align="center">{{obj.atpre}}</td>
+			<td width="100" align="center">{{obj.ckin}}</td>
+			<td width="100" align="center">{{obj.ckout}}</td>
 		</tr>
-		<tr>
-			<td>
-				<button type="button" class="btn btn-warning" value="alert"
-					onclick="func_confirm()">
-					수정<i class="fa fa-times spaceLeft" value="alert"></i>
-				</button>
-				<button type="button" class="btn btn-warning">
-					삭제<i class="fa fa-times spaceLeft"></i>
-				</button>
+	</tbody>
+</table>
+<table align="right">
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>
+			<button type="button" class="btn btn-warning" value="alert"
+				onclick="func_confirm()">
+				수정<i class="fa fa-times spaceLeft" value="alert"></i>
+			</button>
+			<button type="button" class="btn btn-warning">
+				삭제<i class="fa fa-times spaceLeft"></i>
+			</button>
 
-			</td>
-		</tr>
-	</table>
+		</td>
+	</tr>
+</table>
 <!-- </form> -->
 

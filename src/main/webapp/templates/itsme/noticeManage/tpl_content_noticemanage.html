@@ -19,8 +19,10 @@
 <br>
 <br>
 <!-- <form action="adminMemberRemove.jsp" method="post" id="checkForm"> -->
-	<table style = "cellspacing:0; width : 1300; margin : auto; text-align : center; height : 100;" class="t2">
-
+<table
+	style="cellspacing: 0; width: 1300; margin: auto; text-align: center; height: 100;"
+	class="t2">
+	<thead>
 		<tr bgcolor="#85A0F2">
 			<th width="80"><input type="checkbox" id="chkAll"></th>
 			<th width="50" style="color: white">번호</th>
@@ -29,27 +31,30 @@
 			<th width="100" style="color: white">작성일</th>
 			<th width="100" style="color: white">조회수</th>
 		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="obj in  noticeManage.obj.noticeList track by $index">
+			<td width="80" align="center"><input type="checkbox"></td>
+			<td width="50" align="center">{{obj.pnum}}</td>
+			<td width="300" align="center">{{obj.title}}</td>
+			<td width="100" align="center">{{obj.wrt}}</td>
+			<td width="100" align="center">{{obj.wdate}}</td>
+			<td width="100" align="center">{{obj.view}}</td>
 
-		<tr>
-			<td width="80" align="center"><input type="checkbox"
-				name="checkId" class="check"></td>
-			<td width="50" align="center">01</td>
-			<td width="300" align="center">이 편지는 영국으로부터 시작되어,,,,,,</td>
-			<td width="100" align="center">김정태</td>
-			<td width="100" align="center">2019.10.20</td>
-			<td width="100" align="center">99999</td>
+
 		</tr>
-	</table>
-	<table align="right">
-		<tr>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>
-				<button type="button" class="btn btn-info" id = "notice-dialog">
-					글쓰기<i class="fa fa-check spaceLeft"></i>
-				</button>
-			</td>
-		</tr>
-	</table>
+	</tbody>
+</table>
+<table align="right">
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>
+			<button type="button" class="btn btn-info" id="notice-dialog">
+				글쓰기<i class="fa fa-check spaceLeft"></i>
+			</button>
+		</td>
+	</tr>
+</table>
 <!-- </form> -->
