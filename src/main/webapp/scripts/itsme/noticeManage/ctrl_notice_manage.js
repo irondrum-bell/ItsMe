@@ -4,7 +4,7 @@ app.controller("NoticeManageCtrl", function($scope, $http) {
 		// 버튼의 이벤트 핸들러를 붙입니다.
 		$("#notice-dialog").button().on("click", function() {
 			// 다이얼로그 내용을 가져올 URL입니다.
-			var url = "templates/itsme/noticeManage/notice.html";
+			var url = "scripts/dialog/notice.html";
 			// 다이얼로그를 생성합니다.
 			$('<div id="DialogDiv">').dialog({
 				// 커스텀 스타일을 줍니다.
@@ -55,4 +55,34 @@ app.controller("NoticeManageCtrl", function($scope, $http) {
 		$("#datepicker1, #datepicker2").datepicker();
 	});
 
+	
+	$scope.noticeManage = {
+			obj : {
+				noticeList : "",
+				searchName : ""
+			},
+			func : {
+				getMemberList : function(){
+					
+					var param = {
+							searchName : $scope.noticeManage.obj.searchName
+					}
+					
+					req_http_rest_api.func.req_get_message($http, "/getNotice", param, function(response){
+						$scope.noticeManage.obj.searchName = "bbbbb";0
+						if(response.data.code == 500){
+							alert(response.data.msg);
+						}else{
+							$scope.noticeManage.obj.noticeList = response.data.value;
+						}
+						
+					}, function(response){
+						alert("서버와 연결을 할 수 없습니다.");
+					})
+				}
+			}
+	}
+	
+	$scope.noticeManage.func.getMemberList();
+	
 });

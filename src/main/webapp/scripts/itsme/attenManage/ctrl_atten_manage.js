@@ -16,6 +16,39 @@ app.controller("AttenManageCtrl", function($scope, $http){
 	$(function() {
 		$("#datepicker1, #datepicker2").datepicker();
 	});
+	
+	
+	$scope.attendanceManage = {
+			obj : {
+				attendanceList : "",
+				searchName : ""
+			},
+			func : {
+				getMemberList : function(){
+					
+					var param = {
+							searchName : $scope.attendanceManage.obj.searchName
+					}
+					
+					req_http_rest_api.func.req_get_message($http, "/getattendance", param, function(response){
+						$scope.attendanceManage.obj.searchName = "bbbbb";0
+						if(response.data.code == 500){
+							alert(response.data.msg);
+						}else{
+							$scope.attendanceManage.obj.attendanceList = response.data.value;
+						}
+						
+					}, function(response){
+						alert("서버와 연결을 할 수 없습니다.");
+					})
+				}
+			}
+	}
+	
+	
+	$scope.attendanceManage.func.getMemberList();
+	
+	
 });
 
 
