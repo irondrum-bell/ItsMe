@@ -11,14 +11,6 @@ public class ClassObj{
 	 private String prof;
 	 private String depname;
 	 private String belname;
-	
-	 
-	 public String getBelname() {
-		return belname;
-	}
-	public void setBelname(String belname) {
-		this.belname = belname;
-	}
 	public String getCname() {
 		return cname;
 	}
@@ -67,7 +59,15 @@ public class ClassObj{
 	public void setDepname(String depname) {
 		this.depname = depname;
 	}
+	public String getBelname() {
+		return belname;
+	}
+	public void setBelname(String belname) {
+		this.belname = belname;
+	}
+	
 	 
+	
 	 
 	 
 	 

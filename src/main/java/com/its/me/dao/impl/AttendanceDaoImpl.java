@@ -37,6 +37,7 @@ public class AttendanceDaoImpl extends GenericDaoImpl<AttendanceObj, String> imp
 				attendanceObj.setAtpre(rs.getString("ATPRE"));
 				attendanceObj.setCkin(rs.getString("CKIN"));
 				attendanceObj.setCkout(rs.getString("CKOUT"));
+				attendanceObj.setCname(rs.getString("CNAME"));
 	
 				return attendanceObj;
 			}
