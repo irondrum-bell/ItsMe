@@ -119,11 +119,11 @@ table {
 
 	<div id="menubar">
 
-		<hr color="#7B7EDD" width=100%>
+		<hr color="#7B7EDD" width=90%>
 
 
 
-		<table width="100%" cellpadding="5" cellspacing="0">
+		<table width="90%" cellpadding="5" cellspacing="0">
 
 			<tr>
 				<td rowspan="5">회원검색</td>

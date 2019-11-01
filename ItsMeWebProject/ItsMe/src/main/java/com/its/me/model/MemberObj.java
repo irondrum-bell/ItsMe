@@ -14,7 +14,6 @@ public class MemberObj{
 	private String depcode;
 	private String depname;
 	private String address;
-	
 	public String getNum() {
 		return num;
 	}
@@ -81,6 +80,8 @@ public class MemberObj{
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
+	
 	
 
 }

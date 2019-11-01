@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 import com.its.me.dao.GenericDao;
+import com.its.me.model.NoticeObj;
 
 public abstract class GenericDaoImpl<T, K> implements GenericDao<T, K> {
 
@@ -63,4 +65,5 @@ public abstract class GenericDaoImpl<T, K> implements GenericDao<T, K> {
 	public String getQuery(String name, Object[] args, Locale locale) throws NoSuchMessageException {
 		return querySource.getMessage(name, args, locale);
 	}
+
 }
