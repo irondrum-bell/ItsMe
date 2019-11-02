@@ -69,7 +69,7 @@ app.controller("NoticeManageCtrl", function($scope, $http) {
 					}
 					
 					req_http_rest_api.func.req_get_message($http, "/getNotice", param, function(response){
-						$scope.noticeManage.obj.searchName = "bbbbb";0
+						$scope.noticeManage.obj.searchName = "bbbbb";
 						if(response.data.code == 500){
 							alert(response.data.msg);
 						}else{
