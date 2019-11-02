@@ -25,42 +25,61 @@ import com.its.me.service.LoginUserService;
 import com.its.me.service.MemberService;
 import com.its.me.service.NoticeService;
 
-
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class NoticeController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
-	//eclipse console창에 해당 로그가 찍힌다. 
-	
+	// eclipse console창에 해당 로그가 찍힌다.
+
 	@Autowired
 	private NoticeService NoticeService;
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/getNotice", method = RequestMethod.GET)
 	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
-	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
-	public ResResult getNotice(@RequestParam("searchName") String searchName) {
-		
-		
-		List<NoticeObj> Notice  = NoticeService.getNotice ();
-		
+	@Consumes(MediaType.APPLICATION_JSON_VALUE) // 수신하고자 하는 데이터 포맷을 정의한다.
+	public ResResult getNotice() {
+
+		List<NoticeObj> Notice = NoticeService.getNotice();
+
 		ResResult rr = new ResResult();
-		
-		if(Notice == null) {
+
+		if (Notice == null ) {
 			rr.setCode(500);
 			rr.setMsg("공지사항 리스트를 가져 올 수 없습니다.");
 			return rr;
 		}
-		
+
 		rr.setCode(200);
 		rr.setValue(Notice);
-		
+
 		return rr;
 	}
-	
+
+
+	@RequestMapping(value = "/getNoticeApp", method = RequestMethod.GET)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE) // 수신하고자 하는 데이터 포맷을 정의한다.
+	public ResResult getNotice(@RequestParam("searchName") String searchName) {
+
+		List<NoticeObj> Notice = NoticeService.getNotice();
+
+		ResResult rr = new ResResult();
+
+		if (Notice == null || !searchName.equals("bbbbb")) {
+			rr.setCode(500);
+			rr.setMsg("공지사항 리스트를 가져 올 수 없습니다.");
+			return rr;
+		}
+
+		rr.setCode(200);
+		rr.setValue(Notice);
+
+		return rr;
+	}
 }

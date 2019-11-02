@@ -14,14 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.its.me.model.AttendanceAppObj;
+import com.its.me.model.AttendanceListAppObj;
 import com.its.me.model.AttendanceObj;
-import com.its.me.model.ClassObj;
-import com.its.me.model.MemberObj;
 import com.its.me.model.ResResult;
+import com.its.me.service.AttendanceListAppService;
+import com.its.me.service.AttendanceAppService;
 import com.its.me.service.AttendanceService;
-import com.its.me.service.ClassService;
-import com.its.me.service.LoginUserService;
-import com.its.me.service.MemberService;
 
 /**
  * Handles requests for the application home page.
@@ -35,13 +34,19 @@ public class AttendanceController {
 	@Autowired
 	private AttendanceService AttendanceService;
 	
+	@Autowired
+	private AttendanceAppService AttendanceAppService;
+	
+	@Autowired
+	private AttendanceListAppService AttendanceListAppService;
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/getattendance", method = RequestMethod.GET)
 	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
-	public ResResult getAttendance(@RequestParam("searchName") String searchName) {
+	public ResResult getAttendance() {
 		
 		
 		List<AttendanceObj> attendance = AttendanceService.getAttendance();
@@ -60,4 +65,48 @@ public class AttendanceController {
 		return rr;
 	}
 	
+	
+	@RequestMapping(value = "/getattendanceUser", method = RequestMethod.GET)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult getAttendance(@RequestParam("userId") String userId) {
+		
+		
+		List<AttendanceAppObj> attendance = AttendanceAppService.getAttendance(userId);
+		
+		ResResult rr = new ResResult();
+		
+		if(attendance == null) {
+			rr.setCode(500);
+			rr.setMsg("출석 리스트를 가져 올 수 없습니다.");
+			return rr;
+		}
+		
+		rr.setCode(200);
+		rr.setValue(attendance);
+		
+		return rr;
+	}
+	
+	@RequestMapping(value = "/getattendanceUserList", method = RequestMethod.GET)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult getAttendanceList(@RequestParam("userId") String userId, @RequestParam("ccode") String ccode) {
+		
+		
+		List<AttendanceListAppObj> attendance = AttendanceListAppService.getAttendance(userId,ccode);
+		
+		ResResult rr = new ResResult();
+		
+		if(attendance == null) {
+			rr.setCode(500);
+			rr.setMsg("출석 리스트를 가져 올 수 없습니다.");
+			return rr;
+		}
+		
+		rr.setCode(200);
+		rr.setValue(attendance);
+		
+		return rr;
+	}
 }

@@ -48,7 +48,7 @@ public class AttendanceDaoImpl extends GenericDaoImpl<AttendanceObj, String> imp
 
 	public List<AttendanceObj> getAttendanceList(){
 		
-		String sql = getQuery("AttendanceDao.get.Attendance");
+		String sql = getQuery("AttendanceDao.get.AttendanceAll");
 		JdbcTemplate jdbcTemplate = getJdbcTemplate();
 		System.out.println("getAttendanceList sql : " + sql);
 		
