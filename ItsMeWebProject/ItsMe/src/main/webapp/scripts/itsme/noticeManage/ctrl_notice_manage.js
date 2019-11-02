@@ -4,7 +4,7 @@ app.controller("NoticeManageCtrl", function($scope, $http) {
 		// 버튼의 이벤트 핸들러를 붙입니다.
 		$("#notice-dialog").button().on("click", function() {
 			// 다이얼로그 내용을 가져올 URL입니다.
-			var url = "scripts/dialog/notice.html";
+			var url = "templates/itsme/noticeManage/notice.html";
 			// 다이얼로그를 생성합니다.
 			$('<div id="DialogDiv">').dialog({
 				// 커스텀 스타일을 줍니다.
