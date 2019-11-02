@@ -89,7 +89,7 @@
 	<table style="cellspacing: 0; width: 1300; class: t2; margin: auto; text-align: center; height: 100;" class="check_board_tb" id="checkBoard">
 		<thead>
 			<tr bgcolor="#85A0F2">
-				<th width="80"><input align="center" type="checkbox"></th>
+				<th width="80"><input align="center" type="checkbox" id="checkAll" ></th>
 				<th width="100" align="center" style="color: white">학번/사번</th>
 				<th width="100" align="center" style="color: white">이름</th>
 				<th width="130" align="center" style="color: white">생년월일</th>
@@ -101,7 +101,7 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat = "obj in  memberManage.obj.memberList track by $index">
-	            <td width="80" align="center"><input type="checkbox"></td>
+	            <td width="80" align="center"><input type="checkbox" name = "Chk" ></td>
 	            <td width="100" align="center" name="list">{{obj.num}}</td>
 	            <td width="100" align="center">{{obj.name}}</td>
 	            <td width="130" align="center">{{obj.birth}}</td>
