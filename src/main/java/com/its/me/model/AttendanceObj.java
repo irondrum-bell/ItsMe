@@ -9,7 +9,6 @@ public class AttendanceObj {
 	 private String ckin;
 	 private String ckout;
 	 private String cname;
-	 
 	public String getNum() {
 		return num;
 	}
@@ -58,6 +57,8 @@ public class AttendanceObj {
 	public void setCname(String cname) {
 		this.cname = cname;
 	}
+	 
+	
 	 
 	 
 }

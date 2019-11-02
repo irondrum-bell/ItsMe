@@ -60,7 +60,7 @@
 <link rel="stylesheet" href="${ctx}/scripts/jquery/jquery-ui.css">
 
 <!-- 회원등록 주소 API -->
-<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+<script src="/http://code.jquery.com/jquery-latest.min.js"></script>
 
 <!-- schedule js -->
 <%-- <script src="${ctx}/vendor/schedule/vendor/js/jquery.min.js"></script>
