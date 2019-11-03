@@ -92,12 +92,12 @@
 					<option>창의융합학부/창의융합학부</option>
 
 			</select></th>
-			<th>교수: <input type="text"></th>
-			<th>과목 : <input type="text"></th>
+			<th>교수: <input type="text" ng-model="classManage.obj.searchProName"></th>
+			<th>과목 : <input type="text" ng-model="classManage.obj.searchSubject"></th>
 
 
 			<th width="100"><input type='button' value='검색'
-				class="btn btn-info" /></th>
+				class="btn btn-info" ng-click="classManage.func.getClassList()"/></th>
 		</table>
 <!-- 	</form>
 	<form action='login_page.php'></form> -->
@@ -113,7 +113,7 @@
 				<th width="80"><input type="checkbox" id="allCheck"></th>
 				<th width="200" align="center" style="color: white">소속/학과</th>
 				<th width="130" align="center" style="color: white">과목</th>
-				<th width="100" align="center" style="color: white">과목코드</th>
+				<!-- <th width="100" align="center" style="color: white">과목코드</th> -->
 				<th width="100" align="center" style="color: white">학점</th>
 				<th width="100" align="center" style="color: white">담당교수</th>
 				<th width="100" align="center" style="color: white">강의시간</th>
@@ -124,7 +124,7 @@
 					<td width="80" align="center"><input type="checkbox" name="checkId" class="check"></td>
 					<td width="200" align="center">{{obj.belname}}/{{obj.depname}}</td>
 					<td width="130" align="center">{{obj.cname}}</td>
-					<td width="100" align="center">{{obj.ccode}}</td>
+					<!-- <td width="100" align="center">{{obj.ccode}}</td> -->
 					<td width="100" align="center">{{obj.scr}}</td>
 					<td width="100" align="center">{{obj.prof}}</td>
 					<td width="100" align="center">{{obj.ctime}}</td>

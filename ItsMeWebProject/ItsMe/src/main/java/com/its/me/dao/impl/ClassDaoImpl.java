@@ -46,14 +46,36 @@ public class ClassDaoImpl extends GenericDaoImpl<ClassObj, String> implements Cl
 
 
 
-	public List<ClassObj> getClassList(){
+	public List<ClassObj> getClassList(String proname, String subject){
 		
 		String sql = getQuery("classDao.get.classList");
+		
+		if(!proname.equals("")) {
+			sql+= " " + getQuery("classDao.get.classList.proname");
+		}
+		
+		if(!subject.equals("")) {
+			sql+= " " + getQuery("classDao.get.classList.subject");
+		}
+		
+		sql += " " + getQuery("classDao.get.classList.orderby");
+	
 		JdbcTemplate jdbcTemplate = getJdbcTemplate();
 		System.out.println("getClassList sql : " + sql);
 		
 		try {
-			return jdbcTemplate.query(sql, getRowMapper());
+			if(proname.equals("") && subject.equals("")) {
+				return jdbcTemplate.query(sql, getRowMapper());
+			}
+			else if(!proname.equals("") && subject.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {proname}, getRowMapper());
+			}
+			else if(proname.equals("") && !subject.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {subject}, getRowMapper());
+			}
+			else {
+				return jdbcTemplate.query(sql, new Object[] {proname, subject}, getRowMapper());
+			}
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}

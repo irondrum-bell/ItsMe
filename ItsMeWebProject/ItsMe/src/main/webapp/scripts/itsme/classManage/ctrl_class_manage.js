@@ -1,4 +1,4 @@
-app.controller("ClassManageCtrl", function($scope, $http) {
+app.controller("ClassManageCtrl", function($scope, $http, $modal) {
 
 	$(document).ready(function() {
 		// 버튼의 이벤트 핸들러를 붙입니다.
@@ -39,17 +39,19 @@ app.controller("ClassManageCtrl", function($scope, $http) {
 	$scope.classManage = {
 			obj : {
 				classList : "",
-				searchName : ""
+				searchProName : "",
+				searchSubject : ""
 			},
 			func : {
-				getMemberList : function(){
+				getClassList : function(){
 					
 					var param = {
-							searchName : $scope.classManage.obj.searchName
+							searchProName : $scope.classManage.obj.searchProName,
+							searchSubject : $scope.classManage.obj.searchSubject
 					}
 					
 					req_http_rest_api.func.req_get_message($http, "/getClassList", param, function(response){
-						$scope.classManage.obj.searchName = "bbbbb";0
+						$scope.classManage.obj.searchName = "bbbbb";
 						if(response.data.code == 500){
 							alert(response.data.msg);
 						}else{
@@ -64,7 +66,7 @@ app.controller("ClassManageCtrl", function($scope, $http) {
 	}
 	
 	
-	$scope.classManage.func.getMemberList();
+	$scope.classManage.func.getClassList();
 
 });
 /*function openZipSearch() {

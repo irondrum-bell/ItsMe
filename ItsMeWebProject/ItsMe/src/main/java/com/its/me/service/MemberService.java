@@ -21,8 +21,8 @@ public class MemberService {
 	 * 모든 사용자 정보를 제공한다.
 	 * @return 사용자 목록
 	 */
-	public List<MemberObj> getMemberList() {
-		List<MemberObj> memberList = memberDao.getMemberList();
+	public List<MemberObj> getMemberList(String author, String name, String number, String major) {
+		List<MemberObj> memberList = memberDao.getMemberList(author, name, number, major);
 		return memberList;
 	}
 	

@@ -1,19 +1,23 @@
-<div style="align: center">
-	<!-- <form action="adminMemberRemove.jsp" method="post" id="checkForm"> -->
+<html>
+<div style="width: 100%; height: 100%;">
+	<div style="align: center">
+		<!-- <form action="adminMemberRemove.jsp" method="post" id="checkForm"> -->
 		<table align="center" cellspacing="0" width="1300" class="t2"
 			height="100" frame=void>
 			<!-- <tr bgcolor="#85A0F2"> -->
 			<hr color="#7B7EDD" width=90%>
-			<th>구 분 : <select>
-					<option>선택</option>
+			<th>구 분 : <select ng-model="memberManage.obj.select_author" ng-options="obj.name for obj in authorList">
+					<!-- <option>선택</option>
 					<option>------</option>
 					<option>학생</option>
-					<option>교수</option>
+					<option>교수</option> -->
 			</select></th>
-			<th>이 름 : <input type="text" ng-model="memberManage.obj.searchName"></th>
-			<th>학 번/사 번 : <input type="text"></th>
-			<th>소 속/학 과 : <select>
-					<option>선택</option>
+			<th>이 름 : <input type="text"
+				ng-model="memberManage.obj.searchName"></th>
+			<th>학 번/사 번 : <input type="text"
+				ng-model="memberManage.obj.searchNumber"></th>
+			<th>소 속/학 과 : <select ng-model="memberManage.obj.select_major" ng-options="obj.name for obj in majorList">
+					<!-- <option>선택</option>
 					<option>--------------------------</option>
 
 					<option>인문예술대학/국어국문학과</option>
@@ -71,72 +75,79 @@
 					<option>공과대학/컴퓨터공학과</option>
 					<option>공과대학/환경공학과</option>
 
-					<option>창의융합학부/창의융합학부</option>
+					<option>창의융합학부/창의융합학부</option> -->
 
 			</select></th>
-			<th width="100"><input type='button' value='검색' class="btn btn-info" ng-click="memberManage.func.getMemberList()"/></th>
+			<th width="100"><input type='button' value='검색'
+				class="btn btn-info" ng-click="memberManage.func.getMemberList()" /></th>
 		</table>
-	<!-- </form>
+		<!-- </form>
 	<form action='login_page.php'></form> -->
-	<hr color="#7B7EDD" width=90%>
+		<hr color="#7B7EDD" width=90%>
 
-</div>
-<br>
-<br>
-<center>
-	<!-- <form action="adminMemberRemove.jsp" method="post" id="checkForm"> -->
+	</div>
+	<br> <br>
+	<center>
+		<!-- <form action="adminMemberRemove.jsp" method="post" id="checkForm"> -->
 
-	<table style="cellspacing: 0; width: 1300; class: t2; margin: auto; text-align: center; height: 100;" class="check_board_tb" id="checkBoard">
-		<thead>
-			<tr bgcolor="#85A0F2">
-				<th width="80"><input align="center" type="checkbox" id="checkAll" ></th>
-				<th width="100" align="center" style="color: white">학번/사번</th>
-				<th width="100" align="center" style="color: white">이름</th>
-				<th width="130" align="center" style="color: white">생년월일</th>
-				<th width="160" align="center" style="color: white">주소</th>
-				<th width="200" align="center" style="color: white">전화번호</th>
-				<th width="200" align="center" style="color: white">소속/학과</th>
-				<th width="100" align="center" style="color: white">구분</th>
+		<table
+			style="cellspacing: 0; width: 1300; class: t2; margin: auto; text-align: center; height: 100;"
+			class="check_board_tb" id="checkBoard">
+			<thead>
+				<tr bgcolor="#85A0F2">
+					<th width="80"><input align="center" type="checkbox"
+						id="checkAll"></th>
+					<th width="100" align="center" style="color: white">학번/사번</th>
+					<th width="100" align="center" style="color: white">이름</th>
+					<th width="130" align="center" style="color: white">생년월일</th>
+					<th width="160" align="center" style="color: white">주소</th>
+					<th width="200" align="center" style="color: white">전화번호</th>
+					<th width="200" align="center" style="color: white">소속/학과</th>
+					<th width="100" align="center" style="color: white">구분</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="obj in  memberManage.obj.memberList track by $index">
+					<td width="80" align="center"><input type="checkbox"
+						name="Chk"></td>
+					<td width="100" align="center" name="list">{{obj.num}}</td>
+					<td width="100" align="center">{{obj.name}}</td>
+					<td width="130" align="center">{{obj.birth}}</td>
+					<td width="160" align="center">{{obj.address}}</td>
+					<td width="200" align="center">{{obj.phone}}</td>
+					<td width="200" align="center">{{obj.belname}}/{{obj.depname}}</td>
+					<td ng-if="obj.auth == 1" width="100" align="center">관리자</td>
+					<td ng-if="obj.auth == 2" width="100" align="center">교수</td>
+					<td ng-if="obj.auth == 3" width="100" align="center">학생</td>
+				</tr>
+			</tbody>
+		</table>
+		<table align="right">
+			<tr>
+				<td>&nbsp;</td>
 			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat = "obj in  memberManage.obj.memberList track by $index">
-	            <td width="80" align="center"><input type="checkbox" name = "Chk" ></td>
-	            <td width="100" align="center" name="list">{{obj.num}}</td>
-	            <td width="100" align="center">{{obj.name}}</td>
-	            <td width="130" align="center">{{obj.birth}}</td>
-	            <td width="160" align="center">{{obj.address}}</td>
-	            <td width="200" align="center">{{obj.phone}}</td>
-	            <td width="200" align="center">{{obj.belname}}/{{obj.depname}}</td>
-	            <td ng-if="obj.auth == 1" width="100" align="center">관리자</td>
-	            <td ng-if="obj.auth == 2" width="100" align="center">교수</td>
-	            <td ng-if="obj.auth == 3" width="100" align="center">학생</td>
-	         </tr>
-         </tbody>
-	</table>
-	<table align="right">
-		<tr>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>
-				<button id="dynamic-dialog" type="button" class="btn btn-info">
-					추가<i class="fa fa-check spaceLeft"></i>
-				</button>
-				<button type="button" class="btn btn-warning">
-					수정<i class="fa fa-times spaceLeft"></i>
-				</button>
-				<button type="button" class="btn btn-warning" id="btnDelete"
-					name="btnDelete" onclick="return btnDelete_onclick()">
-					삭제<i class="fa fa-times spaceLeft"></i>
-				</button>
+			<tr>
+				<td>
+					<button ng-click="registerBtn()" id="dynamic-dialog" type="button"
+						class="btn btn-info">
+						추가<i class="fa fa-check spaceLeft"></i>
+					</button>
+					<button type="button" class="btn btn-warning">
+						수정<i class="fa fa-times spaceLeft"></i>
+					</button>
+					<button type="button" class="btn btn-warning" id="btnDelete"
+						name="btnDelete" onclick="return btnDelete_onclick()">
+						삭제<i class="fa fa-times spaceLeft"></i>
+					</button>
 
-			</td>
-		</tr>
-	</table>
+				</td>
+			</tr>
+		</table>
 
-	<!-- </form> -->
-</center>
+		<!-- </form> -->
+	</center>
+</div>
+</html>
 <!-- <script type="text/javascript">
    
 </script> -->
