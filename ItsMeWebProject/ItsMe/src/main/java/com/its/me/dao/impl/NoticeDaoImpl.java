@@ -41,14 +41,34 @@ public class NoticeDaoImpl extends GenericDaoImpl<NoticeObj, String> implements 
 
 
 
-	public List<NoticeObj> getNoticeList(){
+	public List<NoticeObj> getNoticeList(String title, String writer){
 		
 		String sql = getQuery("NoticeDao.get.Notice");
+		
+		if(!title.equals("")) {
+			sql+= " " + getQuery("NoticeDao.get.Notice.title");
+		}
+		if(!writer.equals("")) {
+			sql+= " " + getQuery("NoticeDao.get.Notice.writer");
+		}
+		sql += " " + getQuery("NoticeDao.get.Notice.orderby");
+		
 		JdbcTemplate jdbcTemplate = getJdbcTemplate();
 		System.out.println("getNoticeList sql : " + sql);
 		
 		try {
-			return jdbcTemplate.query(sql, getRowMapper());
+			if(title.equals("") && writer.equals("")) {
+				return jdbcTemplate.query(sql, getRowMapper());
+			}
+			else if(!title.equals("") && writer.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {title}, getRowMapper());
+			}
+			else if(title.equals("") && !writer.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {writer}, getRowMapper());
+			}
+			else
+				return jdbcTemplate.query(sql, new Object[] {title, writer}, getRowMapper());
+
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}
