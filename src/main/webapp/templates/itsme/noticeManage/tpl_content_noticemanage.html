@@ -7,10 +7,10 @@
 			<th>조회기간: <input type="text" id="datepicker1"> ~ <input
 				type="text" id="datepicker2">
 			</th>
-			<th>제목: <input type="text"></th>
-			<th>작성자 : <input type="text"></th>
+			<th>제목: <input type="text" ng-model="noticeManage.obj.searchTitle"></th>
+			<th>작성자 : <input type="text" ng-model="noticeManage.obj.searchWriter"></th>
 			<th width="100"><input type='button' value='검색'
-				class="btn btn-info" /></th>
+				class="btn btn-info" ng-click="noticeManage.func.getNoticeList()" /></th>
 		</table>
 		<hr color="#7B7EDD" width=90%>
 	</form>

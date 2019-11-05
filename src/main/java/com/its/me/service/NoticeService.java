@@ -22,8 +22,8 @@ public class NoticeService {
 	 * 모든 사용자 정보를 제공한다.
 	 * @return 사용자 목록
 	 */
-	public List<NoticeObj> getNotice() {
-		List<NoticeObj> NoticeList = NoticeDao.getNoticeList();
+	public List<NoticeObj> getNotice(String title, String writer ) {
+		List<NoticeObj> NoticeList = NoticeDao.getNoticeList(title, writer);
 		return NoticeList;
 	}
 	

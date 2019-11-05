@@ -1,5 +1,4 @@
 app.controller("NoticeManageCtrl", function($scope, $http) {
-
 	$(document).ready(function() {
 		// 버튼의 이벤트 핸들러를 붙입니다.
 		$("#notice-dialog").button().on("click", function() {
@@ -35,7 +34,7 @@ app.controller("NoticeManageCtrl", function($scope, $http) {
 			});
 		});
 	});
-
+/*여기서부터*/
 	$.datepicker.setDefaults({
 		dateFormat : 'yy-mm-dd',
 		prevText : '이전 달',
@@ -54,22 +53,24 @@ app.controller("NoticeManageCtrl", function($scope, $http) {
 	$(function() {
 		$("#datepicker1, #datepicker2").datepicker();
 	});
-
-	
+/*여기까지 데이트피커*/
 	$scope.noticeManage = {
 			obj : {
 				noticeList : "",
-				searchName : ""
+				searchTitle : "",
+				searchWriter : ""
 			},
 			func : {
-				getMemberList : function(){
+				getNoticeList : function(){
 					
 					var param = {
-							searchName : $scope.noticeManage.obj.searchName
+					
+							searchTitle : $scope.noticeManage.obj.searchTitle,
+							searchWriter : $scope.noticeManage.obj.searchWriter	
 					}
 					
 					req_http_rest_api.func.req_get_message($http, "/getNotice", param, function(response){
-						$scope.noticeManage.obj.searchName = "bbbbb";
+						/*$scope.noticeManage.obj.searchName = "bbbbb";*/
 						if(response.data.code == 500){
 							alert(response.data.msg);
 						}else{
@@ -83,6 +84,6 @@ app.controller("NoticeManageCtrl", function($scope, $http) {
 			}
 	}
 	
-	$scope.noticeManage.func.getMemberList();
+	$scope.noticeManage.func.getNoticeList();
 	
 });
