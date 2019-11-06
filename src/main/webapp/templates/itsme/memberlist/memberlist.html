@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원등록</title>
-
-</head>
+<html lang="ko">
 <body>
+<!--  div ng-controller="memberAddCtrl">-->
+<div style="width:100%;height:100%;">
 	<article class="container">
 		<div class="page-header">
 			<h1>회원 등록</h1>
@@ -14,8 +11,8 @@
 			<table class="form-group">
 				<label for="InputId">학번/사번</label>
 
-				<td><input type="text" class="form-control"
-					placeholder="학번/사번" id="num" name="NUM" required></td>
+				<td>
+					<input ng-model="classNumber" type="text" class="form-control" placeholder="학번/사번" id="num" name="NUM" ></td>
 				<td class="check_font" id="id_check"></td>
 			</table>
 
@@ -57,12 +54,7 @@
 					readonly /> <br> 
 					<input type="text" name="addr2" placeholder="상세주소"
 					class="form-control" />1
-					
-					
-					
-					
-
-
+			
 				<div class="form-group">
 					<label for="InputAuthor">소속/학과</label> <select class="form-control">
 						<option>선택</option>
@@ -133,13 +125,12 @@
 
 
 				<div class="form-group text-center">
-					<button type="submit" class="btn btn-info" ng-click="memberManage.func.getresult()">
+					<button type="submit" class="btn btn-info" ng-click="memberManageDlg.func.memberManage()">
 						회원등록<i class="fa fa-check spaceLeft"></i>
 					</button>
 				</div>
 			</div>
 	</article>
-	
-	
+	</div>
 </body>
 </html>

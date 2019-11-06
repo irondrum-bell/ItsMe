@@ -1,5 +1,5 @@
 var APP_NAME = "appHome";
-var app = angular.module(APP_NAME, ["ngRoute", "date-picker"]);
+var app = angular.module(APP_NAME, ["ui.bootstrap", "ngRoute", "date-picker"]);
 
 app.controller("appHomeCtrl", function($scope, $http, $location, $timeout, $route, $window){
 
