@@ -8,11 +8,14 @@
 				style="width: 150px"> ~ <input type="text" id="datepicker2"
 				style="width: 150px">
 			</th>
-			<th>과목: <input type="text" style="width: 150px"></th>
-			<th>이름 : <input type="text" style="width: 100px"></th>
-			<th>소 속/학 과 : <select>
-
-					<option>선택</option>
+			<th>과목: <input type="text" style="width: 150px"
+				ng-model="attendanceManage.obj.searchSubject"></th>
+			<th>이름 : <input type="text" style="width: 100px"
+				ng-model="attendanceManage.obj.searchName"></th>
+			<th>소 속/학 과 : <select
+				ng-model="attendanceManage.obj.selectMajor"
+				ng-options="obj.name for obj in majorList">
+					<!-- <option>선택</option>
 					<option>--------------------------</option>
 
 					<option>인문예술대학/국어국문학과</option>
@@ -70,13 +73,13 @@
 					<option>공과대학/컴퓨터공학과</option>
 					<option>공과대학/컴퓨터공학과</option>
 
-					<option>창의융합학부/창의융합학부</option>
+					<option>창의융합학부/창의융합학부</option> -->
 
 			</select></th>
-
-
-			<th width="100"><input type='button' value='검색'
-				class="btn btn-info" /></th>
+			<th width="100"><input type='button' value='검색' class="btn btn-info"
+				ng-click="attendanceManage.func.getAttendanceList()" /></th>
+			<th width="100"><input type='button' value='초기화' class="btn btn-info"
+				onClick = "window.location.reload()" /></th>
 		</table>
 		<hr color="#7B7EDD" width=90%>
 	</form>

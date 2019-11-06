@@ -46,10 +46,12 @@ public class AttendanceController {
 	@RequestMapping(value = "/getattendance", method = RequestMethod.GET)
 	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
-	public ResResult getAttendance() {
+	public ResResult getAttendance( @RequestParam("searchSubject") String searchSubject,
+			@RequestParam("searchName") String searchName, 
+			@RequestParam(value = "selectMajor", defaultValue = "", required=false) String selectMajor) {
 		
 		
-		List<AttendanceObj> attendance = AttendanceService.getAttendance();
+		List<AttendanceObj> attendance = AttendanceService.getAttendance(searchSubject, searchName, selectMajor);
 		
 		ResResult rr = new ResResult();
 		
@@ -65,7 +67,7 @@ public class AttendanceController {
 		return rr;
 	}
 	
-	
+	/*앱 서비스*/
 	@RequestMapping(value = "/getattendanceUser", method = RequestMethod.GET)
 	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
