@@ -37,6 +37,7 @@ app.controller("ClassManageCtrl", function($scope, $http, $modal) {
 	});
 	
 	$scope.majorList = [
+		{code : "", name : "-소속/학과-"},
 		{code : "101", name : "인문예술대학/국어국문학과"},
 		{code : "102", name : "인문예술대학/중어중문학과"},
 		{code : "103", name : "인문예술대학/유럽문화 관광학과"},
@@ -92,7 +93,7 @@ app.controller("ClassManageCtrl", function($scope, $http, $modal) {
 	$scope.classManage = {
 			obj : {
 				classList : "",
-				selectMajor : "",
+				selectMajor : $scope.majorList[0],
 				searchProName : "",
 				searchSubject : ""
 			},
@@ -106,7 +107,7 @@ app.controller("ClassManageCtrl", function($scope, $http, $modal) {
 					}
 					
 					req_http_rest_api.func.req_get_message($http, "/getClassList", param, function(response){
-						$scope.classManage.obj.searchName = "bbbbb";
+						/*$scope.classManage.obj.searchName = "bbbbb";*/
 						if(response.data.code == 500){
 							alert(response.data.msg);
 						}else{
