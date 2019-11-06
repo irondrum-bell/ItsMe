@@ -46,14 +46,49 @@ public class AttendanceDaoImpl extends GenericDaoImpl<AttendanceObj, String> imp
 
 
 
-	public List<AttendanceObj> getAttendanceList(){
+	public List<AttendanceObj> getAttendanceList(String subject, String name, String major){
 		
 		String sql = getQuery("AttendanceDao.get.AttendanceAll");
+		
+		if(!subject.equals("")) {
+			sql+= " " + getQuery("AttendanceDao.get.AttendanceAll.subject");
+		}
+		if(!name.equals("")) {
+			sql+= " " + getQuery("AttendanceDao.get.AttendanceAll.name");
+		}
+		if(!major.equals("")) {
+			sql+= " " + getQuery("AttendanceDao.get.AttendanceAll.major");
+		}
+		sql += " " + getQuery("AttendanceDao.get.AttendanceAll.orderby");
+
 		JdbcTemplate jdbcTemplate = getJdbcTemplate();
 		System.out.println("getAttendanceList sql : " + sql);
 		
 		try {
-			return jdbcTemplate.query(sql, getRowMapper());
+			if(subject.equals("") && name.equals("") && major.equals("")) {
+				return jdbcTemplate.query(sql, getRowMapper());
+			}
+			else if(!subject.equals("") && name.equals("") && major.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {subject}, getRowMapper());
+			}
+			else if(subject.equals("") && !name.equals("") && major.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {name}, getRowMapper());
+			}
+			else if(subject.equals("") && name.equals("") && !major.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {major}, getRowMapper());
+			}
+			else if(!subject.equals("") && !name.equals("") && major.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {subject, name }, getRowMapper());
+			}
+			else if(!subject.equals("") && name.equals("") && !major.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {subject, major}, getRowMapper());
+			}
+			else if(subject.equals("") && !name.equals("") && !major.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {name, major}, getRowMapper());
+			}
+			else
+				return jdbcTemplate.query(sql, new Object[] {subject, name, major}, getRowMapper());
+			
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}
