@@ -39,11 +39,12 @@ public class ClassController {
 	@RequestMapping(value = "/getClassList", method = RequestMethod.GET)
 	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
-	public ResResult getClassList(@RequestParam("searchProName") String searchProName,
+	public ResResult getClassList(@RequestParam(value = "selectMajor", defaultValue = "", required=false) String selectMajor,
+			@RequestParam("searchProName") String searchProName,
 			@RequestParam("searchSubject") String searchSubject) {
 		
 		
-		List<ClassObj> classList = classService.getClassList(searchProName, searchSubject);
+		List<ClassObj> classList = classService.getClassList(selectMajor, searchProName, searchSubject);
 		ResResult rr = new ResResult();
 		
 		if(classList == null) {

@@ -46,9 +46,13 @@ public class ClassDaoImpl extends GenericDaoImpl<ClassObj, String> implements Cl
 
 
 
-	public List<ClassObj> getClassList(String proname, String subject){
+	public List<ClassObj> getClassList(String major, String proname, String subject){
 		
 		String sql = getQuery("classDao.get.classList");
+		
+		if(!major.equals("")) {
+			sql+= " " + getQuery("classDao.get.classList.major");
+		}
 		
 		if(!proname.equals("")) {
 			sql+= " " + getQuery("classDao.get.classList.proname");
@@ -64,17 +68,29 @@ public class ClassDaoImpl extends GenericDaoImpl<ClassObj, String> implements Cl
 		System.out.println("getClassList sql : " + sql);
 		
 		try {
-			if(proname.equals("") && subject.equals("")) {
+			if(major.equals("") && proname.equals("") && subject.equals("")) {
 				return jdbcTemplate.query(sql, getRowMapper());
 			}
-			else if(!proname.equals("") && subject.equals("")) {
+			else if(!major.equals("") && proname.equals("") && subject.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {major}, getRowMapper());
+			}
+			else if(major.equals("") && !proname.equals("") && subject.equals("")) {
 				return jdbcTemplate.query(sql, new Object[] {proname}, getRowMapper());
 			}
-			else if(proname.equals("") && !subject.equals("")) {
+			else if(major.equals("") && proname.equals("") && !subject.equals("")) {
 				return jdbcTemplate.query(sql, new Object[] {subject}, getRowMapper());
 			}
-			else {
+			else if(!major.equals("") && !proname.equals("") && subject.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {major, proname}, getRowMapper());
+			}
+			else if(!major.equals("") && proname.equals("") && !subject.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {major, subject}, getRowMapper());
+			}
+			else if(major.equals("") && !proname.equals("") && !subject.equals("")) {
 				return jdbcTemplate.query(sql, new Object[] {proname, subject}, getRowMapper());
+			}
+			else {
+				return jdbcTemplate.query(sql, new Object[] {major, proname, subject}, getRowMapper());
 			}
 		} catch (DataAccessException e) {
 			e.printStackTrace();
