@@ -3,6 +3,7 @@ package com.its.me.dao;
 import java.util.List;
 
 import com.its.me.model.LoginUser;
+import com.its.me.model.MemberUserInfoObj;
 
 public interface LoginUserDao extends GenericDao<LoginUser, String> {
 

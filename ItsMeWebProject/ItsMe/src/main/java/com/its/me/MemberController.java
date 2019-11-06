@@ -2,6 +2,7 @@ package com.its.me;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.its.me.model.MemberObj;
 import com.its.me.model.ResResult;
+import com.its.me.model.MemberUserInfoObj;
 import com.its.me.service.LoginUserService;
 import com.its.me.service.MemberService;
 
@@ -76,4 +78,63 @@ public class MemberController {
 		rr.setValue(result);
 		return rr;
 	}	
+	
+	/**
+	 * App 개인정보 가져오기
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping(value = "/sso/userInfo", method = RequestMethod.GET)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult userInfo(@RequestParam("userId") String userId) {
+		
+		/*httpServletRequest : 클라이언트의 요청과 관련된 정보와 동작을 가지고 있는 객체. 
+		- 요청 파라미터 조회.
+		- HttpSession 객체 조회 
+		- request scope 상의 component간의 데이터 공유 지원*/
+		
+		MemberUserInfoObj user = memberService.getInfo(userId);
+		
+		ResResult rr = new ResResult();
+		
+		if(user == null) {
+			rr.setCode(401);
+			return rr;
+		}
+		rr.setValue(user);
+		return rr;
+	}
+	
+
+	/**
+	 * App 비밀번호 변경
+	 * @param newPw
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping(value = "/sso/editpw", method = RequestMethod.POST)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult editPw(HttpServletRequest httpServletRequest) {
+		
+		/*httpServletRequest : 클라이언트의 요청과 관련된 정보와 동작을 가지고 있는 객체. 
+		- 요청 파라미터 조회.
+		- HttpSession 객체 조회 
+		- request scope 상의 component간의 데이터 공유 지원*/
+		String userId = httpServletRequest.getParameter("userId");
+		String newPw = httpServletRequest.getParameter("newPw");
+		
+		String user = memberService.editPw(newPw, userId);
+		
+		System.out.println(userId+"  "+newPw+"  "+user);
+		ResResult rr = new ResResult();
+		
+		if(user == null) {
+			rr.setCode(401);
+			return rr;
+		}
+		rr.setCode(200);
+		return rr;
+	}
 }
