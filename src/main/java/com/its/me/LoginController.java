@@ -11,10 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.its.me.model.LoginUser;
 import com.its.me.model.ResResult;
+import com.its.me.model.MemberUserInfoObj;
 import com.its.me.service.LoginUserService;
 import com.its.me.util.EncryptionUtil;
 
@@ -57,5 +59,7 @@ public class LoginController {
 		rr.setCode(200);
 		return rr;
 	}
+	
+	
 	
 }

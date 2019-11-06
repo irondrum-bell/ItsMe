@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.its.me.dao.LoginUserDao;
 import com.its.me.model.LoginUser;
 import com.its.me.model.Users;
+import com.its.me.model.MemberUserInfoObj;
 
 @Repository("com.its.me.dao.impl.LoginUserDaoImpl")
 public class LoginUserDaoImpl extends GenericDaoImpl<LoginUser, String> implements LoginUserDao {
@@ -35,6 +36,8 @@ public class LoginUserDaoImpl extends GenericDaoImpl<LoginUser, String> implemen
 			}
 		};
 	}
+	
+	
 	/**
 	 * 모든 사용자 정보 가져오기
 	 */

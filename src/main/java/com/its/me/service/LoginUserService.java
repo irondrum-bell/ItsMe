@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.its.me.dao.LoginUserDao;
+import com.its.me.dao.MemberUserInfoDao;
 import com.its.me.dao.LoginUserRoleDao;
 import com.its.me.model.LoginUser;
 import com.its.me.model.LoginUserRole;
+import com.its.me.model.MemberUserInfoObj;
 import com.its.me.util.UserSortUtil;
 
 
@@ -22,10 +24,15 @@ public class LoginUserService {
 	@Qualifier("com.its.me.dao.impl.LoginUserDaoImpl")
 	private LoginUserDao userDao;
 	
+
+	
 	@Autowired
 	@Qualifier("com.its.me.dao.impl.LoginUserRoleDaoImpl")
 	private LoginUserRoleDao roleDao;
 
+	
+
+	
 	/**
 	 * 모든 사용자 정보를 제공한다.
 	 * @return 사용자 목록
