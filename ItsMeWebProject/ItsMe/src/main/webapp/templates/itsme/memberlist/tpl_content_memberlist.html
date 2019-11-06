@@ -6,7 +6,8 @@
 			height="100" frame=void>
 			<!-- <tr bgcolor="#85A0F2"> -->
 			<hr color="#7B7EDD" width=90%>
-			<th>구 분 : <select ng-model="memberManage.obj.select_author" ng-options="obj.name for obj in authorList">
+			<th>구 분 : <select ng-model="memberManage.obj.selectAuthor" ng-options="obj.name for obj in authorList">
+					<option value = "">-선택-</option>
 					<!-- <option>선택</option>
 					<option>------</option>
 					<option>학생</option>
@@ -16,7 +17,8 @@
 				ng-model="memberManage.obj.searchName"></th>
 			<th>학 번/사 번 : <input type="text"
 				ng-model="memberManage.obj.searchNumber"></th>
-			<th>소 속/학 과 : <select ng-model="memberManage.obj.select_major" ng-options="obj.name for obj in majorList">
+			<th>소 속/학 과 : <select ng-model="memberManage.obj.selectMajor" ng-options="obj.name for obj in majorList">
+					<option value = "">-소속/학과-</option>
 					<!-- <option>선택</option>
 					<option>--------------------------</option>
 
@@ -87,7 +89,7 @@
 
 	</div>
 	<br> <br>
-	<center>
+	
 		<!-- <form action="adminMemberRemove.jsp" method="post" id="checkForm"> -->
 
 		<table
@@ -145,7 +147,7 @@
 		</table>
 
 		<!-- </form> -->
-	</center>
+	
 </div>
 </html>
 <!-- <script type="text/javascript">

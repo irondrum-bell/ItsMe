@@ -16,22 +16,17 @@
 </script>
 
 <script src="${ctx}/scripts/angularjs/angular.js" type="text/javascript"></script>
-<script src="${ctx}/scripts/angularjs/angular-route.js"
-	type="text/javascript"></script>
-<script src="${ctx}/scripts/angularjs/angular-resource.js"
-	type="text/javascript"></script>
+<script src="${ctx}/scripts/angularjs/angular-route.js"	type="text/javascript"></script>
+<script src="${ctx}/scripts/angularjs/angular-resource.js"	type="text/javascript"></script>
+<script src="${ctx}/scripts/angularjs/ui-bootstrap-tpls-0.11.0.js" type="text/javascript"></script>
 
-<script src="${ctx}/scripts/jquery/jquery-1.11.3.min.js"
-	type="text/javascript"></script>
+<script src="${ctx}/scripts/jquery/jquery-1.11.3.min.js"	type="text/javascript"></script>
 <script src="${ctx}/scripts/jquery/jquery-ui.js" type="text/javascript"></script>
-<script src="${ctx}/scripts/jquery/jquery.easing.1.3.js"
-	type="text/javascript"></script>
+<script src="${ctx}/scripts/jquery/jquery.easing.1.3.js"	type="text/javascript"></script>
 
-<script src="${ctx}/scripts/bootstrap/bootstrap.min.js"
-	type="text/javascript"></script>
+<script src="${ctx}/scripts/bootstrap/bootstrap.min.js"	type="text/javascript"></script>
 
-<script src="${ctx}/scripts/itsme/util/datepicker.js"
-	type="text/javascript"></script>
+<script src="${ctx}/scripts/itsme/util/datepicker.js"	type="text/javascript"></script>
 
 <link rel="stylesheet" href="${ctx}/css/datepicker.css" />
 

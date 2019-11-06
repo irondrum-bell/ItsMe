@@ -14,21 +14,6 @@
 
 
 <!-- schedule CSS -->
-<%-- <link rel="stylesheet"
-	href="${ctx}/vendor/schedule/vendor/css/fullcalendar.min.css">
-<link rel="stylesheet"
-	href="${ctx}/vendor/schedule/vendor/css/bootstrap.min.css">
-<link rel="stylesheet" href='${ctx}/vendor/schedule/vendor/css/select2.min.css'>
-<link rel="stylesheet"
-	href='${ctx}/vendor/schedule/vendor/css/bootstrap-datetimepicker.min.css'>
-
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-<link rel="stylesheet" href="${ctx}/css/schedule/main.css">
- --%>
 
 <!-- Font Awesome JS -->
 <script defer
@@ -40,19 +25,13 @@
 	integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
 	crossorigin="anonymous"></script>
 
-<script src="${ctx}/scripts/itsme/home/ctrl_home.js"
-	type="text/javascript"></script>
-<script src="${ctx}/scripts/itsme/attenManage/ctrl_atten_manage.js"
-	type="text/javascript"></script>
-<script src="${ctx}/scripts/itsme/classManage/ctrl_class_manage.js"
-	type="text/javascript"></script>
-<script src="${ctx}/scripts/itsme/memberlist/ctrl_member_list.js"
-	type="text/javascript"></script>
-<script src="${ctx}/scripts/itsme/noticeManage/ctrl_notice_manage.js"
-	type="text/javascript"></script>
-<script
-	src="${ctx}/scripts/itsme/scheduleManage/ctrl_schedule_manage.js"
-	type="text/javascript"></script>
+<script src="${ctx}/scripts/itsme/home/ctrl_home.js" type="text/javascript"></script>
+<script src="${ctx}/scripts/itsme/attenManage/ctrl_atten_manage.js"	type="text/javascript"></script>
+<script src="${ctx}/scripts/itsme/classManage/ctrl_class_manage.js" type="text/javascript"></script>
+<script src="${ctx}/scripts/itsme/memberlist/ctrl_member_list.js" type="text/javascript"></script>
+<script src="${ctx}/scripts/itsme/memberlist/ctrl_member_add_dlg.js" type="text/javascript"></script>
+<script src="${ctx}/scripts/itsme/noticeManage/ctrl_notice_manage.js" type="text/javascript"></script>
+<script src="${ctx}/scripts/itsme/scheduleManage/ctrl_schedule_manage.js" type="text/javascript"></script>
 
 <!-- datapicekr 사용 -->
 <script type="text/javascript" src="${ctx}/scripts/jquery/jquery-1.11.3.min.js"></script>
@@ -60,21 +39,16 @@
 <link rel="stylesheet" href="${ctx}/scripts/jquery/jquery-ui.css">
 
 <!-- 회원등록 주소 API -->
-<script src="/http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
 
 <!-- schedule js -->
-<%-- <script src="${ctx}/vendor/schedule/vendor/js/jquery.min.js"></script>
-	<script src="${ctx}/vendor/schedule/vendor/js/bootstrap.min.js"></script>
-	<script src="${ctx}/vendor/schedule/vendor/js/moment.min.js"></script>
-	<script src="${ctx}/vendor/schedule/vendor/js/fullcalendar.min.js"></script>
-	<script src="${ctx}/vendor/schedule/vendor/js/ko.js"></script>
-	<script src="${ctx}/vendor/schedule/vendor/js/select2.min.js"></script>
-	<script
-		src="${ctx}/vendor/schedule/vendor/js/bootstrap-datetimepicker.min.js"></script>
-	<script src="${ctx}/js/schedule/js/main.js"></script>
-	<script src="${ctx}/js/schedule/js/addEvent.js"></script>
-	<script src="${ctx}/js/schedule/js/editEvent.js"></script>
-	<script src="${ctx}/js/schedule/js/etcSetting.js"></script> --%>
+<link href='schedule_latest/core/main.css' rel='stylesheet' />
+<link href='schedule_latest/daygrid/main.css' rel='stylesheet' />
+<link href='schedule_latest/timegrid/main.css' rel='stylesheet' />
+<script src='${ctx}/schedule_latest/core/main.js'></script>
+<script src='${ctx}/schedule_latest/interaction/main.js'></script>
+<script src='${ctx}/schedule_latest/daygrid/main.js'></script>
+<script src='${ctx}/schedule_latest/timegrid/main.js'></script>
 
 
 <html ng-app="appHome">
