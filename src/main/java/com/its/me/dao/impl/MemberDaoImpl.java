@@ -81,8 +81,6 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 	}
 
 	public List<MemberObj> getMemberList(String author, String name, String number, String major){
-		String a = "";
-		String b = "";
 		String sql = getQuery("memberDao.get.memberList");
 		
 		if(!author.equals("")) {
@@ -99,8 +97,6 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 		
 		if(!major.equals("")) {
 			sql+= " " + getQuery("memberDao.get.memberList.major");
-			a = major.split("/")[0];
-			b = major.split("/")[1];
 		}
 
 		sql += " " + getQuery("memberDao.get.memberList.orderby");
@@ -123,7 +119,7 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 				return jdbcTemplate.query(sql, new Object[] {number}, getRowMapper());
 			}
 			else if(author.equals("") && name.equals("") && number.equals("") && !major.equals("")) {
-				return jdbcTemplate.query(sql, new Object[] {a,b}, getRowMapper());
+				return jdbcTemplate.query(sql, new Object[] {major}, getRowMapper());
 			}
 			else if(!author.equals("") && !name.equals("") && number.equals("") && major.equals("")) {
 				return jdbcTemplate.query(sql, new Object[] {author, name}, getRowMapper());
@@ -132,31 +128,31 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 				return jdbcTemplate.query(sql, new Object[] {author, number}, getRowMapper());
 			}
 			else if(!author.equals("") && name.equals("") && number.equals("") && !major.equals("")) {
-				return jdbcTemplate.query(sql, new Object[] {author, a,b}, getRowMapper());
+				return jdbcTemplate.query(sql, new Object[] {author, major}, getRowMapper());
 			}
 			else if(author.equals("") && !name.equals("") && !number.equals("") && major.equals("")) {
 				return jdbcTemplate.query(sql, new Object[] {name, number}, getRowMapper());
 			}
 			else if(author.equals("") && !name.equals("") && number.equals("") && !major.equals("")) {
-				return jdbcTemplate.query(sql, new Object[] {name, a,b}, getRowMapper());
+				return jdbcTemplate.query(sql, new Object[] {name, major}, getRowMapper());
 			}
 			else if(author.equals("") && name.equals("") && !number.equals("") && !major.equals("")) {
-				return jdbcTemplate.query(sql, new Object[] {number, a,b}, getRowMapper());
+				return jdbcTemplate.query(sql, new Object[] {number, major}, getRowMapper());
 			}
 			else if(!author.equals("") && !name.equals("") && !number.equals("") && major.equals("")) {
 				return jdbcTemplate.query(sql, new Object[] {author, name, number}, getRowMapper());
 			}
 			else if(!author.equals("") && !name.equals("") && number.equals("") && !major.equals("")) {
-				return jdbcTemplate.query(sql, new Object[] {author, name, a,b}, getRowMapper());
+				return jdbcTemplate.query(sql, new Object[] {author, name, major}, getRowMapper());
 			}
 			else if(!author.equals("") && name.equals("") && !number.equals("") && !major.equals("")) {
-				return jdbcTemplate.query(sql, new Object[] {author, number, a,b}, getRowMapper());
+				return jdbcTemplate.query(sql, new Object[] {author, number, major}, getRowMapper());
 			}
 			else if(author.equals("") && !name.equals("") && !number.equals("") && !major.equals("")) {
-				return jdbcTemplate.query(sql, new Object[] {name, number, a,b}, getRowMapper());
+				return jdbcTemplate.query(sql, new Object[] {name, number, major}, getRowMapper());
 			}
 			else {
-				return jdbcTemplate.query(sql, new Object[] {author, name, number, a,b}, getRowMapper());
+				return jdbcTemplate.query(sql, new Object[] {author, name, number, major}, getRowMapper());
 			}
 		} catch (DataAccessException e) {
 			e.printStackTrace();
