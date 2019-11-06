@@ -21,8 +21,8 @@ public class ClassService {
 	 * 모든 사용자 정보를 제공한다.
 	 * @return 사용자 목록
 	 */
-	public List<ClassObj> getClassList(String proname, String subject) {
-		List<ClassObj> classList = classDao.getClassList(proname, subject);
+	public List<ClassObj> getClassList(String major, String proname, String subject) {
+		List<ClassObj> classList = classDao.getClassList(major, proname, subject);
 		return classList;
 	}
 	
