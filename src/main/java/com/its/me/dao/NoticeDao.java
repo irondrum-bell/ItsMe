@@ -7,5 +7,5 @@ import com.its.me.model.NoticeObj;
 
 public interface NoticeDao extends GenericDao<NoticeObj, String>{
 
-	public List<NoticeObj> getNoticeList(String title, String writer);
+	public List<NoticeObj> getNoticeList(String date1, String date2, String title, String writer);
 }

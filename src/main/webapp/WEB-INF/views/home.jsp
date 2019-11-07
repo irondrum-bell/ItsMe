@@ -41,7 +41,7 @@
 <!-- 회원등록 주소 API -->
 <!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
 
-<!-- schedule js -->
+<%-- <!-- schedule js -->
 <link href='schedule_latest/core/main.css' rel='stylesheet' />
 <link href='schedule_latest/daygrid/main.css' rel='stylesheet' />
 <link href='schedule_latest/timegrid/main.css' rel='stylesheet' />
@@ -49,7 +49,11 @@
 <script src='${ctx}/schedule_latest/interaction/main.js'></script>
 <script src='${ctx}/schedule_latest/daygrid/main.js'></script>
 <script src='${ctx}/schedule_latest/timegrid/main.js'></script>
-
+ --%>
+ <link rel="stylesheet" href="https://unpkg.com/@fullcalendar/core@4.3.1/main.min.css">
+ <link rel="stylesheet" href="https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.css">
+ <script src='https://unpkg.com/@fullcalendar/core@4.3.1/main.min.js'></script>
+ <script src='https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.js'></script>
 
 <html ng-app="appHome">
 <head>

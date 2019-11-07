@@ -86,6 +86,7 @@ app.controller("MemberListCtrl",function($scope, $http, $modal) {
 							alert(response.data.msg);
 						}else{
 							$scope.memberManage.obj.memberList = response.data.value;
+							console.log($scope.memberManage.obj.memberList);
 						}
 						
 					}, function(response){
