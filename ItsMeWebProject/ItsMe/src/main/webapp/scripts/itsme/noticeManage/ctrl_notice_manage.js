@@ -36,7 +36,7 @@ app.controller("NoticeManageCtrl", function($scope, $http) {
 	});
 /*여기서부터*/
 	$.datepicker.setDefaults({
-		dateFormat : 'yy-mm-dd',
+		dateFormat : 'yy.mm.dd',
 		prevText : '이전 달',
 		nextText : '다음 달',
 		monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월',
@@ -57,18 +57,23 @@ app.controller("NoticeManageCtrl", function($scope, $http) {
 	$scope.noticeManage = {
 			obj : {
 				noticeList : "",
+				searchDate1 : "",
+				searchDate2 : "",
 				searchTitle : "",
 				searchWriter : ""
 			},
 			func : {
 				getNoticeList : function(){
+					$scope.noticeManage.func.chkDateParam($("#datepicker1").datepicker().val(), 
+							$("#datepicker2").datepicker().val());
 					
 					var param = {
-					
+							searchDate1 : $scope.noticeManage.obj.searchDate1,
+							searchDate2 : $scope.noticeManage.obj.searchDate2,
 							searchTitle : $scope.noticeManage.obj.searchTitle,
 							searchWriter : $scope.noticeManage.obj.searchWriter	
 					}
-					
+
 					req_http_rest_api.func.req_get_message($http, "/getNotice", param, function(response){
 						/*$scope.noticeManage.obj.searchName = "bbbbb";*/
 						if(response.data.code == 500){
@@ -80,6 +85,19 @@ app.controller("NoticeManageCtrl", function($scope, $http) {
 					}, function(response){
 						alert("서버와 연결을 할 수 없습니다.");
 					})
+				},
+				chkDateParam : function(date1, date2){
+					if(date1 != "" && date2 == "") {
+						var date = new Date().toISOString();
+						$scope.noticeManage.obj.searchDate1 = date1;
+						$scope.noticeManage.obj.searchDate2 = date.slice(0,4) + "." + date.slice(5,7) + "." + date.slice(8,10);
+					} else if(date1 == "" && date2 != "") {
+						$scope.noticeManage.obj.searchDate1 = "1999.99.99";
+						$scope.noticeManage.obj.searchDate2 = date2;
+					} else {
+						$scope.noticeManage.obj.searchDate1 = date1;
+						$scope.noticeManage.obj.searchDate2 = date2;
+					}
 				}
 			}
 	}

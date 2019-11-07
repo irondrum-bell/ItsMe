@@ -43,10 +43,12 @@ public class NoticeController {
 	@RequestMapping(value = "/getNotice", method = RequestMethod.GET)
 	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
 	@Consumes(MediaType.APPLICATION_JSON_VALUE) // 수신하고자 하는 데이터 포맷을 정의한다.
-	public ResResult getNotice(@RequestParam("searchTitle") String searchTitle, 
+	public ResResult getNotice(@RequestParam("searchDate1") String searchDate1, 
+			@RequestParam("searchDate2") String searchDate2, 
+			@RequestParam("searchTitle") String searchTitle, 
 			@RequestParam("searchWriter") String searchWriter) {
 
-		List<NoticeObj> Notice = NoticeService.getNotice(searchTitle, searchWriter);
+		List<NoticeObj> Notice = NoticeService.getNotice(searchDate1, searchDate2, searchTitle, searchWriter);
 
 		ResResult rr = new ResResult();
 
