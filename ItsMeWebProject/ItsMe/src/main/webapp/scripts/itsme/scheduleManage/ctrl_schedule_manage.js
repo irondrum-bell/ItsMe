@@ -89,7 +89,7 @@ app.controller("ScheduleManageCtrl", function($scope, $http) {
 //						$scope.scheduleManage.obj.scheduleList = response.data.value;
 //						$scope.scheduleManage.func.drawSchedule(response.data.value);
     					alert('일정이 추가되었습니다.');
-					}
+   					}
 				}, function(response){
 					alert("서버와 연결을 할 수 없습니다.");
 				})
