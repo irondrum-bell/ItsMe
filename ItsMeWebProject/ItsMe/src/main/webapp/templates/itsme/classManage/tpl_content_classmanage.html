@@ -127,8 +127,8 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="obj in  classManage.obj.classList track by $index">
-				<td width="80" align="center"><input type="checkbox"
-					name="checkId" class="check"></td>
+				<td width="80" align="center"><input type="checkbox" name="checkId" 
+					ng-click="classManage.func.checkValue(obj.ccode)" class="check"></td>
 				<td width="200" align="center">{{obj.belname}}/{{obj.depname}}</td>
 				<td width="130" align="center">{{obj.cname}}</td>
 				<!-- <td width="100" align="center">{{obj.ccode}}</td> -->
@@ -150,7 +150,7 @@
 				<button type="button" class="btn btn-warning">
 					수정<i class="fa fa-times spaceLeft"></i>
 				</button>
-				<button type="button" class="btn btn-warning">
+				<button type="button" class="btn btn-warning" ng-click="classManage.func.deleteClass()">
 					삭제<i class="fa fa-times spaceLeft"></i>
 				</button>
 

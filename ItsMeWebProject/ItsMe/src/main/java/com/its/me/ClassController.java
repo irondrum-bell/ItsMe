@@ -59,4 +59,24 @@ public class ClassController {
 		return rr;
 	}
 	
+	@RequestMapping(value = "/deleteClass", method = RequestMethod.POST)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult getClassList(@RequestParam("deleteMajor") String deleteMajor) {
+		
+		
+		int result = classService.deleteClass(deleteMajor);
+		ResResult rr = new ResResult();
+		
+		if(result == 999) {
+			rr.setCode(500);
+			rr.setMsg("과목을 삭제 할 수 없습니다.");
+			return rr;
+		}
+		
+		rr.setCode(200);
+		
+		return rr;
+	}
+	
 }

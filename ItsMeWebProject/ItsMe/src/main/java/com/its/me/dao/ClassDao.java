@@ -7,4 +7,6 @@ import com.its.me.model.ClassObj;
 public interface ClassDao  extends GenericDao<ClassObj, String>{
 
 	public List<ClassObj> getClassList(String major, String proname, String subject);
+
+	public int deleteClass(String deleteMajor);
 }
