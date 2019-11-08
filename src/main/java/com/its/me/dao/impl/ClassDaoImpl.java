@@ -102,7 +102,7 @@ public class ClassDaoImpl extends GenericDaoImpl<ClassObj, String> implements Cl
 		String sql = getQuery("classDao.delete.class");
 		
 		JdbcTemplate jdbcTemplate = getJdbcTemplate();
-		System.out.println("deleteSchedule sql : " + sql);
+		System.out.println("deleteClass sql : " + sql);
 		
 		try {
 			return jdbcTemplate.update(sql, new Object[] {deleteMajor});

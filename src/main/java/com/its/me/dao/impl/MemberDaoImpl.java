@@ -45,41 +45,6 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 	}
 
 	@Override
-	public List<MemberObj> getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public MemberObj get(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean update(MemberObj data) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean delete(String id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean save(MemberObj data) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public List<MemberObj> search(String nameKeyword, String orient, String dir, Long startIndex, Long endIndex) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public List<MemberObj> getMemberList(String author, String name, String number, String major){
 		String sql = getQuery("memberDao.get.memberList");
 		
@@ -158,6 +123,57 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 			e.printStackTrace();
 		}
 		return new ArrayList<MemberObj>();
+	}
+
+	@Override
+	public int deleteMember(String deleteMember) {
+		String sql = getQuery("memberDao.delete.member");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("deleteMember sql : " + sql);
+		
+		try {
+			return jdbcTemplate.update(sql, new Object[] {deleteMember});
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return 999;
+	}
+
+	@Override
+	public List<MemberObj> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MemberObj get(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean update(MemberObj data) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(String id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean save(MemberObj data) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<MemberObj> search(String nameKeyword, String orient, String dir, Long startIndex, Long endIndex) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

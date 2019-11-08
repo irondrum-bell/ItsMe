@@ -113,7 +113,7 @@
 			<tbody>
 				<tr ng-repeat="obj in  memberManage.obj.memberList track by $index">
 					<td width="80" align="center"><input type="checkbox"
-						name="Chk"></td>
+						name="Chk" ng-click="memberManage.func.checkValue(obj.num)"></td>
 					<td width="100" align="center" name="list">{{obj.num}}</td>
 					<td width="100" align="center">{{obj.name}}</td>
 					<td width="130" align="center">{{obj.birth}}</td>
@@ -139,8 +139,7 @@
 					<button type="button" class="btn btn-warning">
 						수정<i class="fa fa-times spaceLeft"></i>
 					</button>
-					<button type="button" class="btn btn-warning" id="btnDelete"
-						name="btnDelete" onclick="return btnDelete_onclick()">
+					<button type="button" class="btn btn-warning" ng-click="memberManage.func.deleteMember()">
 						삭제<i class="fa fa-times spaceLeft"></i>
 					</button>
 

@@ -37,6 +37,16 @@ public class MemberService {
 		 
 		return memberDao.save(obj);
 	}
+
+	/**
+	 * 
+	 * 사용자의 정보 삭제
+	 * @return 삭제 여부 상태
+	 * */
+	public int deleteMember(String deleteMember) {
+		int result = memberDao.deleteMember(deleteMember);
+		return result;
+	}
 	
 	/**
 	 * 
