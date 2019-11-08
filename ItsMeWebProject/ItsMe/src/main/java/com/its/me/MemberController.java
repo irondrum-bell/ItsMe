@@ -85,7 +85,7 @@ public class MemberController {
 	@RequestMapping(value = "/deleteMember", method = RequestMethod.POST)
 	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
-	public ResResult deleteMemberList(@RequestParam("deleteMember") String deleteMember) {
+	public ResResult deleteMember(@RequestParam("deleteMember") String deleteMember) {
 		
 		
 		int result = memberService.deleteMember(deleteMember);
