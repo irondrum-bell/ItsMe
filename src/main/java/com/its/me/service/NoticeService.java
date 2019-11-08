@@ -26,5 +26,15 @@ public class NoticeService {
 		List<NoticeObj> NoticeList = NoticeDao.getNoticeList(date1, date2, title, writer);
 		return NoticeList;
 	}
+
+	/**
+	 * 
+	 * 공지사항 삭제
+	 * @return 삭제 여부 상태
+	 * */
+	public int deleteNotice(String deleteNotice) {
+		int result = NoticeDao.deleteNotice(deleteNotice);
+		return result;
+	}
 	
 }

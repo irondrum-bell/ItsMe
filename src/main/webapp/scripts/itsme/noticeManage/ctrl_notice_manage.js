@@ -60,7 +60,8 @@ app.controller("NoticeManageCtrl", function($scope, $http) {
 				searchDate1 : "",
 				searchDate2 : "",
 				searchTitle : "",
-				searchWriter : ""
+				searchWriter : "",
+				deleteNoticeSet : new Set()
 			},
 			func : {
 				getNoticeList : function(){
@@ -98,10 +99,52 @@ app.controller("NoticeManageCtrl", function($scope, $http) {
 						$scope.noticeManage.obj.searchDate1 = date1;
 						$scope.noticeManage.obj.searchDate2 = date2;
 					}
+				},
+				deleteNotice : function() {
+					if($scope.noticeManage.obj.deleteNoticeSet.size == 0) {
+						alert("선택된 공지사항이 업습니다.");
+						return;
+					} else if(!confirm("선택한 공지사항들을 삭제하시겠습니까?")) {
+						return;
+					} else {
+						var chk = true;
+						
+						for (let item of $scope.noticeManage.obj.deleteNoticeSet) {
+							var param = {
+									deleteNotice : item
+							}
+							
+							req_http_rest_api.func.req_post_message($http, "/deleteNotice", param, function(response){
+								/*$scope.classManage.obj.searchName = "bbbbb";*/
+								if(response.data.code == 500){
+									alert(response.data.msg);
+								}else{
+									chk = true;
+								}
+							}, function(response){
+								alert("서버와 연결을 할 수 없습니다.");
+								chk = false;
+								return;
+							})
+						}
+						if(chk) {
+							$('input:checkbox').removeAttr('checked')
+							$scope.noticeManage.obj.deleteNoticeSet.clear();
+							alert("공지사항이 삭제되었습니다.");
+							$scope.noticeManage.func.getNoticeList();
+						}
+					}
+				},
+				checkValue : function(pnum) {
+					if(!$scope.noticeManage.obj.deleteNoticeSet.has(pnum)) {
+						$scope.noticeManage.obj.deleteNoticeSet.add(pnum);
+					} else {
+						$scope.noticeManage.obj.deleteNoticeSet.delete(pnum);
+					}
+					console.log($scope.noticeManage.obj.deleteNoticeSet);
 				}
 			}
 	}
 	
 	$scope.noticeManage.func.getNoticeList();
-	
 });

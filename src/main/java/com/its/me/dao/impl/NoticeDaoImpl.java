@@ -39,8 +39,7 @@ public class NoticeDaoImpl extends GenericDaoImpl<NoticeObj, String> implements 
 		};
 	}
 
-
-
+	@Override
 	public List<NoticeObj> getNoticeList(String date1, String date2, String title, String writer){
 		
 		String sql = getQuery("NoticeDao.get.Notice");
@@ -89,15 +88,27 @@ public class NoticeDaoImpl extends GenericDaoImpl<NoticeObj, String> implements 
 		}
 		return new ArrayList<NoticeObj>();
 	}
-
-
+	
+	@Override
+	public int deleteNotice(String deleteNotice) {
+		String sql = getQuery("NoticeDao.delete.Notice");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("deleteNotice sql : " + sql);
+		
+		try {
+			return jdbcTemplate.update(sql, new Object[] {deleteNotice});
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return 999;
+	}
+	
 	@Override
 	public List<NoticeObj> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 	@Override
 	public NoticeObj get(String id) {
@@ -105,15 +116,11 @@ public class NoticeDaoImpl extends GenericDaoImpl<NoticeObj, String> implements 
 		return null;
 	}
 
-
-
 	@Override
 	public boolean update(NoticeObj data) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-
 
 	@Override
 	public boolean delete(String id) {
@@ -121,24 +128,17 @@ public class NoticeDaoImpl extends GenericDaoImpl<NoticeObj, String> implements 
 		return false;
 	}
 
-
-
 	@Override
 	public boolean save(NoticeObj data) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-
-
+	
 	@Override
 	public List<NoticeObj> search(String nameKeyword, String orient, String dir, Long startIndex, Long endIndex) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-
 }
 
 
