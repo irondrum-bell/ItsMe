@@ -23,6 +23,8 @@ public interface LoginUserDao extends GenericDao<LoginUser, String> {
 
 	List<LoginUser> searchUser(LoginUser user);
 	
+	// App 비밀번호 초기화
+	String formatPw(String id, String name, String birth, String phone);
 	
 	boolean setUser(LoginUser user);
 }
