@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.its.me.dao.LoginUserDao;
 import com.its.me.model.LoginUser;
 import com.its.me.model.Users;
+import com.its.me.util.EncryptionUtil;
 import com.its.me.model.MemberUserInfoObj;
 
 @Repository("com.its.me.dao.impl.LoginUserDaoImpl")
@@ -518,6 +519,30 @@ public class LoginUserDaoImpl extends GenericDaoImpl<LoginUser, String> implemen
 	@Override
 	public List<LoginUser> getUserByPage(int page) {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * App 비밀번호 초기화
+	 */
+	@Override
+	public String formatPw(String id, String name, String birth, String phone) {
+		final String sql = getQuery("userDao.update.formatPw");
+		String birth2 = "";
+		if(birth.length() == 8) {
+			birth2 = birth.substring(0, 4)+"."+birth.substring(4, 6)+"."+birth.substring(6, 8);
+		}
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		// JdbcTemplate : jdbc의 반복적인 코드들을 제거하기 위해 쓰인다. 
+		try {
+			// 암호화된 생일, 아이디, 이름, 생일(년.월.일), 전화번호
+			// 성공: 1 실패: 0
+			return jdbcTemplate.update(sql, new Object[] {EncryptionUtil.encrypt((String)birth), id, name, birth2, phone})+"";
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+
 		return null;
 	}
 	

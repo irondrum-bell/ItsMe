@@ -207,4 +207,12 @@ public class LoginUserService {
 	}
 	
 	
+	/**
+	 * APP 비밀번호 초기화
+	 * 
+	 */
+	public String formatPw(String id, String name, String birth, String phone) {
+
+		return userDao.formatPw(id, name, birth, phone);
+	}
 }
