@@ -6,6 +6,13 @@ var req_http_rest_api = {
 					url : ctx + url,
 					params : param
 				}).then(success, fail);
+			},
+			req_post_message : function($http, url, param, success, fail){
+				$http({
+					method : "POST",
+					url : ctx + url,
+					params : param
+				}).then(success, fail);
 			}
 		}
 }

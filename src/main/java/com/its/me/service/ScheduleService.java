@@ -24,4 +24,10 @@ public class ScheduleService {
 		List<ScheduleObj> ScheduleList = ScheduleDao.getScheduleList(date1, date2);
 		return ScheduleList;
 	}
+
+	public int addSchedule(String schedule, String sdate) {
+		// TODO Auto-generated method stub
+		int result = ScheduleDao.addSchedule(schedule, sdate);
+		return result;
+	}
 }
