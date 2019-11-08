@@ -52,6 +52,23 @@ public class ScheduleDaoImpl extends GenericDaoImpl<ScheduleObj, String> impleme
 	}
 
 	@Override
+	public int addSchedule(String schedule, String sdate) {
+		// TODO Auto-generated method stub
+		String sql = getQuery("ScheduleDao.add.Schedule");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("addSchedule sql : " + sql);
+		
+		try {
+			return jdbcTemplate.update(sql, new Object[] {schedule, sdate});
+
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return 999;
+	}
+
+	@Override
 	public List<ScheduleObj> getAll() {
 		// TODO Auto-generated method stub
 		return null;

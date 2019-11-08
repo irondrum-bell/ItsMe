@@ -36,7 +36,7 @@ public class ScheduleController {
 	@RequestMapping(value = "/getSchedule", method = RequestMethod.GET)
 	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
 	@Consumes(MediaType.APPLICATION_JSON_VALUE) // 수신하고자 하는 데이터 포맷을 정의한다.
-	public ResResult getNotice(@RequestParam("searchDate1") String searchDate1,
+	public ResResult getSchedule(@RequestParam("searchDate1") String searchDate1,
 			@RequestParam("searchDate2") String searchDate2) {
 
 		List<ScheduleObj> Schedule = ScheduleService.getSchedule(searchDate1, searchDate2);
@@ -45,12 +45,33 @@ public class ScheduleController {
 
 		if (Schedule == null ) {
 			rr.setCode(500);
-			rr.setMsg("공지사항 리스트를 가져 올 수 없습니다.");
+			rr.setMsg("일정 리스트를 가져 올 수 없습니다.");
 			return rr;
 		}
 
 		rr.setCode(200);
 		rr.setValue(Schedule);
+
+		return rr;
+	}
+	
+	@RequestMapping(value = "/addSchedule", method = RequestMethod.POST)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE) // 수신하고자 하는 데이터 포맷을 정의한다.
+	public ResResult addSchedule(@RequestParam("insertTitle") String insertTitle,
+			@RequestParam("insertStart") String insertStart) {
+
+		int result = ScheduleService.addSchedule(insertTitle, insertStart);
+
+		ResResult rr = new ResResult();
+
+		if (result == 999 ) {
+			rr.setCode(500);
+			rr.setMsg("일정을 추가할 수 없습니다.");
+			return rr;
+		}
+
+		rr.setCode(200);
 
 		return rr;
 	}
