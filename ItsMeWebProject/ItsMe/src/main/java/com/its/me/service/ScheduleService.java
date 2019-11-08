@@ -20,8 +20,8 @@ public class ScheduleService {
 	 * 모든 사용자 정보를 제공한다.
 	 * @return 사용자 목록
 	 */
-	public List<ScheduleObj> getSchedule(String date1, String date2) {
-		List<ScheduleObj> ScheduleList = ScheduleDao.getScheduleList(date1, date2);
+	public List<ScheduleObj> getSchedule() {
+		List<ScheduleObj> ScheduleList = ScheduleDao.getScheduleList();
 		return ScheduleList;
 	}
 

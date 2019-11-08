@@ -34,7 +34,7 @@ public class ScheduleDaoImpl extends GenericDaoImpl<ScheduleObj, String> impleme
 	}
 
 	@Override
-	public List<ScheduleObj> getScheduleList(String date1, String date2) {
+	public List<ScheduleObj> getScheduleList() {
 		// TODO Auto-generated method stub
 		String sql = getQuery("ScheduleDao.get.Schedule");
 		sql += " " + getQuery("ScheduleDao.get.Schedule.orderby");
@@ -43,7 +43,7 @@ public class ScheduleDaoImpl extends GenericDaoImpl<ScheduleObj, String> impleme
 		System.out.println("getScheduleList sql : " + sql);
 		
 		try {
-			return jdbcTemplate.query(sql, new Object[] {date1, date2}, getRowMapper());
+			return jdbcTemplate.query(sql, new Object[] {}, getRowMapper());
 
 		} catch (DataAccessException e) {
 			e.printStackTrace();

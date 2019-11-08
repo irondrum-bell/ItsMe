@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>일정 조회</title>
+<script>
+	var title = $("#DialogDiv").data('title');
+	document.getElementById("scheduleTitle").innerHTML = title;
+	var date = $("#DialogDiv").data('start');
+	document.getElementById("scheduleDate").innerHTML = date;
+</script>
+</head>
+<body>
+	<article class="container">
+		<div class="page-header">
+			<h1>일정 조회</h1>
+		</div>
+		<div class="col-md-6 col-md-offset-3">
+			<table class="form-group">
+				<div class="form-group">
+					<label for="InputBirth">날짜</label> 
+					<p id="scheduleDate"></p>
+				</div>
+				
+				<div class="form-group">
+					<label for="InputBirth">내용</label> 
+					<p id="scheduleTitle"></p>
+				</div>
+			</table>
+		</div>
+	</article>
+</body>
+</html>
