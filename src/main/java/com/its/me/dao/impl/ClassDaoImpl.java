@@ -44,8 +44,6 @@ public class ClassDaoImpl extends GenericDaoImpl<ClassObj, String> implements Cl
 		};
 	}
 
-
-
 	public List<ClassObj> getClassList(String major, String proname, String subject){
 		
 		String sql = getQuery("classDao.get.classList");
@@ -98,7 +96,21 @@ public class ClassDaoImpl extends GenericDaoImpl<ClassObj, String> implements Cl
 		return new ArrayList<ClassObj>();
 	}
 
-
+	@Override
+	public int deleteClass(String deleteMajor) {
+		// TODO Auto-generated method stub
+		String sql = getQuery("classDao.delete.class");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("deleteSchedule sql : " + sql);
+		
+		try {
+			return jdbcTemplate.update(sql, new Object[] {deleteMajor});
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return 999;
+	}
 
 	@Override
 	public List<ClassObj> getAll() {
@@ -106,39 +118,29 @@ public class ClassDaoImpl extends GenericDaoImpl<ClassObj, String> implements Cl
 		return null;
 	}
 
-
-
 	@Override
 	public ClassObj get(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-
-
 	@Override
 	public boolean update(ClassObj data) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-
-
+	
 	@Override
 	public boolean delete(String id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-
-
+	
 	@Override
 	public boolean save(ClassObj data) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-
 
 	@Override
 	public List<ClassObj> search(String nameKeyword, String orient, String dir, Long startIndex, Long endIndex) {

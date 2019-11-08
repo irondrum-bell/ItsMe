@@ -25,5 +25,10 @@ public class ClassService {
 		List<ClassObj> classList = classDao.getClassList(major, proname, subject);
 		return classList;
 	}
+
+	public int deleteClass(String deleteMajor) {
+		int result = classDao.deleteClass(deleteMajor);
+		return result;
+	}
 	
 }

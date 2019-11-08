@@ -95,7 +95,8 @@ app.controller("ClassManageCtrl", function($scope, $http, $modal) {
 				classList : "",
 				selectMajor : $scope.majorList[0],
 				searchProName : "",
-				searchSubject : ""
+				searchSubject : "",
+				deleteClassSet : new Set()
 			},
 			func : {
 				getClassList : function(){
@@ -117,13 +118,54 @@ app.controller("ClassManageCtrl", function($scope, $http, $modal) {
 					}, function(response){
 						alert("서버와 연결을 할 수 없습니다.");
 					})
+				},
+				deleteClass : function() {
+					if($scope.classManage.obj.deleteClassSet.size == 0) {
+						alert("선택된 과목이 업습니다.");
+						return;
+					} else if(!confirm("선택한 과목들을 삭제하시겠습니까?")) {
+						return;
+					} else {
+						var chk = true;
+						
+						for (let item of $scope.classManage.obj.deleteClassSet) {
+							var param = {
+									deleteMajor : item
+							}
+							
+							req_http_rest_api.func.req_post_message($http, "/deleteClass", param, function(response){
+								/*$scope.classManage.obj.searchName = "bbbbb";*/
+								if(response.data.code == 500){
+									alert(response.data.msg);
+								}else{
+									chk = true;
+								}
+							}, function(response){
+								alert("서버와 연결을 할 수 없습니다.");
+								chk = false;
+								return;
+							})
+						}
+						if(chk) {
+							$('input:checkbox').removeAttr('checked')
+							$scope.classManage.obj.deleteClassSet.clear();
+							alert("과목이 삭제되었습니다.");
+							$scope.classManage.func.getClassList();
+						}
+					}
+				},
+				checkValue : function(ccode) {
+					if(!$scope.classManage.obj.deleteClassSet.has(ccode)) {
+						$scope.classManage.obj.deleteClassSet.add(ccode);
+					} else {
+						$scope.classManage.obj.deleteClassSet.delete(ccode);
+					}
+					console.log($scope.classManage.obj.deleteClassSet);
 				}
 			}
 	}
 	
-	
 	$scope.classManage.func.getClassList();
-
 });
 /*function openZipSearch() {
 	new daum.Postcode({
