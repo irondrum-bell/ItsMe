@@ -67,7 +67,8 @@ app.controller("MemberListCtrl",function($scope, $http, $modal) {
 				searchName : "",
 				searchNumber : "",
 // 				selectMajor : "",
-				selectMajor : $scope.majorList[0]
+				selectMajor : $scope.majorList[0],
+				deleteMemberSet : new Set()
 			},
 			func : {
 				getMemberList : function(){
@@ -92,6 +93,49 @@ app.controller("MemberListCtrl",function($scope, $http, $modal) {
 					}, function(response){
 						alert("서버와 연결을 할 수 없습니다.");
 					})
+				},
+				deleteMember : function() {
+					if($scope.memberManage.obj.deleteMemberSet.size == 0) {
+						alert("선택된 회원이 업습니다.");
+						return;
+					} else if(!confirm("선택한 회원들을 삭제하시겠습니까?")) {
+						return;
+					} else {
+						var chk = true;
+						
+						for (let item of $scope.memberManage.obj.deleteMemberSet) {
+							var param = {
+									deleteMember : item
+							}
+							
+							req_http_rest_api.func.req_post_message($http, "/deleteMember", param, function(response){
+								/*$scope.classManage.obj.searchName = "bbbbb";*/
+								if(response.data.code == 500){
+									alert(response.data.msg);
+								}else{
+									chk = true;
+								}
+							}, function(response){
+								alert("서버와 연결을 할 수 없습니다.");
+								chk = false;
+								return;
+							})
+						}
+						if(chk) {
+							$('input:checkbox').removeAttr('checked')
+							$scope.memberManage.obj.deleteMemberSet.clear();
+							alert("회원이 삭제되었습니다.");
+							$scope.memberManage.func.getMemberList();
+						}
+					}
+				},
+				checkValue : function(num) {
+					if(!$scope.memberManage.obj.deleteMemberSet.has(num)) {
+						$scope.memberManage.obj.deleteMemberSet.add(num);
+					} else {
+						$scope.memberManage.obj.deleteMemberSet.delete(num);
+					}
+					console.log($scope.memberManage.obj.deleteMemberSet);
 				}
 			}
 	}
