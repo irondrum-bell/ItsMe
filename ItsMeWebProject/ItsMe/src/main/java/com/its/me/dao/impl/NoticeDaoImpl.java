@@ -88,16 +88,62 @@ public class NoticeDaoImpl extends GenericDaoImpl<NoticeObj, String> implements 
 		}
 		return new ArrayList<NoticeObj>();
 	}
+
+	@Override
+	public int addNotice(String title, String msg, String date) {
+		String sql = getQuery("NoticeDao.add.Notice");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("addNotice sql : " + sql);
+		
+		try {
+			return jdbcTemplate.update(sql, new Object[] {title, msg, date});
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return 999;
+	}
+
+	@Override
+	public NoticeObj getContent(String searchPnum) {
+		String sql = getQuery("NoticeDao.get.Notice");
+		sql+= " " + getQuery("NoticeDao.get.Notice.pnum");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("getContent sql : " + sql);
+		
+		try {
+			return jdbcTemplate.queryForObject(sql, new Object[] {searchPnum}, getRowMapper());
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return new NoticeObj();
+	}
+
+	@Override
+	public int updateNotice(String title, String msg, String pnum) {
+		String sql = getQuery("NoticeDao.update.Notice");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("updateNotice sql : " + sql);
+		
+		try {
+			return jdbcTemplate.update(sql, new Object[] {title, msg, pnum});
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return 999;
+	}
 	
 	@Override
-	public int deleteNotice(String deleteNotice) {
+	public int deleteNotice(String pnum) {
 		String sql = getQuery("NoticeDao.delete.Notice");
 		
 		JdbcTemplate jdbcTemplate = getJdbcTemplate();
 		System.out.println("deleteNotice sql : " + sql);
 		
 		try {
-			return jdbcTemplate.update(sql, new Object[] {deleteNotice});
+			return jdbcTemplate.update(sql, new Object[] {pnum});
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}
