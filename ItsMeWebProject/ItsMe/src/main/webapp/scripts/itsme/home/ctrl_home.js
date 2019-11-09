@@ -46,6 +46,27 @@ app.controller("appHomeCtrl", function($scope, $http, $location, $timeout, $rout
 		disabled : false,
 		selected : false,
 		disabled : false
+	},{
+		url : ctx + "#/classAddMod",
+		display : "수업 등록/수정",
+		code : 7,
+		disabled : false,
+		selected : false,
+		disabled : false
+	},{
+		url : ctx + "#/attenMod",
+		display : "출석 수정",
+		code : 8,
+		disabled : false,
+		selected : false,
+		disabled : false
+	},{
+		url : ctx + "#/noticeAddMod",
+		display : "공지사항 등록/수정",
+		code : 9,
+		disabled : false,
+		selected : false,
+		disabled : false
 	} ];
 });
 
@@ -89,9 +110,33 @@ app.config(function($routeProvider, $locationProvider){
 		redirectTo : null
 	});
 
+	$routeProvider.when(ctx + "/classAddMod",{
+		templateUrl : ctx + "/templates/itsme/classManage/classaddmod.html",
+		controller : "ClassAddModCtrl",
+		resolve : {
+			content : function() {
+				return {
+				};
+			}
+		},
+		redirectTo : null
+	});
+
 	$routeProvider.when(ctx + "/attenManage",{
 		templateUrl : ctx + "/templates/itsme/attenManage/tpl_content_attenmanage.html",
 		controller : "AttenManageCtrl",
+		resolve : {
+			content : function() {
+				return {
+				};
+			}
+		},
+		redirectTo : null
+	});
+
+	$routeProvider.when(ctx + "/attenMod",{
+		templateUrl : ctx + "/templates/itsme/attenManage/attenmod.html",
+		controller : "AttenModCtrl",
 		resolve : {
 			content : function() {
 				return {
@@ -116,6 +161,18 @@ app.config(function($routeProvider, $locationProvider){
 	$routeProvider.when(ctx + "/noticeManage",{
 		templateUrl : ctx + "/templates/itsme/noticeManage/tpl_content_noticemanage.html",
 		controller : "NoticeManageCtrl",
+		resolve : {
+			content : function() {
+				return {
+				};
+			}
+		},
+		redirectTo : null
+	});
+	
+	$routeProvider.when(ctx + "/noticeAddMod",{
+		templateUrl : ctx + "/templates/itsme/noticeManage/noticeaddmod.html",
+		controller : "NoticeAddModCtrl",
 		resolve : {
 			content : function() {
 				return {
