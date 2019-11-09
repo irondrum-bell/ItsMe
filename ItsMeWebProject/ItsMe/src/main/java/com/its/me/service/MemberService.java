@@ -32,10 +32,16 @@ public class MemberService {
 		List<MemberObj> memberList = memberDao.getMemberList(author, name, number, major);
 		return memberList;
 	}
-	
-	public boolean addMember(MemberObj obj) {
-		 
-		return memberDao.save(obj);
+
+	public MemberObj isMember(String num) {
+		MemberObj member = memberDao.isMember(num);
+		return member;
+	}
+
+	public int addMember(String belcode, String depcode, String name, String num, String pw, int author,
+			String birth, String phone, String email, String addr) {
+		int result = memberDao.addMember(belcode, depcode, name, num, pw, author, birth, phone, email, addr);
+		return result;
 	}
 
 	/**

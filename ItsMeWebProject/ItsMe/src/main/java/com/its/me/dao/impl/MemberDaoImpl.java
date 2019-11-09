@@ -126,6 +126,37 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 	}
 
 	@Override
+	public MemberObj isMember(String num) {
+		String sql = getQuery("memberDao.get.member");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("isMemberExist sql : " + sql);
+		
+		try {
+			return jdbcTemplate.queryForObject(sql, new Object[] {num}, getRowMapper());
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return new MemberObj();
+	}	
+
+	@Override
+	public int addMember(String belcode, String depcode, String name, String num, String pw, int author, String birth,
+			String phone, String email, String addr) {
+		String sql = getQuery("memberDao.add.member");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("addMember sql : " + sql);
+		
+		try {
+			return jdbcTemplate.update(sql, new Object[] { num, name, pw, birth, phone, author, belcode, depcode, email, addr});
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return 999;
+	}
+
+	@Override
 	public int deleteMember(String deleteMember) {
 		String sql = getQuery("memberDao.delete.member");
 		
@@ -175,6 +206,4 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
 }
