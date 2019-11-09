@@ -29,7 +29,7 @@
 <script src="${ctx}/scripts/itsme/attenManage/ctrl_atten_manage.js"	type="text/javascript"></script>
 <script src="${ctx}/scripts/itsme/classManage/ctrl_class_manage.js" type="text/javascript"></script>
 <script src="${ctx}/scripts/itsme/memberlist/ctrl_member_list.js" type="text/javascript"></script>
-<script src="${ctx}/scripts/itsme/memberlist/ctrl_member_add_dlg.js" type="text/javascript"></script>
+<script src="${ctx}/scripts/itsme/memberlist/ctrl_member_add.js" type="text/javascript"></script>
 <script src="${ctx}/scripts/itsme/noticeManage/ctrl_notice_manage.js" type="text/javascript"></script>
 <script src="${ctx}/scripts/itsme/scheduleManage/ctrl_schedule_manage.js" type="text/javascript"></script>
 
@@ -55,6 +55,7 @@
  <script src='https://unpkg.com/@fullcalendar/core@4.3.1/main.min.js'></script>
  <script src='https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.js'></script>
 
+
 <html ng-app="appHome">
 <head>
 <title>ItsMe</title>
@@ -69,7 +70,7 @@
 			</div>
 
 			<ul class="list-unstyled components" style="padding: 20px 0;border-bottom:1px solid #47748b;">
-				<li ng-repeat="menu in routeContents"><a href="{{menu.url}}" style="padding: 10px;font-size: 1.1em;display: block;">{{menu.display}}</a></li>
+				<li ng-repeat="menu in routeContents"><a ng-if="menu.code < 6" href="{{menu.url}}" style="padding: 10px;font-size: 1.1em;display: block;">{{menu.display}}</a></li>
 			</ul>
 
 			<ul class="list-unstyled CTAs">
