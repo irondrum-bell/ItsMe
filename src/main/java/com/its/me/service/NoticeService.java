@@ -27,6 +27,22 @@ public class NoticeService {
 		return NoticeList;
 	}
 
+	public int addNotice(String title, String msg, String date) {
+		int result = NoticeDao.addNotice(title, msg, date);
+		return result;
+	}
+
+	public NoticeObj getContent(String searchPnum) {
+		NoticeObj Notice = NoticeDao.getContent(searchPnum);
+		return Notice;
+	}
+
+	public int updateNotice(String title, String msg, String pnum) {
+
+		int result = NoticeDao.updateNotice(title, msg, pnum);
+		return result;
+	}
+
 	/**
 	 * 
 	 * 공지사항 삭제

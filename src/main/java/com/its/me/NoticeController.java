@@ -64,11 +64,70 @@ public class NoticeController {
 		return rr;
 	}	
 	
+	@RequestMapping(value = "/addNotice", method = RequestMethod.POST)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult addNotice(@RequestParam("insertTitle") String insertTitle,
+			@RequestParam("insertMsg") String insertMsg,
+			@RequestParam("insertDate") String insertDate) {
+		int result = NoticeService.addNotice(insertTitle, insertMsg, insertDate);
+		ResResult rr = new ResResult();
+		
+		if(result == 999) {
+			rr.setCode(500);
+			rr.setMsg("공지사항을 추가 할 수 없습니다.");
+			return rr;
+		}
+		
+		rr.setCode(200);
+		
+		return rr;
+	}
+	
+	@RequestMapping(value = "/getContent", method = RequestMethod.GET)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult getContent(@RequestParam("searchPnum") String searchPnum) {
+		NoticeObj Notice = NoticeService.getContent(searchPnum);
+
+		ResResult rr = new ResResult();
+
+		if (Notice == null ) {
+			rr.setCode(500);
+			rr.setMsg("공지사항을 가져 올 수 없습니다.");
+			return rr;
+		}
+
+		rr.setCode(200);
+		rr.setValue(Notice);
+
+		return rr;
+	}
+	
+	@RequestMapping(value = "/updateNotice", method = RequestMethod.POST)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult updateNotice(@RequestParam("insertTitle") String insertTitle,
+			@RequestParam("insertMsg") String insertMsg,
+			@RequestParam("searchPnum") String searchPnum) {
+		int result = NoticeService.updateNotice(insertTitle, insertMsg, searchPnum);
+		ResResult rr = new ResResult();
+		
+		if(result == 999) {
+			rr.setCode(500);
+			rr.setMsg("공지사항을 추가 할 수 없습니다.");
+			return rr;
+		}
+		
+		rr.setCode(200);
+		
+		return rr;
+	}
+	
 	@RequestMapping(value = "/deleteNotice", method = RequestMethod.POST)
 	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
 	public ResResult deleteNotice(@RequestParam("deleteNotice") String deleteNotice) {
-		
 		
 		int result = NoticeService.deleteNotice(deleteNotice);
 		ResResult rr = new ResResult();

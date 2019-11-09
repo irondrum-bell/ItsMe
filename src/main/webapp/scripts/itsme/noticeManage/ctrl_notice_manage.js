@@ -1,39 +1,39 @@
-app.controller("NoticeManageCtrl", function($scope, $http) {
-	$(document).ready(function() {
-		// 버튼의 이벤트 핸들러를 붙입니다.
-		$("#notice-dialog").button().on("click", function() {
-			// 다이얼로그 내용을 가져올 URL입니다.
-			var url = "templates/itsme/noticeManage/notice.html";
-			// 다이얼로그를 생성합니다.
-			$('<div id="DialogDiv">').dialog({
-				// 커스텀 스타일을 줍니다.
-				dialogClass : 'custom-dialog-style',
-				// 모달 다이얼로그로 생성합니다.
-				modal : true,
-				// 다이얼로그 열기 콜백
-				open : function() {
-					// 모달 오버레이 설정
-					$(".ui-widget-overlay").css({
-						opacity : 0.5,
-						filter : "Alpha(Opacity=50)",
-						backgroundColor : "black"
-					});
-					// 내용을 불러 옵니다.
-					$(this).load(url);
-				},
-				// 닫기 콜백
-				close : function(e) {
-					$(this).empty();
-					$(this).dialog('destroy');
-				},
-				height : 700,
-
-				width : 600,
-
-				title : '공지사항 추가'
-			});
-		});
-	});
+app.controller("NoticeManageCtrl", function($scope, $http, $window, $location) {
+//	$(document).ready(function() {
+//		// 버튼의 이벤트 핸들러를 붙입니다.
+//		$("#notice-dialog").button().on("click", function() {
+//			// 다이얼로그 내용을 가져올 URL입니다.
+//			var url = "templates/itsme/noticeManage/noticeaddmod.html";
+//			// 다이얼로그를 생성합니다.
+//			$('<div id="DialogDiv">').dialog({
+//				// 커스텀 스타일을 줍니다.
+//				dialogClass : 'custom-dialog-style',
+//				// 모달 다이얼로그로 생성합니다.
+//				modal : true,
+//				// 다이얼로그 열기 콜백
+//				open : function() {
+//					// 모달 오버레이 설정
+//					$(".ui-widget-overlay").css({
+//						opacity : 0.5,
+//						filter : "Alpha(Opacity=50)",
+//						backgroundColor : "black"
+//					});
+//					// 내용을 불러 옵니다.
+//					$(this).load(url);
+//				},
+//				// 닫기 콜백
+//				close : function(e) {
+//					$(this).empty();
+//					$(this).dialog('destroy');
+//				},
+//				height : 700,
+//
+//				width : 600,
+//
+//				title : '공지사항 추가'
+//			});
+//		});
+//	});
 /*여기서부터*/
 	$.datepicker.setDefaults({
 		dateFormat : 'yy.mm.dd',
@@ -61,7 +61,7 @@ app.controller("NoticeManageCtrl", function($scope, $http) {
 				searchDate2 : "",
 				searchTitle : "",
 				searchWriter : "",
-				deleteNoticeSet : new Set()
+				noticeSet : new Set()
 			},
 			func : {
 				getNoticeList : function(){
@@ -101,7 +101,7 @@ app.controller("NoticeManageCtrl", function($scope, $http) {
 					}
 				},
 				deleteNotice : function() {
-					if($scope.noticeManage.obj.deleteNoticeSet.size == 0) {
+					if($scope.noticeManage.obj.noticeSet.size == 0) {
 						alert("선택된 공지사항이 업습니다.");
 						return;
 					} else if(!confirm("선택한 공지사항들을 삭제하시겠습니까?")) {
@@ -109,7 +109,7 @@ app.controller("NoticeManageCtrl", function($scope, $http) {
 					} else {
 						var chk = true;
 						
-						for (let item of $scope.noticeManage.obj.deleteNoticeSet) {
+						for (let item of $scope.noticeManage.obj.noticeSet) {
 							var param = {
 									deleteNotice : item
 							}
@@ -129,21 +129,42 @@ app.controller("NoticeManageCtrl", function($scope, $http) {
 						}
 						if(chk) {
 							$('input:checkbox').removeAttr('checked')
-							$scope.noticeManage.obj.deleteNoticeSet.clear();
+							$scope.noticeManage.obj.noticeSet.clear();
 							alert("공지사항이 삭제되었습니다.");
 							$scope.noticeManage.func.getNoticeList();
 						}
 					}
 				},
 				checkValue : function(pnum) {
-					if(!$scope.noticeManage.obj.deleteNoticeSet.has(pnum)) {
-						$scope.noticeManage.obj.deleteNoticeSet.add(pnum);
+					if(!$scope.noticeManage.obj.noticeSet.has(pnum)) {
+						$scope.noticeManage.obj.noticeSet.add(pnum);
 					} else {
-						$scope.noticeManage.obj.deleteNoticeSet.delete(pnum);
+						$scope.noticeManage.obj.noticeSet.delete(pnum);
 					}
-					console.log($scope.noticeManage.obj.deleteNoticeSet);
+					console.log($scope.noticeManage.obj.noticeSet);
 				}
 			}
+	}
+	
+	$scope.registerBtn = function(){
+		$window.ScopeToShare = "";
+		$location.path("/noticeAddMod").replace();
+	  }
+	
+	$scope.changeBtn = function(){
+		if($scope.noticeManage.obj.noticeSet.size == 0) {
+			alert("선택된 공지사항이 업습니다.");
+			return;
+		} else if($scope.noticeManage.obj.noticeSet.size > 1) {
+			alert("한 개의 항목만 선택하세요.");
+			return;
+		} else if(!confirm("선택한 공지사항을 수정하시겠습니까?")) {
+			return;
+		} else {
+			console.log($scope.noticeManage.obj.noticeSet.values().next().value);
+			$window.ScopeToShare = $scope.noticeManage.obj.noticeSet.values().next().value;
+			$location.path("/noticeAddMod").replace();
+		}
 	}
 	
 	$scope.noticeManage.func.getNoticeList();

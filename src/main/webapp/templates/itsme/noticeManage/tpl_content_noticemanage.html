@@ -52,8 +52,11 @@
 	</tr>
 	<tr>
 		<td>
-			<button type="button" class="btn btn-info" id="notice-dialog">
+			<button ng-click="registerBtn()" type="button" class="btn btn-info" id="notice-dialog">
 				글쓰기<i class="fa fa-check spaceLeft"></i>
+			</button>
+			<button ng-click="changeBtn()" type="button" class="btn btn-warning" id="notice-dialog">
+				수정<i class="fa fa-times spaceLeft"></i>
 			</button>
 			<button type="button" class="btn btn-warning" ng-click="noticeManage.func.deleteNotice()">
 				삭제<i class="fa fa-times spaceLeft"></i>
