@@ -1,4 +1,4 @@
-app.controller("MemberListCtrl",function($scope, $http, $modal) {
+app.controller("MemberListCtrl",function($scope, $http, $location, $window/*, $modal*/) {
 	$scope.authorList= [
 		{code : "", name : "-선택-"},
 		{code : "1", name : "관리자"},
@@ -162,11 +162,13 @@ app.controller("MemberListCtrl",function($scope, $http, $modal) {
 	 */
 	
 	$scope.registerBtn = function(){
-	      var modalInstance = $modal.open({
+		$window.ScopeToShare = "";
+		$location.path("/memberManage").replace();
+	      /*var modalInstance = $modal.open({
 	         templateUrl : 'templates/itsme/memberlist/memberlist.html',
 	         controller: 'memberAddCtrl',
 	         size : 'sm'
-	         // backdrop: false
+	         //backdrop: false
 	      });
 	      
 	      modalInstance.result.then(function(data) {
@@ -174,28 +176,37 @@ app.controller("MemberListCtrl",function($scope, $http, $modal) {
 	            req_common_re_process_list();
 	         }
 	      }, function(){
-	      });
-	   }
+	      });*/
+	  }
+	
+	$scope.changeBtn = function(){
+		$window.ScopeToShare = "aaaaa";
+		$location.path("/memberManage").replace();
+	}
 	
 	
 	
+/*	$scope.classNumber = "김정태";
 	
 	
-/*
- * $scope.classNumber = "김정태";
- * 
- * 
- * $scope.memberManageDlg = { func : { addMember : function(){
- * alert("aaaaaaaaaaa"); } } }
- */
+	$scope.memberManageDlg = {
+			func : {
+				addMember : function(){
+					alert("aaaaaaaaaaa");
+				}
+			}
+	}*/
 	
 	
-	// $("#editConfirm").confirm();
+	//$("#editConfirm").confirm();
 	
-/*
- * function openZipSearch() { new daum.Postcode({ oncomplete : function(data) {
- * $('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
- * $('[name=addr1]').val(data.address);
- * $('[name=addr2]').val(data.buildingName); } }).open(); }
- */
+/*	function openZipSearch() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				$('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
+				$('[name=addr1]').val(data.address);
+				$('[name=addr2]').val(data.buildingName);
+			}
+		}).open();
+	}*/
 });
