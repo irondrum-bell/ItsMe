@@ -31,6 +31,7 @@
 <script src="${ctx}/scripts/itsme/memberlist/ctrl_member_list.js" type="text/javascript"></script>
 <script src="${ctx}/scripts/itsme/memberlist/ctrl_member_add.js" type="text/javascript"></script>
 <script src="${ctx}/scripts/itsme/noticeManage/ctrl_notice_manage.js" type="text/javascript"></script>
+<script src="${ctx}/scripts/itsme/noticeManage/ctrl_notice_addmod.js" type="text/javascript"></script>
 <script src="${ctx}/scripts/itsme/scheduleManage/ctrl_schedule_manage.js" type="text/javascript"></script>
 
 <!-- datapicekr 사용 -->
