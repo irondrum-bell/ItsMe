@@ -37,23 +37,15 @@
 
 			<div class="form-group">
 				<label for="InputNumber">전화 번호</label> <input type="text"
-					class="form-control" name = "PHONE" id="phone" placeholder="전화 번호를 입력해 주세요">
+					class="form-control" name = "PHONE" id="phone" placeholder="전화 번호를 입력해 주세요.">
 				<p class="help-block">'-' 없이 입력해 주세요.</p>
 			</div>
 
 			<div class="form-group">
-				<label for="InputAdress">주소</label>
-				<table>
-					<tr>
-						<td><input type="text" name="zip" class="form-control" placeholder="우편번호" readonly></td>
-						<td><button type="button" class="btn btn-info"
-								 onclick="openZipSearch()">검색</button></td>
-					</tr>
-				</table>
-				<br> <input type="text" name="addr1" class="form-control" placeholder="주소"
-					readonly /> <br> 
-					<input type="text" name="addr2" placeholder="상세주소"
-					class="form-control" />1
+				<label for="InputAddress">주소</label> <input type="text"
+					class="form-control" name = "ADDRESS" id="address" placeholder="주소를 입력해 주세요.">
+				<p class="help-block">ex. 경상북도 구미시</p>
+			</div>
 			
 				<div class="form-group">
 					<label for="InputAuthor">소속/학과</label> <select class="form-control">
