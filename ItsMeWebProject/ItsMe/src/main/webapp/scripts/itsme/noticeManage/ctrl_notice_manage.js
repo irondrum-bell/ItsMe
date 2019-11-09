@@ -153,7 +153,7 @@ app.controller("NoticeManageCtrl", function($scope, $http, $window, $location) {
 	
 	$scope.changeBtn = function(){
 		if($scope.noticeManage.obj.noticeSet.size == 0) {
-			alert("선택된 공지사항이 업습니다.");
+			alert("선택된 공지사항이 없습니다.");
 			return;
 		} else if($scope.noticeManage.obj.noticeSet.size > 1) {
 			alert("한 개의 항목만 선택하세요.");

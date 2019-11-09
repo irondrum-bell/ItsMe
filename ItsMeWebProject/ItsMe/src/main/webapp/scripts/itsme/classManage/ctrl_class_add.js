@@ -1,25 +1,15 @@
-app.controller("MemberManageCtrl",function($scope, $http, $location, $window) {
+app.controller("ClassAddModCtrl",function($scope, $http, $location, $window) {
 	
 	var parameter = $window.ScopeToShare;
 	console.log("등록/수정 parameter : " + parameter);
 	
 	$scope.add = function(){
-		/*$location.path("/memberlist").replace();*/
-		$location.path(adminUrl).replace();
-		
+		$location.path(etcUrl).replace();
 	}
 	
 	$scope.cancel = function(){
-		//$location.path("/memberlist").replace();
-		$location.path(adminUrl).replace();
+		$location.path(etcUrl).replace();
 	}
-	
-	$scope.authorList= [
-		{code : "", name : "-선택-"},
-		{code : "1", name : "관리자"},
-		{code : "2", name : "교수"},
-		{code : "3", name : "학생"}
-	]
 	$scope.majorList = [
 		{code : "", name : "-소속/학과-"},
 		{code : "101", name : "인문예술대학/국어국문학과"},
