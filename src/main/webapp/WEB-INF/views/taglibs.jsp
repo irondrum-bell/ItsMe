@@ -13,6 +13,7 @@
 <script type="text/javascript">
 	// context for 'Global Use'
 	var ctx = "${ctx}";
+	var isAdmin = "${isAdmin}";
 </script>
 
 <script src="${ctx}/scripts/angularjs/angular.js" type="text/javascript"></script>
