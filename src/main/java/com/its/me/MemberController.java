@@ -59,26 +59,44 @@ public class MemberController {
 		rr.setValue(memberList);
 		
 		return rr;
-	}	
+	}
 	
+	@RequestMapping(value = "/isMember", method = RequestMethod.GET)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult isMember(@RequestParam("memberNum") String memberNum) {
+		//비밀번호, 파일첨부 변수 추가 필요
+		MemberObj member = memberService.isMember(memberNum);
+
+		ResResult rr = new ResResult();
+		if(member != null) {
+			rr.setCode(500);
+			rr.setMsg("이미 등록된 회원입니다.");
+			return rr;
+		}
+		rr.setCode(200);
+		return rr;
+	}
 	
 	@RequestMapping(value = "/addMember", method = RequestMethod.POST)
 	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
-	public ResResult addMember(@RequestBody String body) {
-		MemberObj memberObj = new MemberObj();
-		boolean result = memberService.addMember(memberObj);
-		
-		
-		
+	public ResResult addMember(@RequestParam("memberBel") String memberBel, @RequestParam("memberDep") String memberDep,
+			@RequestParam("memberName") String memberName, @RequestParam("memberNum") String memberNum,
+			@RequestParam("memberPw") String memberPw, @RequestParam("memberAuthor") String memberAuthor, 
+			@RequestParam("memberBirth") String memberBirth, @RequestParam("memberPhone") String memberPhone, 
+			@RequestParam("memberEmail") String memberEmail, @RequestParam("memberAddr") String memberAddr) {
+		//비밀번호, 파일첨부 변수 추가 필요
+		int result = memberService.addMember(memberBel, memberDep, memberName, memberNum, memberPw, Integer.parseInt(memberAuthor), 
+				memberBirth, memberPhone, memberEmail, memberAddr);
+
 		ResResult rr = new ResResult();
-		if(result == false) {
+		if(result == 999) {
 			rr.setCode(500);
 			rr.setMsg("회원을 등록할 수 없습니다.");
 			return rr;
 		}
 		rr.setCode(200);
-		rr.setValue(result);
 		return rr;
 	}	
 	
