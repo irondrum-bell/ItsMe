@@ -9,5 +9,11 @@ public interface NoticeDao extends GenericDao<NoticeObj, String>{
 
 	public List<NoticeObj> getNoticeList(String date1, String date2, String title, String writer);
 
-	public int deleteNotice(String deleteNotice);
+	public int addNotice(String title, String msg, String date);
+
+	public NoticeObj getContent(String searchPnum);
+
+	public int updateNotice(String title, String msg, String pnum);
+
+	public int deleteNotice(String pnum);
 }
