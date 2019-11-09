@@ -1,4 +1,4 @@
-app.controller("ClassManageCtrl", function($scope, $http, $modal) {
+app.controller("ClassManageCtrl", function($scope, $http, $modal, $window, $location) {
 
 	$(document).ready(function() {
 		// 버튼의 이벤트 핸들러를 붙입니다.
@@ -166,6 +166,30 @@ app.controller("ClassManageCtrl", function($scope, $http, $modal) {
 	}
 	
 	$scope.classManage.func.getClassList();
+	
+	$scope.registerBtn = function(){
+		$window.ScopeToShare = "";
+		$location.path("/classAddMod").replace();
+      /*var modalInstance = $modal.open({
+         templateUrl : 'templates/itsme/memberlist/memberlist.html',
+         controller: 'memberAddCtrl',
+         size : 'sm'
+         //backdrop: false
+      });
+      
+      modalInstance.result.then(function(data) {
+         if(data == "safety close"){
+            req_common_re_process_list();
+         }
+      }, function(){
+      });*/
+		}
+
+	$scope.changeBtn = function(){
+		$window.ScopeToShare = "aaaaa";
+		$location.path("/classAddMod").replace();
+	}
+
 });
 /*function openZipSearch() {
 	new daum.Postcode({
@@ -176,3 +200,5 @@ app.controller("ClassManageCtrl", function($scope, $http, $modal) {
 		}
 	}).open();
 }*/
+
+	

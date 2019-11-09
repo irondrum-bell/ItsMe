@@ -76,10 +76,11 @@
 					<option>창의융합학부/창의융합학부</option> -->
 
 			</select></th>
-			<th width="100"><input type='button' value='검색' class="btn btn-info"
-				ng-click="attendanceManage.func.getAttendanceList()" /></th>
 			<th width="100"><input type='button' value='초기화' class="btn btn-info"
 				onClick = "window.location.reload()" /></th>
+			<th width="100"><input type='button' value='검색' class="btn btn-info"
+				ng-click="attendanceManage.func.getAttendanceList()" /></th>
+			
 		</table>
 		<hr color="#7B7EDD" width=90%>
 	</form>
@@ -127,10 +128,6 @@
 				onclick="func_confirm()">
 				수정<i class="fa fa-times spaceLeft" value="alert"></i>
 			</button>
-			<button type="button" class="btn btn-warning">
-				삭제<i class="fa fa-times spaceLeft"></i>
-			</button>
-
 		</td>
 	</tr>
 </table>

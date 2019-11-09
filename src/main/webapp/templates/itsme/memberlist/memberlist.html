@@ -17,10 +17,11 @@
 			</table>
 
 			<div class="form-group">
-				<label for="InputAuthor">구분</label> <select class="form-control" name = "AUTH">
-					<option>선택</option>
+				<label for="InputAuthor">구분</label> <select class="form-control" name = "AUTH" 
+				ng-model="memberManage.obj.selectAuthor" ng-options="obj.name for obj in authorList">
+					<!-- <option>선택</option>
 					<option>학생</option>
-					<option>교수</option>
+					<option>교수</option> -->
 				</select>
 			</div>
 
@@ -48,8 +49,9 @@
 			</div>
 			
 				<div class="form-group">
-					<label for="InputAuthor">소속/학과</label> <select class="form-control">
-						<option>선택</option>
+					<label for="InputAuthor">소속/학과</label> <select class="form-control" 
+					ng-model="memberManage.obj.selectMajor" ng-options="obj.name for obj in majorList">
+						<!-- <option>선택</option>
 
 						<option>인문예술대학/국어국문학과</option>
 						<option>인문예술대학/중어중문학과</option>
@@ -106,7 +108,7 @@
 						<option>공과대학/컴퓨터공학과</option>
 						<option>공과대학/환경공학과</option>
 						
-						<option>창의융합학부/창의융합학부</option>
+						<option>창의융합학부/창의융합학부</option> -->
 					</select>
 				</div>
 

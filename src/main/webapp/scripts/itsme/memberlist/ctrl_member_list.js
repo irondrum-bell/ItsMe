@@ -1,4 +1,5 @@
 app.controller("MemberListCtrl",function($scope, $http, $location, $window/*, $modal*/) {
+	
 	$scope.authorList= [
 		{code : "", name : "-선택-"},
 		{code : "1", name : "관리자"},
@@ -96,7 +97,7 @@ app.controller("MemberListCtrl",function($scope, $http, $location, $window/*, $m
 				},
 				deleteMember : function() {
 					if($scope.memberManage.obj.deleteMemberSet.size == 0) {
-						alert("선택된 회원이 업습니다.");
+						alert("선택된 회원이 없습니다.");
 						return;
 					} else if(!confirm("선택한 회원들을 삭제하시겠습니까?")) {
 						return;
