@@ -53,18 +53,19 @@ public class HomeController {
 		}
 		//auth.getAuthorities()에서 차례대로 객체를 꺼내서 authority에다가 넣겠다는 뜻. 
 		for(GrantedAuthority authority : auth.getAuthorities()){
-			//"ROLE_ANONYMOUS" : 로그인 하지 않아도 접근이 가능한 권한. 
+			/*//"ROLE_ANONYMOUS" : 로그인 하지 않아도 접근이 가능한 권한. 
 			if( "ROLE_ANONYMOUS".equalsIgnoreCase(authority.getAuthority())) {
 				//equalsIgnoreCase : 대소문자와 관련없이 equals 검사.
 				view = new ModelAndView("login");
 				view.addObject("message", "ID와 패스워드를 확인 하시기 바랍니다.");
 				return view;
 			}else if( "ROLE_ADMIN".equalsIgnoreCase(authority.getAuthority()) ){
-				isAdmin = "true";
 			}else {
 				System.out.println("authority: " + authority.getAuthority());
-			}
+			}*/
+			isAdmin = authority.getAuthority();
 		}
+		
 
 		// 등록된 사용자 처리
 		view = new ModelAndView("home");

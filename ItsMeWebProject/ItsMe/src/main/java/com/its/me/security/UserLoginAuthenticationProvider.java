@@ -48,6 +48,10 @@ public class UserLoginAuthenticationProvider implements AuthenticationProvider{
         if(user == null) {
 			throw new BadCredentialsException("password is invaild");
 		}
+        
+        if(user.getRole().equals("3")) {
+        	throw new BadCredentialsException("권한이 없습니다.");
+        }
 		
 //		String userPassWd = userDaoImpl.getPassWd(username);
 //		

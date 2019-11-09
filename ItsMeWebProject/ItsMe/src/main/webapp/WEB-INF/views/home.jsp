@@ -70,7 +70,7 @@
 			</div>
 
 			<ul class="list-unstyled components" style="padding: 20px 0;border-bottom:1px solid #47748b;">
-				<li ng-repeat="menu in routeContents"><a ng-if="menu.code < 6" href="{{menu.url}}" style="padding: 10px;font-size: 1.1em;display: block;">{{menu.display}}</a></li>
+				<li ng-repeat="menu in routeContents"><a ng-if="menu.code < 6 && menu.disabled == false" href="{{menu.url}}" style="padding: 10px;font-size: 1.1em;display: block;">{{menu.display}}</a></li>
 			</ul>
 
 			<ul class="list-unstyled CTAs">

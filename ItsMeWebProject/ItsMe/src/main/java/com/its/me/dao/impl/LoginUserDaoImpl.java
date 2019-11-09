@@ -33,6 +33,7 @@ public class LoginUserDaoImpl extends GenericDaoImpl<LoginUser, String> implemen
 				user.setUserName(rs.getString("NAME"));
 				user.setEmail(rs.getString("EMAIL"));
 				user.setMobile(rs.getString("PHONE"));
+				user.setRole(rs.getString("AUTH"));
 				return user;
 			}
 		};
