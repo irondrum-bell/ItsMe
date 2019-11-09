@@ -39,6 +39,13 @@ app.controller("appHomeCtrl", function($scope, $http, $location, $timeout, $rout
 		disabled : false,
 		selected : false,
 		disabled : false
+	},{
+		url : ctx + "#/memberManage",
+		display : "회원 등록/수정",
+		code : 6,
+		disabled : false,
+		selected : false,
+		disabled : false
 	} ];
 });
 
@@ -49,6 +56,18 @@ app.config(function($routeProvider, $locationProvider){
 	$routeProvider.when(ctx + "/memberlist",{
 		templateUrl : ctx + "/templates/itsme/memberlist/tpl_content_memberlist.html",
 		controller : "MemberListCtrl",
+		resolve : {
+			content : function() {
+				return {
+				};
+			}
+		},
+		redirectTo : null
+	});
+	
+	$routeProvider.when(ctx + "/memberManage",{
+		templateUrl : ctx + "/templates/itsme/memberlist/memberlist.html",
+		controller : "MemberManageCtrl",
 		resolve : {
 			content : function() {
 				return {

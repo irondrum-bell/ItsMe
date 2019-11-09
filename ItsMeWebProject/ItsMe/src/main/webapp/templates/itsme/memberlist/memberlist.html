@@ -2,7 +2,7 @@
 <html lang="ko">
 <body>
 <!--  div ng-controller="memberAddCtrl">-->
-<div style="width:100%;height:100%;">
+<div style="width:100%;height:100%;overflow-y:auto;">
 	<article class="container">
 		<div class="page-header">
 			<h1>회원 등록</h1>
@@ -125,8 +125,11 @@
 
 
 				<div class="form-group text-center">
-					<button type="submit" class="btn btn-info" ng-click="memberManageDlg.func.memberManage()">
+					<button type="submit" class="btn btn-info" ng-click="add()">
 						회원등록<i class="fa fa-check spaceLeft"></i>
+					</button>
+					<button type="submit" class="btn btn-info" ng-click="cancel()">
+						취소<i class="fa fa-check spaceLeft"></i>
 					</button>
 				</div>
 			</div>
