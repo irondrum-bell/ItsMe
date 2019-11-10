@@ -141,7 +141,7 @@ app.config(function($routeProvider, $locationProvider){
 	});
 
 	$routeProvider.when(ctx + "/classAddMod",{
-		templateUrl : ctx + "/templates/itsme/classManage/class.html",
+		templateUrl : ctx + "/templates/itsme/classManage/classaddmod.html",
 		controller : "ClassAddModCtrl",
 		resolve : {
 			content : function() {

@@ -26,8 +26,25 @@ public class ClassService {
 		return classList;
 	}
 
-	public int deleteClass(String deleteMajor) {
-		int result = classDao.deleteClass(deleteMajor);
+	public ClassObj getClassContent(String ccode) {
+		ClassObj classObj = classDao.getClassContent(ccode);
+		return classObj;
+	}
+
+	public int addClass(String depcode, String cname, String ccode, String prof, String score, 
+			String time, String lrcode) {
+		int result = classDao.addClass(depcode, cname, ccode, prof, score, time, lrcode);
+		return result;
+	}
+
+	public int updateClass(String depcode, String cname, String ccode, String prof, String score, 
+			String time, String lrcode) {
+		int result = classDao.updateClass(depcode, cname, ccode, prof, score, time, lrcode);
+		return result;
+	}
+
+	public int deleteClass(String ccode) {
+		int result = classDao.deleteClass(ccode);
 		return result;
 	}
 	

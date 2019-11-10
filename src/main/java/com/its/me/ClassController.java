@@ -15,11 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.its.me.model.ClassObj;
-import com.its.me.model.MemberObj;
 import com.its.me.model.ResResult;
 import com.its.me.service.ClassService;
-import com.its.me.service.LoginUserService;
-import com.its.me.service.MemberService;
 
 /**
  * Handles requests for the application home page.
@@ -43,7 +40,6 @@ public class ClassController {
 			@RequestParam("searchProName") String searchProName,
 			@RequestParam("searchSubject") String searchSubject) {
 		
-		
 		List<ClassObj> classList = classService.getClassList(selectMajor, searchProName, searchSubject);
 		ResResult rr = new ResResult();
 		
@@ -59,13 +55,79 @@ public class ClassController {
 		return rr;
 	}
 	
+	@RequestMapping(value = "/getClassContent", method = RequestMethod.GET)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult getClassContent(@RequestParam("classCCode") String classCCode) {
+		
+		ClassObj classObj = classService.getClassContent(classCCode);
+		ResResult rr = new ResResult();
+		
+		if(classObj == null) {
+			rr.setCode(500);
+			rr.setMsg("강의 정보를 가져올 수 없습니다.");
+			return rr;
+		}
+		
+		rr.setCode(200);
+		rr.setValue(classObj);
+		
+		return rr;
+	}
+	
+	@RequestMapping(value = "/addClass", method = RequestMethod.POST)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult addClass(@RequestParam("classDep") String classDep, @RequestParam("classCName") String classCName,
+			@RequestParam("classCCode") String classCCode, @RequestParam("classProf") String classProf, 
+			@RequestParam("classScore") String classScore, @RequestParam("classCTime") String classCTime, 
+			@RequestParam("classRCode") String classRCode) {
+		
+		
+		int result = classService.addClass(classDep, classCName, classCCode, classProf, classScore, classCTime, classRCode);
+		ResResult rr = new ResResult();
+		
+		if(result == 999) {
+			rr.setCode(500);
+			rr.setMsg("과목을 추가 할 수 없습니다.");
+			return rr;
+		}
+		
+		rr.setCode(200);
+		
+		return rr;
+	}
+	
+	@RequestMapping(value = "/updateClass", method = RequestMethod.POST)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult updateClass(@RequestParam("classDep") String classDep, @RequestParam("classCName") String classCName,
+			@RequestParam("classCCode") String classCCode, @RequestParam("classProf") String classProf, 
+			@RequestParam("classScore") String classScore, @RequestParam("classCTime") String classCTime, 
+			@RequestParam("classRCode") String classRCode) {
+		
+		
+		int result = classService.updateClass(classDep, classCName, classCCode, classProf, classScore, classCTime, classRCode);
+		ResResult rr = new ResResult();
+		
+		if(result == 999) {
+			rr.setCode(500);
+			rr.setMsg("과목을 수정 할 수 없습니다.");
+			return rr;
+		}
+		
+		rr.setCode(200);
+		
+		return rr;
+	}
+	
 	@RequestMapping(value = "/deleteClass", method = RequestMethod.POST)
 	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
-	public ResResult deleteClass(@RequestParam("deleteMajor") String deleteMajor) {
+	public ResResult deleteClass(@RequestParam("deleteClass") String deleteClass) {
 		
 		
-		int result = classService.deleteClass(deleteMajor);
+		int result = classService.deleteClass(deleteClass);
 		ResResult rr = new ResResult();
 		
 		if(result == 999) {
