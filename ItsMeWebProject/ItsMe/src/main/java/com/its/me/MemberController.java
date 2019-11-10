@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.its.me.model.MemberObj;
 import com.its.me.model.ResResult;
 import com.its.me.model.MemberUserInfoObj;
+import com.its.me.model.NoticeObj;
 import com.its.me.service.LoginUserService;
 import com.its.me.service.MemberService;
 
@@ -99,6 +100,54 @@ public class MemberController {
 		rr.setCode(200);
 		return rr;
 	}	
+	
+	@RequestMapping(value = "/getMemberContent", method = RequestMethod.GET)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult getContent(@RequestParam("searchNum") String searchNum) {
+		MemberObj Member = memberService.getMemberContent(searchNum);
+
+		ResResult rr = new ResResult();
+
+		if (Member == null ) {
+			rr.setCode(500);
+			rr.setMsg("회원정보를 가져 올 수 없습니다.");
+			return rr;
+		}
+
+		rr.setCode(200);
+		rr.setValue(Member);
+
+		return rr;
+	}
+	
+	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult updateMember(@RequestParam("memberBel") String memberBel,
+			@RequestParam("memberDep") String memberDep,
+			@RequestParam("memberName") String memberName,
+			@RequestParam("memberNum") String memberNum,
+			@RequestParam("memberPw") String memberPw,
+			@RequestParam("memberAuthor") String memberAuthor,
+			@RequestParam("memberBirth") String memberBirth,
+			@RequestParam("memberPhone") String memberPhone,
+			@RequestParam("memberEmail") String memberEmail,
+			@RequestParam("memberAddr") String memberAddr) {
+		int result = memberService.updateMember(memberBel, memberDep, memberName, memberNum, memberPw,
+				memberAuthor, memberBirth, memberPhone, memberEmail, memberAddr);
+		ResResult rr = new ResResult();
+		
+		if(result == 999) {
+			rr.setCode(500);
+			rr.setMsg("공지사항을 추가 할 수 없습니다.");
+			return rr;
+		}
+		
+		rr.setCode(200);
+		
+		return rr;
+	}
 	
 	@RequestMapping(value = "/deleteMember", method = RequestMethod.POST)
 	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
