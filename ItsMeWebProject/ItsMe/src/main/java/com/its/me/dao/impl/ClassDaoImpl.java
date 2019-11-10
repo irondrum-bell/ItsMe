@@ -12,9 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.its.me.dao.ClassDao;
-import com.its.me.dao.MemberDao;
 import com.its.me.model.ClassObj;
-import com.its.me.model.MemberObj;
 
 @Repository("com.its.me.dao.impl.ClassDaoImpl")
 public class ClassDaoImpl extends GenericDaoImpl<ClassObj, String> implements ClassDao {
@@ -38,7 +36,6 @@ public class ClassDaoImpl extends GenericDaoImpl<ClassObj, String> implements Cl
 				classObj.setBelname(rs.getString("BELNAME"));
 				classObj.setDepname(rs.getString("DEPNAME"));
 				
-	
 				return classObj;
 			}
 		};
@@ -97,15 +94,62 @@ public class ClassDaoImpl extends GenericDaoImpl<ClassObj, String> implements Cl
 	}
 
 	@Override
-	public int deleteClass(String deleteMajor) {
-		// TODO Auto-generated method stub
+	public ClassObj getClassContent(String ccode) {
+		String sql = getQuery("classDao.get.classList");
+		sql += " " + getQuery("classDao.get.class.ccode");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("getClassContent sql : " + sql);
+		
+		try {
+			return jdbcTemplate.queryForObject(sql, new Object[] {ccode}, getRowMapper());
+		}  catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return new ClassObj();
+	}
+
+	@Override
+	public int addClass(String depcode, String cname, String ccode, String prof, String score, String time,
+			String lrcode) {
+		String sql = getQuery("classDao.add.class");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("addClass sql : " + sql);
+		
+		try {
+			return jdbcTemplate.update(sql, new Object[] {cname, ccode, depcode, lrcode, score, time, prof});
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return 999;
+	}
+
+	@Override
+	public int updateClass(String depcode, String cname, String ccode, String prof, String score, String time,
+			String lrcode) {
+		String sql = getQuery("classDao.update.class");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("updateClass sql : " + sql);
+		
+		try {
+			return jdbcTemplate.update(sql, new Object[] {cname, ccode, depcode, lrcode, score, time, prof, ccode});
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return 999;
+	}
+
+	@Override
+	public int deleteClass(String ccode) {
 		String sql = getQuery("classDao.delete.class");
 		
 		JdbcTemplate jdbcTemplate = getJdbcTemplate();
 		System.out.println("deleteClass sql : " + sql);
 		
 		try {
-			return jdbcTemplate.update(sql, new Object[] {deleteMajor});
+			return jdbcTemplate.update(sql, new Object[] {ccode});
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}

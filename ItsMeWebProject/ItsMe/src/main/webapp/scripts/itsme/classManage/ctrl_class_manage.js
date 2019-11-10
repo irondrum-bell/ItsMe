@@ -1,40 +1,40 @@
 app.controller("ClassManageCtrl", function($scope, $http, $modal, $window, $location) {
 
-	$(document).ready(function() {
-		// 버튼의 이벤트 핸들러를 붙입니다.
-		$("#class-dialog").button().on("click", function() {
-			// 다이얼로그 내용을 가져올 URL입니다.
-			var url = "templates/itsme/classManage/class.html";
-			// 다이얼로그를 생성합니다.
-			$('<div id="DialogDiv">').dialog({
-				// 커스텀 스타일을 줍니다.
-				dialogClass : 'custom-dialog-style',
-				// 모달 다이얼로그로 생성합니다.
-				modal : true,
-				// 다이얼로그 열기 콜백
-				open : function() {
-					// 모달 오버레이 설정
-					$(".ui-widget-overlay").css({
-						opacity : 0.5,
-						filter : "Alpha(Opacity=50)",
-						backgroundColor : "black"
-					});
-					// 내용을 불러 옵니다.
-					$(this).load(url);
-				},
-				// 닫기 콜백
-				close : function(e) {
-					$(this).empty();
-					$(this).dialog('destroy');
-				},
-				height : 800,
-
-				width : 900,
-
-				title : '수업추가'
-			});
-		});
-	});
+//	$(document).ready(function() {
+//		// 버튼의 이벤트 핸들러를 붙입니다.
+//		$("#class-dialog").button().on("click", function() {
+//			// 다이얼로그 내용을 가져올 URL입니다.
+//			var url = "templates/itsme/classManage/class.html";
+//			// 다이얼로그를 생성합니다.
+//			$('<div id="DialogDiv">').dialog({
+//				// 커스텀 스타일을 줍니다.
+//				dialogClass : 'custom-dialog-style',
+//				// 모달 다이얼로그로 생성합니다.
+//				modal : true,
+//				// 다이얼로그 열기 콜백
+//				open : function() {
+//					// 모달 오버레이 설정
+//					$(".ui-widget-overlay").css({
+//						opacity : 0.5,
+//						filter : "Alpha(Opacity=50)",
+//						backgroundColor : "black"
+//					});
+//					// 내용을 불러 옵니다.
+//					$(this).load(url);
+//				},
+//				// 닫기 콜백
+//				close : function(e) {
+//					$(this).empty();
+//					$(this).dialog('destroy');
+//				},
+//				height : 800,
+//
+//				width : 900,
+//
+//				title : '수업추가'
+//			});
+//		});
+//	});
 	
 	$scope.majorList = [
 		{code : "", name : "-소속/학과-"},
@@ -96,7 +96,7 @@ app.controller("ClassManageCtrl", function($scope, $http, $modal, $window, $loca
 				selectMajor : $scope.majorList[0],
 				searchProName : "",
 				searchSubject : "",
-				deleteClassSet : new Set()
+				classSet : new Set()
 			},
 			func : {
 				getClassList : function(){
@@ -120,7 +120,7 @@ app.controller("ClassManageCtrl", function($scope, $http, $modal, $window, $loca
 					})
 				},
 				deleteClass : function() {
-					if($scope.classManage.obj.deleteClassSet.size == 0) {
+					if($scope.classManage.obj.classSet.size == 0) {
 						alert("선택된 과목이 업습니다.");
 						return;
 					} else if(!confirm("선택한 과목들을 삭제하시겠습니까?")) {
@@ -128,9 +128,9 @@ app.controller("ClassManageCtrl", function($scope, $http, $modal, $window, $loca
 					} else {
 						var chk = true;
 						
-						for (let item of $scope.classManage.obj.deleteClassSet) {
+						for (let item of $scope.classManage.obj.classSet) {
 							var param = {
-									deleteMajor : item
+									deleteClass : item
 							}
 							
 							req_http_rest_api.func.req_post_message($http, "/deleteClass", param, function(response){
@@ -148,19 +148,19 @@ app.controller("ClassManageCtrl", function($scope, $http, $modal, $window, $loca
 						}
 						if(chk) {
 							$('input:checkbox').removeAttr('checked')
-							$scope.classManage.obj.deleteClassSet.clear();
+							$scope.classManage.obj.classSet.clear();
 							alert("과목이 삭제되었습니다.");
 							$scope.classManage.func.getClassList();
 						}
 					}
 				},
 				checkValue : function(ccode) {
-					if(!$scope.classManage.obj.deleteClassSet.has(ccode)) {
-						$scope.classManage.obj.deleteClassSet.add(ccode);
+					if(!$scope.classManage.obj.classSet.has(ccode)) {
+						$scope.classManage.obj.classSet.add(ccode);
 					} else {
-						$scope.classManage.obj.deleteClassSet.delete(ccode);
+						$scope.classManage.obj.classSet.delete(ccode);
 					}
-					console.log($scope.classManage.obj.deleteClassSet);
+					console.log($scope.classManage.obj.classSet);
 				}
 			}
 	}
@@ -170,24 +170,21 @@ app.controller("ClassManageCtrl", function($scope, $http, $modal, $window, $loca
 	$scope.registerBtn = function(){
 		$window.ScopeToShare = "";
 		$location.path("/classAddMod").replace();
-      /*var modalInstance = $modal.open({
-         templateUrl : 'templates/itsme/memberlist/memberlist.html',
-         controller: 'memberAddCtrl',
-         size : 'sm'
-         //backdrop: false
-      });
-      
-      modalInstance.result.then(function(data) {
-         if(data == "safety close"){
-            req_common_re_process_list();
-         }
-      }, function(){
-      });*/
-		}
+	}
 
 	$scope.changeBtn = function(){
-		$window.ScopeToShare = "aaaaa";
-		$location.path("/classAddMod").replace();
+		if($scope.classManage.obj.classSet.size == 0) {
+			alert("선택된 강의가 없습니다.");
+			return;
+		} else if($scope.classManage.obj.classSet.size > 1) {
+			alert("한 강의만 선택하세요.");
+			return;
+		} else if(!confirm("선택한 강의를 수정하시겠습니까?")) {
+			return;
+		} else {
+			$window.ScopeToShare = $scope.classManage.obj.classSet.values().next().value;
+			$location.path("/classAddMod").replace();
+		}
 	}
 
 });
