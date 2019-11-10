@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.its.me.dao.MemberDao;
 import com.its.me.model.MemberObj;
+import com.its.me.model.NoticeObj;
 
 @Repository("com.its.me.dao.impl.MemberDaoImpl")
 public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements MemberDao {
@@ -39,10 +40,13 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 				member.setDepcode(rs.getString("DEPCODE"));
 				member.setDepname(rs.getString("DEPNAME"));
 				member.setBirth(rs.getString("BIRTH"));
+				member.setPw(rs.getString("PW"));
 				return member;
 			}
 		};
 	}
+	
+	
 
 	@Override
 	public List<MemberObj> getMemberList(String author, String name, String number, String major){
@@ -139,6 +143,8 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 		}
 		return new MemberObj();
 	}	
+	
+	
 
 	@Override
 	public int addMember(String belcode, String depcode, String name, String num, String pw, int author, String birth,
@@ -150,6 +156,41 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 		
 		try {
 			return jdbcTemplate.update(sql, new Object[] { num, name, pw, birth, phone, author, belcode, depcode, email, addr});
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return 999;
+	}
+	
+	@Override
+	public MemberObj getMemberContent(String searchNum) {
+		String sql = getQuery("memberDao.get.memberList");
+		sql += " " + getQuery("memberDao.get.memberList.num");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("getContent sql : " + sql);
+		
+		try {
+			return jdbcTemplate.queryForObject(sql, new Object[] {searchNum}, getRowMapper());
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return new MemberObj();
+	}
+	
+	@Override
+	public int updateMember(String memberBel, String memberDep, String memberName, String memberNum, 
+			String memberPw, String memberAuthor, String memberBirth, String memberPhone, 
+			String memberEmail, String memberAddr) {
+		String sql = getQuery("memberDao.get.memberList");
+		sql += " " + getQuery("memberDao.get.memberList.num");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("updateMember sql : " + sql);
+		
+		try {
+			return jdbcTemplate.update(sql, new Object[] {memberBel, memberDep, memberName, memberNum, memberPw,
+					memberAuthor, memberBirth, memberPhone, memberEmail, memberAddr});
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}

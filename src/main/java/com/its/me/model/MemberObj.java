@@ -14,11 +14,19 @@ public class MemberObj{
 	private String depcode;
 	private String depname;
 	private String address;
+	private String pw;
+	
 	public String getNum() {
 		return num;
 	}
 	public void setNum(String num) {
 		this.num = num;
+	}
+	public String getPw() {
+		return pw;
+	}
+	public void setPw(String pw) {
+		this.pw = pw;
 	}
 	public String getName() {
 		return name;

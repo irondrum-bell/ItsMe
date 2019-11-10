@@ -10,6 +10,7 @@ import com.its.me.dao.MemberUserInfoDao;
 import com.its.me.dao.MemberDao;
 import com.its.me.model.MemberObj;
 import com.its.me.model.MemberUserInfoObj;
+import com.its.me.model.NoticeObj;
 
 
 @Service("memberService")
@@ -41,6 +42,20 @@ public class MemberService {
 	public int addMember(String belcode, String depcode, String name, String num, String pw, int author,
 			String birth, String phone, String email, String addr) {
 		int result = memberDao.addMember(belcode, depcode, name, num, pw, author, birth, phone, email, addr);
+		return result;
+	}
+	
+	public MemberObj getMemberContent(String searchNum) {
+		MemberObj Member = memberDao.getMemberContent(searchNum);
+		return Member;
+	}
+	
+	public int updateMember(String memberBel, String memberDep, String memberName, String memberNum, 
+			String memberPw, String memberAuthor, String memberBirth, String memberPhone, 
+			String memberEmail, String memberAddr) {
+
+		int result = memberDao.updateMember(memberBel, memberDep, memberName, memberNum, memberPw,
+				memberAuthor, memberBirth, memberPhone, memberEmail, memberAddr);
 		return result;
 	}
 
