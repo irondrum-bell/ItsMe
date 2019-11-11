@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<body>
+<!--  div ng-controller="memberAddCtrl">-->
+<div style="width:100%;height:100%;overflow-y:auto;">
+	<article class="container">
+		<div class="page-header">
+			<h1>출석사항 수정</h1>
+		</div>
+		<div class="col-md-6 col-md-offset-3">
+			<div class="form-group">
+				<label for="checkin">입실시간</label>
+				<input ng-model="attendanceMod.obj.attendanceCkin" type="text" class="form-control" placeholder="입실시간" id="ckin" name = "CKIN">
+			</div>
+			
+			<div class="form-group">
+				<label for="checkin">퇴실시간</label>
+				<input ng-model="attendanceMod.obj.attendanceCkout" type="text" class="form-control" placeholder="퇴실시간" id="ckout" name = "CKOUT">
+			</div>
+			
+			<div class="form-group">
+				<label for="Attendance">출석여부</label>
+				<select class="form-control" ng-model="attendanceMod.obj.searchAtten" 
+					ng-options="obj.name for obj in attenList">
+				</select>
+			</div>
+			
+			<div class="form-group text-center">
+				<button type="submit" class="btn btn-info" ng-click="attenMod.func.add()">
+					수정<i class="fa fa-check spaceLeft"></i>
+				</button>
+				<button type="submit" class="btn btn-info" ng-click="attenMod.func.cancel()">
+					취소<i class="fa fa-check spaceLeft"></i>
+				</button>
+			</div>
+		</div>
+	</article>
+	</div>
+</body>
+</html>
