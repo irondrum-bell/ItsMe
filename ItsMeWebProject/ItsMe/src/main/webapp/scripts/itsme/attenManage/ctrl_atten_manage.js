@@ -18,7 +18,7 @@ app.controller("AttenManageCtrl", function($scope, $http){
 	});
 	
 	
-	$scope.majorList = [
+		$scope.majorList = [
 		{code : "", name : "-소속/학과-"},
 		{code : "101", name : "인문예술대학/국어국문학과"},
 		{code : "102", name : "인문예술대학/중어중문학과"},
@@ -146,6 +146,21 @@ app.controller("AttenManageCtrl", function($scope, $http){
 			}
 	}
 	
+	$scope.changeBtn = function(){
+		if($scope.noticeManage.obj.noticeSet.size == 0) {
+			alert("선택된 출석 리스트가 없습니다.");
+			return;
+		} else if($scope.noticeManage.obj.noticeSet.size > 1) {
+			alert("한 개의 항목만 선택하세요.");
+			return;
+		} else if(!confirm("선택한 출석리스트를 수정하시겠습니까?")) {
+			return;
+		} else {
+			console.log($scope.attendanceManage.obj.attendanceSet.values().next().value);
+			$window.ScopeToShare = $scope.attendanceManage.obj.attendanceSet.values().next().value;
+			$location.path("/attenMod").replace();
+		}
+	}
 	
 	$scope.attendanceManage.func.getAttendanceList();
 	
