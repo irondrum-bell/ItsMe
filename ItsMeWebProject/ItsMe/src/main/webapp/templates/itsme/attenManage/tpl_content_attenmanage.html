@@ -96,11 +96,11 @@
 			<th width="150" style="color: white">학번</th>
 			<th width="250" style="color: white">학과</th>
 			<th width="200" style="color: white">과목</th>
-			<th width="100" style="color: white">날짜</th>
 			<th width="100" style="color: white">이름</th>
-			<th width="100" style="color: white">출석</th>
+			<th width="100" style="color: white">날짜</th>
 			<th width="100" style="color: white">입실</th>
 			<th width="100" style="color: white">퇴실</th>
+			<th width="100" style="color: white">출석</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -109,12 +109,12 @@
 			<td width="80" align="center"><input type="checkbox"></td>
 			<td width="150" align="center">{{obj.num}}</td>
 			<td width="250" align="center">{{obj.depname}}</td>
-			<td width="100" align="center">{{obj.cname}}</td>
+			<td width="200" align="center">{{obj.cname}}</td>
+			<td width="100" align="center">{{obj.name}}</td>
 			<td width="100" align="center">{{obj.atdate}}</td>
-			<td width="300" align="center">{{obj.name}}</td>
-			<td width="100" align="center">{{obj.atpre}}</td>
 			<td width="100" align="center">{{obj.ckin}}</td>
 			<td width="100" align="center">{{obj.ckout}}</td>
+			<td width="100" align="center">{{obj.atpre}}</td>
 		</tr>
 	</tbody>
 </table>
@@ -124,7 +124,7 @@
 	</tr>
 	<tr>
 		<td>
-			<button type="button" class="btn btn-warning" value="alert"
+			<button ng-click="changeBtn()" type="button" class="btn btn-warning" value="alert"
 				onclick="func_confirm()">
 				수정<i class="fa fa-times spaceLeft" value="alert"></i>
 			</button>
