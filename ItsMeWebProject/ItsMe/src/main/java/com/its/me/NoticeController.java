@@ -68,9 +68,8 @@ public class NoticeController {
 	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
 	public ResResult addNotice(@RequestParam("insertTitle") String insertTitle,
-			@RequestParam("insertMsg") String insertMsg,
-			@RequestParam("insertDate") String insertDate) {
-		int result = NoticeService.addNotice(insertTitle, insertMsg, insertDate);
+			@RequestParam("insertMsg") String insertMsg) {
+		int result = NoticeService.addNotice(insertTitle, insertMsg);
 		ResResult rr = new ResResult();
 		
 		if(result == 999) {

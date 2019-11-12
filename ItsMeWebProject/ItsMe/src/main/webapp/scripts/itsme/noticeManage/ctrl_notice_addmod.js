@@ -38,11 +38,9 @@ app.controller("NoticeAddModCtrl",function($scope, $http, $location, $window) {
 				})
 			},
 			add : function(){
-				var date = new Date().toISOString()
 				var param = {
 						insertTitle : $scope.noticeAddMod.obj.searchTitle,
 						insertMsg : $scope.noticeAddMod.obj.searchMsg,
-						insertDate : date.slice(0,4) + "." + date.slice(5,7) + "." + date.slice(8, 10),
 						searchPnum : parameter
 				}
 				
