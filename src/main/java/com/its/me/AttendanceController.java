@@ -67,6 +67,50 @@ public class AttendanceController {
 		return rr;
 	}
 	
+	@RequestMapping(value = "/getAttendanceContent", method = RequestMethod.GET)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult getAttendanceContent( @RequestParam("searchCcode") String searchCcode,
+			@RequestParam("searchNum") String searchNum,  @RequestParam("searchAtdate") String searchAtdate) {
+		
+		AttendanceObj attendance = AttendanceService.getAttendanceContent(searchCcode, searchNum, searchAtdate);
+		
+		ResResult rr = new ResResult();
+		
+		if(attendance == null) {
+			rr.setCode(500);
+			rr.setMsg("출석 정보를 가져 올 수 없습니다.");
+			return rr;
+		}
+		
+		rr.setCode(200);
+		rr.setValue(attendance);
+		
+		return rr;
+	}
+	
+	@RequestMapping(value = "/updateAttend", method = RequestMethod.GET)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult updateAttend( @RequestParam("searchCcode") String searchCcode, @RequestParam("searchNum") String searchNum,
+			@RequestParam("searchAtdate") String searchAtdate,  @RequestParam("ckin") String ckin,
+			@RequestParam("ckout") String ckout,  @RequestParam("isAtten") String isAtten) {
+		
+		int result = AttendanceService.updateAttend(searchCcode, searchNum, searchAtdate, ckin, ckout, isAtten);
+		
+		ResResult rr = new ResResult();
+		
+		if(result == 999) {
+			rr.setCode(500);
+			rr.setMsg("출석 정보를 갱신할 수 없습니다.");
+			return rr;
+		}
+		
+		rr.setCode(200);
+		
+		return rr;
+	}
+	
 	/*앱 서비스*/
 	@RequestMapping(value = "/getattendanceUser", method = RequestMethod.GET)
 	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.

@@ -1,4 +1,5 @@
-app.controller("AttenManageCtrl", function($scope, $http){	
+app.controller("AttenManageCtrl", function($scope, $http, $window, $location){	
+	
 	$.datepicker.setDefaults({
 		dateFormat : 'yy-mm-dd',
 		prevText : '이전 달',
@@ -17,8 +18,7 @@ app.controller("AttenManageCtrl", function($scope, $http){
 		$("#datepicker1, #datepicker2").datepicker();
 	});
 	
-	
-		$scope.majorList = [
+	$scope.majorList = [
 		{code : "", name : "-소속/학과-"},
 		{code : "101", name : "인문예술대학/국어국문학과"},
 		{code : "102", name : "인문예술대학/중어중문학과"},
@@ -69,102 +69,63 @@ app.controller("AttenManageCtrl", function($scope, $http){
 		{code : "632", name : "공과대학/건축공학과"},
 		{code : "641", name : "공과대학/전자공학과"},
 		{code : "651", name : "공과대학/환경공학과"},
-		{code : "701", name : "창의융합학부/창의융합학부"}		
+	{code : "701", name : "창의융합학부/창의융합학부"}		
 	]
+		
 	$scope.attendanceManage = {
-			obj : {
-				attendanceList : "",
-				searchName : "",
-				searchSubject : "",
-				selectMajor : $scope.majorList[0],
-				deleteAttendSet : new Set()
-			},
-			func : {
-				getAttendanceList : function(){
-					
-					var param = {
-							searchName : $scope.attendanceManage.obj.searchName,
-							searchSubject : $scope.attendanceManage.obj.searchSubject,
-							selectMajor : $scope.attendanceManage.obj.selectMajor['code']
-					}
-					
-					req_http_rest_api.func.req_get_message($http, "/getattendance", param, function(response){
-						/*$scope.attendanceManage.obj.searchName = "bbbbb";*/
-						if(response.data.code == 500){
-							alert(response.data.msg);
-						}else{
-							$scope.attendanceManage.obj.attendanceList = response.data.value;
-						}
-						
-					}, function(response){
-						alert("서버와 연결을 할 수 없습니다.");
-					})
-				},
-				deleteNotice : function() {
-//					if($scope.noticeManage.obj.deleteNoticeSet.size == 0) {
-//						alert("선택된 공지사항이 업습니다.");
-//						return;
-//					} else if(!confirm("선택한 공지사항들을 삭제하시겠습니까?")) {
-//						return;
-//					} else {
-//						var chk = true;
-//						
-//						for (let item of $scope.noticeManage.obj.deleteNoticeSet) {
-//							var param = {
-//									deleteNotice : item
-//							}
-//							
-//							req_http_rest_api.func.req_post_message($http, "/deleteNotice", param, function(response){
-//								/*$scope.classManage.obj.searchName = "bbbbb";*/
-//								if(response.data.code == 500){
-//									alert(response.data.msg);
-//								}else{
-//									chk = true;
-//								}
-//							}, function(response){
-//								alert("서버와 연결을 할 수 없습니다.");
-//								chk = false;
-//								return;
-//							})
-//						}
-//						if(chk) {
-//							$('input:checkbox').removeAttr('checked')
-//							$scope.noticeManage.obj.deleteNoticeSet.clear();
-//							alert("공지사항이 삭제되었습니다.");
-//							$scope.noticeManage.func.getNoticeList();
-//						}
-//					}
-				},
-				checkValue : function(ccode, num, atdate) {
-					if(!$scope.attendanceManage.obj.deleteAttendSet.has([ccode, num, atdate])) {
-						$scope.attendanceManage.obj.deleteAttendSet.add([ccode, num, atdate]);
-					} else {
-						$scope.attendanceManage.obj.deleteAttendSet.delete([ccode, num, atdate]);
-					}
-					console.log($scope.attendanceManage.obj.deleteAttendSet);
+		obj : {
+			attendanceList : "",
+			searchName : "",
+			searchSubject : "",
+			selectMajor : $scope.majorList[0],
+			attendSet : new Set()
+		},
+		func : {
+			getAttendanceList : function(){
+				
+				var param = {
+						searchName : $scope.attendanceManage.obj.searchName,
+						searchSubject : $scope.attendanceManage.obj.searchSubject,
+						selectMajor : $scope.attendanceManage.obj.selectMajor['code']
 				}
+				
+				req_http_rest_api.func.req_get_message($http, "/getattendance", param, function(response){
+					/*$scope.attendanceManage.obj.searchName = "bbbbb";*/
+					if(response.data.code == 500){
+						alert(response.data.msg);
+					}else{
+						$scope.attendanceManage.obj.attendanceList = response.data.value;
+					}
+					
+				}, function(response){
+					alert("서버와 연결을 할 수 없습니다.");
+				})
+			},
+			checkValue : function(ccode, num, atdate) {
+				$scope.attendanceManage.obj.attendSet.clear();
+				$scope.attendanceManage.obj.attendSet.add([ccode, num, atdate]);
+				console.log($scope.attendanceManage.obj.attendSet);
 			}
+		}
 	}
 	
 	$scope.changeBtn = function(){
-		if($scope.noticeManage.obj.noticeSet.size == 0) {
+		if($scope.attendanceManage.obj.attendSet.size == 0) {
 			alert("선택된 출석 리스트가 없습니다.");
 			return;
-		} else if($scope.noticeManage.obj.noticeSet.size > 1) {
+		} else if($scope.attendanceManage.obj.attendSet.size > 1) {
 			alert("한 개의 항목만 선택하세요.");
 			return;
 		} else if(!confirm("선택한 출석리스트를 수정하시겠습니까?")) {
 			return;
 		} else {
-			console.log($scope.attendanceManage.obj.attendanceSet.values().next().value);
-			$window.ScopeToShare = $scope.attendanceManage.obj.attendanceSet.values().next().value;
+			console.log($scope.attendanceManage.obj.attendSet.values().next().value);
+			$window.ScopeToShare = $scope.attendanceManage.obj.attendSet.values().next().value;
 			$location.path("/attenMod").replace();
 		}
 	}
 	
 	$scope.attendanceManage.func.getAttendanceList();
-	
-	
 });
 
 

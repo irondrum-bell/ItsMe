@@ -12,11 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.its.me.dao.AttendanceDao;
-import com.its.me.dao.ClassDao;
-import com.its.me.dao.MemberDao;
 import com.its.me.model.AttendanceObj;
-import com.its.me.model.ClassObj;
-import com.its.me.model.MemberObj;
 
 @Repository("com.its.me.dao.impl.AttendanceDaoImpl")
 public class AttendanceDaoImpl extends GenericDaoImpl<AttendanceObj, String> implements AttendanceDao {
@@ -38,13 +34,12 @@ public class AttendanceDaoImpl extends GenericDaoImpl<AttendanceObj, String> imp
 				attendanceObj.setCkin(rs.getString("CKIN"));
 				attendanceObj.setCkout(rs.getString("CKOUT"));
 				attendanceObj.setCname(rs.getString("CNAME"));
+				attendanceObj.setCcode(rs.getString("CCODE"));
 	
 				return attendanceObj;
 			}
 		};
 	}
-
-
 
 	public List<AttendanceObj> getAttendanceList(String subject, String name, String major){
 		
@@ -95,6 +90,38 @@ public class AttendanceDaoImpl extends GenericDaoImpl<AttendanceObj, String> imp
 		return new ArrayList<AttendanceObj>();
 	}
 
+	@Override
+	public AttendanceObj getAttendanceContent(String ccode, String num, String atdate) {
+		String sql = getQuery("AttendanceDao.get.AttendanceAll");
+		sql += " " + getQuery("AttendanceDao.get.AttendanceAll.ccode");
+		sql += " " + getQuery("AttendanceDao.get.AttendanceAll.num");
+		sql += " " + getQuery("AttendanceDao.get.AttendanceAll.atdate");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("getAttendanceContent sql : " + sql);
+		
+		try {
+			return jdbcTemplate.queryForObject(sql, new Object[] {ccode, num, atdate}, getRowMapper());
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return new AttendanceObj();
+	}
+
+	@Override
+	public int updateAttend(String ccode, String num, String atdate, String ckin, String ckout, String atpre) {
+		String sql = getQuery("AttendanceDao.update.Attendance");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("updateAttendance sql : " + sql);
+		
+		try {
+			return jdbcTemplate.update(sql, new Object[] {ckin, ckout, atpre, ccode, num, atdate});
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return 999;
+	}
 
 	@Override
 	public List<AttendanceObj> getAll() {
@@ -102,15 +129,11 @@ public class AttendanceDaoImpl extends GenericDaoImpl<AttendanceObj, String> imp
 		return null;
 	}
 
-
-
 	@Override
 	public AttendanceObj get(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 	@Override
 	public boolean update(AttendanceObj data) {
@@ -118,30 +141,23 @@ public class AttendanceDaoImpl extends GenericDaoImpl<AttendanceObj, String> imp
 		return false;
 	}
 
-
-
 	@Override
 	public boolean delete(String id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-
-
 	@Override
 	public boolean save(AttendanceObj data) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-
-
+	
 	@Override
 	public List<AttendanceObj> search(String nameKeyword, String orient, String dir, Long startIndex, Long endIndex) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }
 
 
