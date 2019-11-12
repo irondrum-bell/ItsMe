@@ -39,6 +39,11 @@ public class MemberService {
 		return member;
 	}*/
 
+	public int resetMemberPw(String num, String birth) {
+		int result = memberDao.resetMemberPw(num, birth);
+		return result;
+	}
+
 	public int addMember(String belcode, String depcode, String name, String num, String pw, int author,
 			String birth, String phone, String email, String addr) {
 		int result = memberDao.addMember(belcode, depcode, name, num, pw, author, birth, phone, email, addr);

@@ -79,6 +79,45 @@ public class MemberController {
 		return rr;
 	}*/
 	
+	@RequestMapping(value = "/getMemberContent", method = RequestMethod.GET)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult getContent(@RequestParam("memberNum") String memberNum) {
+		
+		MemberObj Member = memberService.getMemberContent(memberNum);
+		ResResult rr = new ResResult();
+
+		if (Member == null ) {
+			rr.setCode(500);
+			rr.setMsg("회원정보를 가져 올 수 없습니다.");
+			return rr;
+		}
+
+		rr.setCode(200);
+		rr.setValue(Member);
+
+		return rr;
+	}
+	
+	@RequestMapping(value = "/resetMemberPw", method = RequestMethod.POST)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public ResResult resetMemberPw(@RequestParam("searchNum") String searchNum, @RequestParam("searchBirth") String searchBirth) {
+		
+		int result = memberService.resetMemberPw(searchNum, searchBirth);
+		ResResult rr = new ResResult();
+		
+		if(result == 999) {
+			rr.setCode(500);
+			rr.setMsg("비밀번호 초기화를 진행할 수 없습니다.");
+			return rr;
+		}
+		
+		rr.setCode(200);
+		
+		return rr;
+	}
+	
 	@RequestMapping(value = "/addMember", method = RequestMethod.POST)
 	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
@@ -98,26 +137,6 @@ public class MemberController {
 			return rr;
 		}
 		rr.setCode(200);
-		return rr;
-	}	
-	
-	@RequestMapping(value = "/getMemberContent", method = RequestMethod.GET)
-	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
-	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
-	public ResResult getContent(@RequestParam("memberNum") String memberNum) {
-		
-		MemberObj Member = memberService.getMemberContent(memberNum);
-		ResResult rr = new ResResult();
-
-		if (Member == null ) {
-			rr.setCode(500);
-			rr.setMsg("회원정보를 가져 올 수 없습니다.");
-			return rr;
-		}
-
-		rr.setCode(200);
-		rr.setValue(Member);
-
 		return rr;
 	}
 	

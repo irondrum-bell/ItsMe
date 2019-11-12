@@ -10,6 +10,8 @@ public interface MemberDao  extends GenericDao<MemberObj, String>{
 	public List<MemberObj> getMemberList(String author, String name, String number, String major);
 
 	/*public MemberObj isMember(String num);*/
+
+	public int resetMemberPw(String num, String birth);
 	
 	public MemberObj getMemberContent(String memberNum);
 

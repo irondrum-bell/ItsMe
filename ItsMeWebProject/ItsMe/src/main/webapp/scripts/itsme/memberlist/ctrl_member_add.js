@@ -77,7 +77,6 @@ app.controller("MemberManageCtrl",function($scope, $http, $location, $window) {
 			memberDep : "",
 			memberName : "",
 			memberNum : "",
-			memberPw : "",
 			memberAuthor : "",
 			memberBirth : "",
 			memberPhone : "",
@@ -99,11 +98,9 @@ app.controller("MemberManageCtrl",function($scope, $http, $location, $window) {
 						alert(response.data.msg);
 					}else{
 						$scope.memberAddMod.obj.memberContent = response.data.value;
-//						console.log(response.data.value);
 						$scope.memberAddMod.obj.memberDep = $scope.memberAddMod.obj.memberContent['depcode'];
 						$scope.memberAddMod.obj.memberName = $scope.memberAddMod.obj.memberContent['name'];
 						$scope.memberAddMod.obj.memberNum = $scope.memberAddMod.obj.memberContent['num'];
-						$scope.memberAddMod.obj.memberPw = $scope.memberAddMod.obj.memberContent['pw'];
 						$scope.memberAddMod.obj.memberAuthor = $scope.memberAddMod.obj.memberContent['auth'];
 						$scope.memberAddMod.obj.memberBirth = $scope.memberAddMod.obj.memberContent['birth'];
 						$scope.memberAddMod.obj.memberPhone = $scope.memberAddMod.obj.memberContent['phone'];
@@ -116,22 +113,37 @@ app.controller("MemberManageCtrl",function($scope, $http, $location, $window) {
 								$scope.memberAddMod.obj.searchMajor = $scope.majorList[i]
 								break;
 							}
-							
 						}
 						for (var i = 0; i < $scope.authorList.length; i++) {
 							if($scope.authorList[i].code == $scope.memberAddMod.obj.memberAuthor) {
 								$scope.memberAddMod.obj.searchAuthor = $scope.authorList[i]
 								break;
 							}
-							
 						}
 					}
 				}, function(response){
 					alert("서버와 연결을 할 수 없습니다.");
 				})
 			},
+			resetPw : function() {
+				var param = {
+					searchNum : $scope.memberAddMod.obj.memberNum,
+					searchBirth : $scope.memberAddMod.obj.memberBirth.split(".").join("")
+				}
+				
+				req_http_rest_api.func.req_post_message($http, "/resetMemberPw", param, function(response){
+					if(response.data.code == 500){
+						alert(response.data.msg);
+					} else {
+   						alert("비밀번호가 수정되었습니다.");
+   					}
+				}, function(response){
+					alert("서버와 연결을 할 수 없습니다.");
+				});
+			},
 			add : function(){
 				var param = $scope.memberAddMod.obj;
+				param['memberPw'] = param['memberBirth'].split(".").join("");
 				param['memberDep'] = param['searchMajor'].code;
 				param['memberBel'] = "0" + parseInt(parseInt(param['memberDep'])/100);
 				param['memberAuthor'] = param['searchAuthor'].code;
@@ -148,10 +160,6 @@ app.controller("MemberManageCtrl",function($scope, $http, $location, $window) {
 					alert("학번/사번을 입력하세요.");
 					return;
 				}
-				if(param['memberPw'] == "") {
-					alert("비밀번호를 입력하세요.");
-					return;
-				}
 				if(param['memberAuthor'] == "") {
 					alert("구분을 선택하세요.");
 					return;
@@ -164,7 +172,6 @@ app.controller("MemberManageCtrl",function($scope, $http, $location, $window) {
 				var url = "";
 				if(parameter == "")
 					url = "/addMember";
-					/*url = "/isMember";*/
 				else
 					url = "/updateMember";
 
