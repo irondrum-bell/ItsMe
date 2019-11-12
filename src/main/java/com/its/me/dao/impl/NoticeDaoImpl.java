@@ -90,14 +90,14 @@ public class NoticeDaoImpl extends GenericDaoImpl<NoticeObj, String> implements 
 	}
 
 	@Override
-	public int addNotice(String title, String msg, String date) {
+	public int addNotice(String title, String msg) {
 		String sql = getQuery("NoticeDao.add.Notice");
 		
 		JdbcTemplate jdbcTemplate = getJdbcTemplate();
 		System.out.println("addNotice sql : " + sql);
 		
 		try {
-			return jdbcTemplate.update(sql, new Object[] {title, msg, date});
+			return jdbcTemplate.update(sql, new Object[] {title, msg});
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}

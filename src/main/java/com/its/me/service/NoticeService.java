@@ -27,8 +27,8 @@ public class NoticeService {
 		return NoticeList;
 	}
 
-	public int addNotice(String title, String msg, String date) {
-		int result = NoticeDao.addNotice(title, msg, date);
+	public int addNotice(String title, String msg) {
+		int result = NoticeDao.addNotice(title, msg);
 		return result;
 	}
 
