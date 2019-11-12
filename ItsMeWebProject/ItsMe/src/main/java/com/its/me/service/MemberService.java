@@ -34,10 +34,10 @@ public class MemberService {
 		return memberList;
 	}
 
-	public MemberObj isMember(String num) {
+	/*public MemberObj isMember(String num) {
 		MemberObj member = memberDao.isMember(num);
 		return member;
-	}
+	}*/
 
 	public int addMember(String belcode, String depcode, String name, String num, String pw, int author,
 			String birth, String phone, String email, String addr) {
@@ -45,13 +45,13 @@ public class MemberService {
 		return result;
 	}
 	
-	public MemberObj getMemberContent(String searchNum) {
-		MemberObj Member = memberDao.getMemberContent(searchNum);
+	public MemberObj getMemberContent(String memberNum) {
+		MemberObj Member = memberDao.getMemberContent(memberNum);
 		return Member;
 	}
 	
 	public int updateMember(String memberBel, String memberDep, String memberName, String memberNum, 
-			String memberPw, String memberAuthor, String memberBirth, String memberPhone, 
+			String memberPw, int memberAuthor, String memberBirth, String memberPhone, 
 			String memberEmail, String memberAddr) {
 
 		int result = memberDao.updateMember(memberBel, memberDep, memberName, memberNum, memberPw,

@@ -102,7 +102,7 @@ app.controller("NoticeManageCtrl", function($scope, $http, $window, $location) {
 				},
 				deleteNotice : function() {
 					if($scope.noticeManage.obj.noticeSet.size == 0) {
-						alert("선택된 공지사항이 업습니다.");
+						alert("선택된 공지사항이 없습니다.");
 						return;
 					} else if(!confirm("선택한 공지사항들을 삭제하시겠습니까?")) {
 						return;
