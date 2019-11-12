@@ -24,11 +24,6 @@
 				<label for="InputId">학번/사번</label>
 				<input ng-model="memberAddMod.obj.memberNum" type="text" class="form-control" placeholder="학번/사번" id="num" name="NUM" ></td>
 			</div>
-			
-			<div class="form-group">
-				<label for="InputId">비밀번호</label>
-				<input ng-model="memberAddMod.obj.memberPw" type="text" class="form-control" placeholder="비밀번호" id="pw" name="PW" ></td>
-			</div>
 
 			<div class="form-group">
 				<label for="InputAuthor">구분</label>
@@ -67,6 +62,9 @@
 
 
 			<div class="form-group text-center">
+				<button ng-if="titleName == '수정'" ng-click="memberAddMod.func.resetPw()" type="button" class="btn btn-warning">
+					비밀번호 초기화<i class="fa fa-check spaceLeft"></i>
+				</button>
 				<button type="submit" class="btn btn-info" ng-click="memberAddMod.func.add()">
 					{{titleName}}<i class="fa fa-check spaceLeft"></i>
 				</button>

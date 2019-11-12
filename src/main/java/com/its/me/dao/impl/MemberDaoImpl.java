@@ -2,6 +2,8 @@
 package com.its.me.dao.impl;
 
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -144,7 +146,30 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 		return new MemberObj();
 	}	*/
 	
-	
+	@Override
+	public int resetMemberPw(String num, String birth) {
+		String sql = getQuery("memberDao.update.userPw");
+		
+		String _birth = "";
+		try {
+		    MessageDigest digest = MessageDigest.getInstance("SHA-512");
+		    digest.reset();
+		    digest.update(birth.getBytes("utf8"));
+		    _birth = String.format("%0128x", new BigInteger(1, digest.digest()));
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("resetMemberPw sql : " + sql);
+		
+		try {
+			return jdbcTemplate.update(sql, new Object[] {_birth, num});
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return 999;
+	}
 
 	@Override
 	public int addMember(String belcode, String depcode, String name, String num, String pw, int author, String birth,
