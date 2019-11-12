@@ -25,5 +25,15 @@ public class AttendanceService {
 		List<AttendanceObj> AttendanceList = AttendanceDao.getAttendanceList(subject, name, major);
 		return AttendanceList;
 	}
+
+	public AttendanceObj getAttendanceContent(String ccode, String num, String atdate) {
+		AttendanceObj attendacne= AttendanceDao.getAttendanceContent(ccode, num, atdate);
+		return attendacne;
+	}
+
+	public int updateAttend(String ccode, String num, String atdate, String ckin, String ckout, String atpre) {
+		int result = AttendanceDao.updateAttend(ccode, num, atdate, ckin, ckout, atpre);
+		return result;
+	}
 	
 }
