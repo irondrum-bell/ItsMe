@@ -3,6 +3,12 @@ app.controller("ClassAddModCtrl",function($scope, $http, $location, $window) {
 	var parameter = $window.ScopeToShare;
 	console.log("등록/수정 parameter : " + parameter);
 	
+	if(parameter != ""){
+		$scope.titleName = "수정";
+	}else{
+		$scope.titleName = "등록";
+	}
+	
 	$scope.majorList = [
 		{code : "", name : "-소속/학과-"},
 		{code : "101", name : "인문예술대학/국어국문학과"},

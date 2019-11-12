@@ -129,7 +129,7 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 		return new ArrayList<MemberObj>();
 	}
 
-	@Override
+/*	@Override
 	public MemberObj isMember(String num) {
 		String sql = getQuery("memberDao.get.member");
 		
@@ -142,7 +142,7 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 			e.printStackTrace();
 		}
 		return new MemberObj();
-	}	
+	}	*/
 	
 	
 
@@ -163,15 +163,15 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 	}
 	
 	@Override
-	public MemberObj getMemberContent(String searchNum) {
+	public MemberObj getMemberContent(String memberNum) {
 		String sql = getQuery("memberDao.get.memberList");
 		sql += " " + getQuery("memberDao.get.memberList.num");
 		
 		JdbcTemplate jdbcTemplate = getJdbcTemplate();
-		System.out.println("getContent sql : " + sql);
+		System.out.println("getMemberContent sql : " + sql);
 		
 		try {
-			return jdbcTemplate.queryForObject(sql, new Object[] {searchNum}, getRowMapper());
+			return jdbcTemplate.queryForObject(sql, new Object[] {memberNum}, getRowMapper());
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}
@@ -180,17 +180,16 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 	
 	@Override
 	public int updateMember(String memberBel, String memberDep, String memberName, String memberNum, 
-			String memberPw, String memberAuthor, String memberBirth, String memberPhone, 
+			String memberPw, int memberAuthor, String memberBirth, String memberPhone, 
 			String memberEmail, String memberAddr) {
-		String sql = getQuery("memberDao.get.memberList");
-		sql += " " + getQuery("memberDao.get.memberList.num");
+		String sql = getQuery("memberDao.update.member");
 		
 		JdbcTemplate jdbcTemplate = getJdbcTemplate();
 		System.out.println("updateMember sql : " + sql);
 		
 		try {
-			return jdbcTemplate.update(sql, new Object[] {memberBel, memberDep, memberName, memberNum, memberPw,
-					memberAuthor, memberBirth, memberPhone, memberEmail, memberAddr});
+			return jdbcTemplate.update(sql, new Object[] {memberDep, memberName, memberNum, memberPw,
+					memberAuthor, memberBirth, memberPhone, memberEmail, memberAddr, memberNum});
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}

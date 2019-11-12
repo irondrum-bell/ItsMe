@@ -92,15 +92,14 @@ app.controller("MemberManageCtrl",function($scope, $http, $location, $window) {
 				}
 				
 				var param = {
-						searchNum : parameter
+						memberNum : parameter
 				}
 				req_http_rest_api.func.req_get_message($http, "/getMemberContent", param, function(response){
 					if(response.data.code == 500){
 						alert(response.data.msg);
 					}else{
 						$scope.memberAddMod.obj.memberContent = response.data.value;
-						console.log(response.data.value);
-						$scope.memberAddMod.obj.memberBel = $scope.memberAddMod.obj.memberContent['belcode'];
+//						console.log(response.data.value);
 						$scope.memberAddMod.obj.memberDep = $scope.memberAddMod.obj.memberContent['depcode'];
 						$scope.memberAddMod.obj.memberName = $scope.memberAddMod.obj.memberContent['name'];
 						$scope.memberAddMod.obj.memberNum = $scope.memberAddMod.obj.memberContent['num'];
@@ -111,11 +110,26 @@ app.controller("MemberManageCtrl",function($scope, $http, $location, $window) {
 						$scope.memberAddMod.obj.memberEmail = $scope.memberAddMod.obj.memberContent['email'];
 						$scope.memberAddMod.obj.memberAddr = $scope.memberAddMod.obj.memberContent['address'];
 						//사진 수정 필요
+						
+						for (var i = 0; i < $scope.majorList.length; i++) {
+							if($scope.majorList[i].code == $scope.memberAddMod.obj.memberDep) {
+								$scope.memberAddMod.obj.searchMajor = $scope.majorList[i]
+								break;
+							}
+							
+						}
+						for (var i = 0; i < $scope.authorList.length; i++) {
+							if($scope.authorList[i].code == $scope.memberAddMod.obj.memberAuthor) {
+								$scope.memberAddMod.obj.searchAuthor = $scope.authorList[i]
+								break;
+							}
+							
+						}
 					}
 				}, function(response){
 					alert("서버와 연결을 할 수 없습니다.");
 				})
-		},
+			},
 			add : function(){
 				var param = $scope.memberAddMod.obj;
 				param['memberDep'] = param['searchMajor'].code;
@@ -149,35 +163,40 @@ app.controller("MemberManageCtrl",function($scope, $http, $location, $window) {
 				
 				var url = "";
 				if(parameter == "")
-//					url = "/addMember";
-					url = "/isMember";
+					url = "/addMember";
+					/*url = "/isMember";*/
 				else
 					url = "/updateMember";
 
-				req_http_rest_api.func.req_get_message($http, url, param, function(response){
-					if(response.data.code == 500){
-						alert(response.data.msg);
-						return;
-					}else{
-						req_http_rest_api.func.req_post_message($http, "/addMember", param, function(response){
-						if(response.data.code == 500){
-							alert(response.data.msg);
-						}else{
-							if(parameter == "")
+				req_http_rest_api.func.req_get_message($http, "/getMemberContent", param, function(response){
+					if(response.data.code == 500 && parameter == ""){
+						req_http_rest_api.func.req_post_message($http, url, param, function(response){
+							if(response.data.code == 500){
+								alert(response.data.msg);
+							}else{
 		    					alert('회원 정보가 추가되었습니다.');
-							else
+								$location.path(adminUrl).replace();
+		   					}
+						}, function(response){
+							alert("서버와 연결을 할 수 없습니다.");
+						});
+					} else if(response.data.code == 200 && parameter != "") {
+						req_http_rest_api.func.req_post_message($http, url, param, function(response){
+							if(response.data.code == 500){
+								alert(response.data.msg);
+							}else{
 		    					alert('회원 정보가 수정되었습니다.');
-							$location.path(adminUrl).replace();
-	   					}
-					}, function(response){
-						alert("서버와 연결을 할 수 없습니다.");
-					});
-					/*$location.path("/memberlist").replace();*/
+								$location.path(adminUrl).replace();
+		   					}
+						}, function(response){
+							alert("서버와 연결을 할 수 없습니다.");
+						});
+   					} else {
+   						alert("중복된 회원이 존재합니다.");
    					}
 				}, function(response){
 					alert("서버와 연결을 할 수 없습니다.");
 				});
-				
 			},
 			cancel : function(){
 				//$location.path("/memberlist").replace();
