@@ -1,7 +1,7 @@
 app.controller("AttenManageCtrl", function($scope, $http, $window, $location){	
 	
 	$.datepicker.setDefaults({
-		dateFormat : 'yy-mm-dd',
+		dateFormat : 'yy.mm.dd',
 		prevText : '이전 달',
 		nextText : '다음 달',
 		monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월',
@@ -75,6 +75,8 @@ app.controller("AttenManageCtrl", function($scope, $http, $window, $location){
 	$scope.attendanceManage = {
 		obj : {
 			attendanceList : "",
+			searchDate1 : "",
+			searchDate2 : "",
 			searchName : "",
 			searchSubject : "",
 			selectMajor : $scope.majorList[0],
@@ -82,8 +84,12 @@ app.controller("AttenManageCtrl", function($scope, $http, $window, $location){
 		},
 		func : {
 			getAttendanceList : function(){
+				$scope.attendanceManage.func.chkDateParam($("#datepicker1").datepicker().val(), 
+						$("#datepicker2").datepicker().val());
 				
 				var param = {
+						searchDate1 : $scope.attendanceManage.obj.searchDate1,
+						searchDate2 : $scope.attendanceManage.obj.searchDate2,
 						searchName : $scope.attendanceManage.obj.searchName,
 						searchSubject : $scope.attendanceManage.obj.searchSubject,
 						selectMajor : $scope.attendanceManage.obj.selectMajor['code']
@@ -105,7 +111,20 @@ app.controller("AttenManageCtrl", function($scope, $http, $window, $location){
 				$scope.attendanceManage.obj.attendSet.clear();
 				$scope.attendanceManage.obj.attendSet.add([ccode, num, atdate]);
 				console.log($scope.attendanceManage.obj.attendSet);
-			}
+			},
+			chkDateParam : function(date1, date2){
+				if(date1 != "" && date2 == "") {
+					var date = new Date().toISOString();
+					$scope.attendanceManage.obj.searchDate1 = date1;
+					$scope.attendanceManage.obj.searchDate2 = date.slice(0,4) + "." + date.slice(5,7) + "." + date.slice(8,10);
+				} else if(date1 == "" && date2 != "") {
+					$scope.attendanceManage.obj.searchDate1 = "1999.99.99";
+					$scope.attendanceManage.obj.searchDate2 = date2;
+				} else {
+					$scope.attendanceManage.obj.searchDate1 = date1;
+					$scope.attendanceManage.obj.searchDate2 = date2;
+				}
+			},
 		}
 	}
 	

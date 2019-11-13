@@ -63,7 +63,7 @@ app.controller("ScheduleManageCtrl", function($scope, $http) {
 												});
 									    		$(this).dialog( "close" );
 									    	},
-									    	"삭제": function() {
+									    	"취소": function() {
 									    		$(this).dialog( "close" );
 									    	}
 									    },

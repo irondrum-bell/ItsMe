@@ -6,7 +6,7 @@ import com.its.me.model.AttendanceObj;
 
 public interface AttendanceDao  extends GenericDao<AttendanceObj, String>{
 
-	public List<AttendanceObj> getAttendanceList(String subject, String name, String major);
+	public List<AttendanceObj> getAttendanceList(String date1, String date2, String subject, String name, String major);
 
 	public AttendanceObj getAttendanceContent(String ccode, String num, String atdate);
 

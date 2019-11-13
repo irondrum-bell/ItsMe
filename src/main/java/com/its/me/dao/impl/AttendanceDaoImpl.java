@@ -41,10 +41,13 @@ public class AttendanceDaoImpl extends GenericDaoImpl<AttendanceObj, String> imp
 		};
 	}
 
-	public List<AttendanceObj> getAttendanceList(String subject, String name, String major){
+	public List<AttendanceObj> getAttendanceList(String date1, String date2, String subject, String name, String major){
 		
 		String sql = getQuery("AttendanceDao.get.AttendanceAll");
 		
+		if(!date1.equals("") && !date2.equals("")) {
+			sql+= " " + getQuery("AttendanceDao.get.AttendanceAll.date");
+		}
 		if(!subject.equals("")) {
 			sql+= " " + getQuery("AttendanceDao.get.AttendanceAll.subject");
 		}
@@ -60,29 +63,53 @@ public class AttendanceDaoImpl extends GenericDaoImpl<AttendanceObj, String> imp
 		System.out.println("getAttendanceList sql : " + sql);
 		
 		try {
-			if(subject.equals("") && name.equals("") && major.equals("")) {
+			if(date1.equals("") && subject.equals("") && name.equals("") && major.equals("")) {
 				return jdbcTemplate.query(sql, getRowMapper());
 			}
-			else if(!subject.equals("") && name.equals("") && major.equals("")) {
+			else if(!date1.equals("") && subject.equals("") && name.equals("") && major.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {date1, date2}, getRowMapper());
+			}
+			else if(date1.equals("") && !subject.equals("") && name.equals("") && major.equals("")) {
 				return jdbcTemplate.query(sql, new Object[] {subject}, getRowMapper());
 			}
-			else if(subject.equals("") && !name.equals("") && major.equals("")) {
+			else if(date1.equals("") && subject.equals("") && !name.equals("") && major.equals("")) {
 				return jdbcTemplate.query(sql, new Object[] {name}, getRowMapper());
 			}
-			else if(subject.equals("") && name.equals("") && !major.equals("")) {
+			else if(date1.equals("") && subject.equals("") && name.equals("") && !major.equals("")) {
 				return jdbcTemplate.query(sql, new Object[] {major}, getRowMapper());
 			}
-			else if(!subject.equals("") && !name.equals("") && major.equals("")) {
-				return jdbcTemplate.query(sql, new Object[] {subject, name }, getRowMapper());
+			else if(!date1.equals("") && !subject.equals("") && name.equals("") && major.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {date1, date2, subject}, getRowMapper());
 			}
-			else if(!subject.equals("") && name.equals("") && !major.equals("")) {
+			else if(!date1.equals("") && subject.equals("") && !name.equals("") && major.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {date1, date2, name}, getRowMapper());
+			}
+			else if(!date1.equals("") && subject.equals("") && name.equals("") && !major.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {date1, date2, major}, getRowMapper());
+			}
+			else if(date1.equals("") && !subject.equals("") && !name.equals("") && major.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {subject, name}, getRowMapper());
+			}
+			else if(date1.equals("") && !subject.equals("") && name.equals("") && !major.equals("")) {
 				return jdbcTemplate.query(sql, new Object[] {subject, major}, getRowMapper());
 			}
-			else if(subject.equals("") && !name.equals("") && !major.equals("")) {
+			else if(date1.equals("") && subject.equals("") && !name.equals("") && !major.equals("")) {
 				return jdbcTemplate.query(sql, new Object[] {name, major}, getRowMapper());
 			}
-			else
+			else if(!date1.equals("") && !subject.equals("") && !name.equals("") && major.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {date1, date2, subject, name}, getRowMapper());
+			}
+			else if(!date1.equals("") && !subject.equals("") && name.equals("") && !major.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {date1, date2, subject, major}, getRowMapper());
+			}
+			else if(!date1.equals("") && subject.equals("") && !name.equals("") && !major.equals("")) {
+				return jdbcTemplate.query(sql, new Object[] {date1, date2, name, major}, getRowMapper());
+			}
+			else if(date1.equals("") && !subject.equals("") && !name.equals("") && !major.equals("")) {
 				return jdbcTemplate.query(sql, new Object[] {subject, name, major}, getRowMapper());
+			}
+			else
+				return jdbcTemplate.query(sql, new Object[] {date1, date2, subject, name, major}, getRowMapper());
 			
 		} catch (DataAccessException e) {
 			e.printStackTrace();
