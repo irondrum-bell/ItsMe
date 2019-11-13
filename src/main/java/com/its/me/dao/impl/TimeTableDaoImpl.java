@@ -116,7 +116,6 @@ public class TimeTableDaoImpl extends GenericDaoImpl<TimeTableObj, String> imple
 		String sql = getQuery("TableDao.get.overlap");
 		
 		System.out.println("overlap sql : " + sql);
-		System.out.println(userId+ ccode);
 		JdbcTemplate jdbcTemplate = getJdbcTemplate();
 		try {
 			
