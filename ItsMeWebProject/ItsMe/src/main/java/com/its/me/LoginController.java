@@ -61,25 +61,21 @@ public class LoginController {
 	}
 	
 	/**
-	 *
 	 * App 비밀번호 초기화
-	 * @param id
-	 * @param name
-	 * @param birth
-	 * @param phone
 	 * @return
 	 */
-	@RequestMapping(value = "/formatPw", method = RequestMethod.GET)
+	@RequestMapping(value = "/formatPw", method = RequestMethod.POST)
 	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
-	public ResResult pwFormat(@RequestParam("id") String id, 
-			@RequestParam("name") String name, @RequestParam("birth") String birth, 
-			@RequestParam("phone") String phone) {
+	public ResResult pwFormat(HttpServletRequest httpServletRequest) {
+		
+		String id = httpServletRequest.getParameter("id");
+		String name = httpServletRequest.getParameter("name");
+		String birth = httpServletRequest.getParameter("birth");
+		String phone = httpServletRequest.getParameter("phone");
 		
 		String user = userService.formatPw(id, name, birth, phone);
 		// 1이면 성공 0이면 실패
-		
-		System.out.println(user);
 		
 		ResResult rr = new ResResult();
 		
