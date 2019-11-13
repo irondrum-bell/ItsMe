@@ -21,8 +21,8 @@ public class AttendanceService {
 	 * 모든 사용자 정보를 제공한다.
 	 * @return 사용자 목록
 	 */
-	public List<AttendanceObj> getAttendance(String subject, String name, String major) {
-		List<AttendanceObj> AttendanceList = AttendanceDao.getAttendanceList(subject, name, major);
+	public List<AttendanceObj> getAttendance(String date1, String date2, String subject, String name, String major) {
+		List<AttendanceObj> AttendanceList = AttendanceDao.getAttendanceList(date1, date2, subject, name, major);
 		return AttendanceList;
 	}
 
