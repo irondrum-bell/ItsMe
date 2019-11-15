@@ -55,11 +55,14 @@
 				<p class="help-block">ex. 경상북도 구미시</p>
 			</div>
 
+			<!-- <form method="POST" action="upload" enctype="multipart/form-data" id="imgFrm" name="imgFrm" class="form-group"> -->
 			<div class="form-group">
-				<label for="InputBirth">파일첨부</label>
-				<input type="file" id="ex_file" class="form-control">
+				<label for="InputFile">파일첨부</label>
+				<input ng-model="memberAddMod.obj.memberImg" type="file" name="file1" id="file1" class="form-control">
+				<!-- <input type="submit" > -->
+				<!-- <input ng-model="memberAddMod.obj.memberImg" type="file" onchange="angular.element(this).scope().memberAddMod.func.fileSelect()" name="file1" id="file1" class="form-control"> -->
 			</div>
-
+			<!-- </form> -->
 
 			<div class="form-group text-center">
 				<button ng-if="titleName == '수정'" ng-click="memberAddMod.func.resetPw()" type="button" class="btn btn-warning">
