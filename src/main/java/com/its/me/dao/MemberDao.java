@@ -17,6 +17,9 @@ public interface MemberDao  extends GenericDao<MemberObj, String>{
 
 	public int addMember(String belcode, String depcode, String name, String num, String pw, int author, String birth,
 			String phone, String email, String addr);
+
+	public int addMember(String belcode, String depcode, String name, String num, String pw, int author, String birth,
+			String phone, String email, String addr, String imgpath, String originnm, String savenm);
 	
 	public int updateMember(String memberBel, String memberDep, String memberName, String memberNum, 
 			String memberPw, int memberAuthor, String memberBirth, String memberPhone, 

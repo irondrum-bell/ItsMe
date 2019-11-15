@@ -1,6 +1,7 @@
 package com.its.me;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -10,17 +11,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.its.me.model.MemberObj;
-import com.its.me.model.ResResult;
 import com.its.me.model.MemberUserInfoObj;
-import com.its.me.model.NoticeObj;
-import com.its.me.service.LoginUserService;
+import com.its.me.model.ResResult;
+import com.its.me.service.FileUploadService;
 import com.its.me.service.MemberService;
 
 /**
@@ -34,6 +35,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private FileUploadService fileUploadService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -125,11 +129,14 @@ public class MemberController {
 			@RequestParam("memberName") String memberName, @RequestParam("memberNum") String memberNum,
 			@RequestParam("memberPw") String memberPw, @RequestParam("memberAuthor") String memberAuthor, 
 			@RequestParam("memberBirth") String memberBirth, @RequestParam("memberPhone") String memberPhone, 
-			@RequestParam("memberEmail") String memberEmail, @RequestParam("memberAddr") String memberAddr) {
-		//비밀번호, 파일첨부 변수 추가 필요
+			@RequestParam("memberEmail") String memberEmail, @RequestParam("memberAddr") String memberAddr,
+			@RequestParam("file1") MultipartFile file1) {
+		
+		Map<String, String> imgInfo = fileUploadService.restore(file1);
+		
 		int result = memberService.addMember(memberBel, memberDep, memberName, memberNum, memberPw, Integer.parseInt(memberAuthor), 
-				memberBirth, memberPhone, memberEmail, memberAddr);
-
+				memberBirth, memberPhone, memberEmail, memberAddr, imgInfo.get("IMGPATH"), imgInfo.get("ORIGINFILENM"), imgInfo.get("SAVEFILENM"));
+		
 		ResResult rr = new ResResult();
 		if(result == 999) {
 			rr.setCode(500);
@@ -167,6 +174,16 @@ public class MemberController {
 		rr.setCode(200);
 		
 		return rr;
+	}
+	
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	@ResponseBody // : 자바객체를 HTTP 요청의 body내용으로 매핑하는 역할.
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
+	public String upload(Model model, @RequestParam("file1") MultipartFile file1) {
+		
+		fileUploadService.restore(file1);
+//		model.addAttribute("url", url);
+		return "result";
 	}
 	
 	@RequestMapping(value = "/deleteMember", method = RequestMethod.POST)

@@ -47,8 +47,6 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 			}
 		};
 	}
-	
-	
 
 	@Override
 	public List<MemberObj> getMemberList(String author, String name, String number, String major){
@@ -181,6 +179,23 @@ public class MemberDaoImpl extends GenericDaoImpl<MemberObj, String> implements 
 		
 		try {
 			return jdbcTemplate.update(sql, new Object[] { num, name, pw, birth, phone, author, belcode, depcode, email, addr});
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return 999;
+	}
+
+	@Override
+	public int addMember(String belcode, String depcode, String name, String num, String pw, int author, String birth,
+			String phone, String email, String addr, String imgpath, String originnm, String savenm) {
+		String sql = getQuery("memberDao.add.memberImg");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("addMember sql : " + sql);
+		
+		try {
+			return jdbcTemplate.update(sql, new Object[] { num, name, pw, birth, phone, author, belcode, depcode, email, addr, 
+					imgpath, originnm, savenm});
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}
