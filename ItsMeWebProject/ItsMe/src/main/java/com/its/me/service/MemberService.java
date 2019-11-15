@@ -49,6 +49,13 @@ public class MemberService {
 		int result = memberDao.addMember(belcode, depcode, name, num, pw, author, birth, phone, email, addr);
 		return result;
 	}
+
+	public int addMember(String belcode, String depcode, String name, String num, String pw, int author,
+			String birth, String phone, String email, String addr, String imgpath, String originnm, String savenm) {
+		int result = memberDao.addMember(belcode, depcode, name, num, pw, author, birth, 
+				phone, email, addr, imgpath, originnm, savenm);
+		return result;
+	}
 	
 	public MemberObj getMemberContent(String memberNum) {
 		MemberObj Member = memberDao.getMemberContent(memberNum);

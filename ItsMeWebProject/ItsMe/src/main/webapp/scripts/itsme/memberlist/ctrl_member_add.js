@@ -81,8 +81,8 @@ app.controller("MemberManageCtrl",function($scope, $http, $location, $window) {
 			memberBirth : "",
 			memberPhone : "",
 			memberEmail : "",
-			memberAddr : ""
-			//파일첨부 변수 추가 필요
+			memberAddr : "",
+			memberImg : ""
 		}, 
 		func : {
 			getMemberContent : function(){
@@ -135,7 +135,7 @@ app.controller("MemberManageCtrl",function($scope, $http, $location, $window) {
 					if(response.data.code == 500){
 						alert(response.data.msg);
 					} else {
-   						alert("비밀번호가 수정되었습니다.");
+   						alert("비밀번호가 초기화되었습니다.");
    					}
 				}, function(response){
 					alert("서버와 연결을 할 수 없습니다.");
@@ -147,6 +147,10 @@ app.controller("MemberManageCtrl",function($scope, $http, $location, $window) {
 				param['memberDep'] = param['searchMajor'].code;
 				param['memberBel'] = "0" + parseInt(parseInt(param['memberDep'])/100);
 				param['memberAuthor'] = param['searchAuthor'].code;
+				console.log(param);
+				
+				var formData = new FormData();
+				formData.append("file1", document.getElementById('file1').files[0]);
 				
 				if(param['memberDep'] == "") {
 					alert("소속/학과를 선택하세요.");
@@ -177,7 +181,7 @@ app.controller("MemberManageCtrl",function($scope, $http, $location, $window) {
 
 				req_http_rest_api.func.req_get_message($http, "/getMemberContent", param, function(response){
 					if(response.data.code == 500 && parameter == ""){
-						req_http_rest_api.func.req_post_message($http, url, param, function(response){
+						req_http_rest_api.func.req_multipart_message($http, url, param, formData, function(response){
 							if(response.data.code == 500){
 								alert(response.data.msg);
 							}else{
@@ -208,8 +212,24 @@ app.controller("MemberManageCtrl",function($scope, $http, $location, $window) {
 			cancel : function(){
 				//$location.path("/memberlist").replace();
 				$location.path(adminUrl).replace();
+			},
+			fileSelect : function() {
+				$scope.memberAddMod.obj.memberImg = new FormData();
+				$scope.memberAddMod.obj.memberImg.append("file1", document.getElementById('file1').files[0]);
+				console.log($scope.memberAddMod.obj.memberImg);
+//			   document.getElementById('imgFrm').submit();
+				
+//				var param = {}
+//				var data = $scope.memberAddMod.obj.memberImg;
+//				console.log(param);
+//				req_http_rest_api.func.req_multipart_message($http, "/upload", param, data, function(response){
+//					alert("dd");
+//				}, function(response){
+//					alert("서버와 연결을 할 수 없습니다.");
+//				});
 			}
 		}
 	}
+	
 	$scope.memberAddMod.func.getMemberContent();
 });
