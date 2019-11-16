@@ -36,6 +36,11 @@ public class NoticeService {
 		NoticeObj Notice = NoticeDao.getContent(searchPnum);
 		return Notice;
 	}
+	
+	public NoticeObj getView(String searchPnum) {
+		NoticeObj Notice = NoticeDao.getContent(searchPnum);
+		return Notice;
+	}
 
 	public int updateNotice(String title, String msg, String pnum) {
 

@@ -73,7 +73,14 @@ app.controller("appHomeCtrl", function($scope, $http, $location, $timeout, $rout
 		code : 9,
 		disabled : false,
 		selected : false
-	} ];
+	},
+	{
+		url : ctx + "#/noticeView",
+		display : "공지사항 확인",
+		code : 10,
+		disabled : false,
+		selected : false
+	}];
 
 	if(isAdmin == "1"){
 		$scope.routeContents[0].disabled = false;
@@ -211,4 +218,16 @@ app.config(function($routeProvider, $locationProvider){
 		},
 		redirectTo : null
 	});
+	$routeProvider.when(ctx + "/noticeView",{
+		templateUrl : ctx + "/templates/itsme/noticeManage/noticeView.html",
+		controller : "NoticeViewCtrl",
+		resolve : {
+			content : function() {
+				return {
+				};
+			}
+		},
+		redirectTo : null
+	});
+	
 });

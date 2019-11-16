@@ -119,6 +119,22 @@ public class NoticeDaoImpl extends GenericDaoImpl<NoticeObj, String> implements 
 		}
 		return new NoticeObj();
 	}
+	
+	@Override
+	public NoticeObj getView(String searchPnum) {
+		String sql = getQuery("NoticeDao.get.Notice");
+		sql+= " " + getQuery("NoticeDao.get.Notice.pnum");
+		
+		JdbcTemplate jdbcTemplate = getJdbcTemplate();
+		System.out.println("getView sql : " + sql);
+		
+		try {
+			return jdbcTemplate.queryForObject(sql, new Object[] {searchPnum}, getRowMapper());
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return new NoticeObj();
+	}
 
 	@Override
 	public int updateNotice(String title, String msg, String pnum) {

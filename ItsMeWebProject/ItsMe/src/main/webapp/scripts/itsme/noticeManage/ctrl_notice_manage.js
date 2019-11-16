@@ -61,7 +61,8 @@ app.controller("NoticeManageCtrl", function($scope, $http, $window, $location) {
 				searchDate2 : "",
 				searchTitle : "",
 				searchWriter : "",
-				noticeSet : new Set()
+				noticeSet : new Set(),
+				noticeView : ""
 			},
 			func : {
 				getNoticeList : function(){
@@ -74,7 +75,16 @@ app.controller("NoticeManageCtrl", function($scope, $http, $window, $location) {
 							searchTitle : $scope.noticeManage.obj.searchTitle,
 							searchWriter : $scope.noticeManage.obj.searchWriter	
 					}
-
+					
+					/*req_http_rest_api.func.req_get_message($http, "/getView", param, function(response){
+						$scope.noticeManage.obj.searchName = "bbbbb";
+						if(response.data.code == 500){
+							alert(response.data.msg);
+						}else{
+							$scope.noticeManage.obj.noticeList = response.data.value;
+						}
+						
+					},*/
 					req_http_rest_api.func.req_get_message($http, "/getNotice", param, function(response){
 						/*$scope.noticeManage.obj.searchName = "bbbbb";*/
 						if(response.data.code == 500){
@@ -142,7 +152,12 @@ app.controller("NoticeManageCtrl", function($scope, $http, $window, $location) {
 						$scope.noticeManage.obj.noticeSet.delete(pnum);
 					}
 					console.log($scope.noticeManage.obj.noticeSet);
-				}
+				},
+				clickValue : function(pnum) {
+					$window.ScopeToShare = pnum;
+					$location.path("/noticeView").replace();
+				},
+				
 			}
 	}
 	
