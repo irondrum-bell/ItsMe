@@ -1,6 +1,6 @@
 <div style="align: center">
 	<form action="adminMemberRemove.jsp" method="post" id="checkForm">
-		<hr color="#7B7EDD" width=90%>
+		<hr color="#7B7EDD" width=100%>
 		<table align="center" cellspacing="0" width="1300" class="t2"
 			height="100" frame=void>
 			<!-- <tr bgcolor="#85A0F2"> -->
@@ -14,7 +14,7 @@
 			<th width="100"><input type='button' value='검색'
 				class="btn btn-info" ng-click="noticeManage.func.getNoticeList()" /></th>
 		</table>
-		<hr color="#7B7EDD" width=90%>
+		<hr color="#7B7EDD" width=100%>
 	</form>
 	<form action='login_page.php'></form>
 </div>
@@ -39,7 +39,7 @@
 			<td width="80" align="center"><input type="checkbox"
 						name="Chk" ng-click="noticeManage.func.checkValue(obj.pnum)"></td>
 			<td width="50" align="center">{{obj.pnum}}</td>
-			<td width="300" align="center">{{obj.title}}</td>
+			<td width="300" align="center"><a href="" ng-click="noticeManage.func.clickValue(obj.pnum)">{{obj.title}}</a></td>
 			<td width="100" align="center">{{obj.wrt}}</td>
 			<td width="100" align="center">{{obj.wdate}}</td>
 			<td width="100" align="center">{{obj.view}}</td>

@@ -12,6 +12,8 @@ public interface NoticeDao extends GenericDao<NoticeObj, String>{
 	public int addNotice(String title, String msg);
 
 	public NoticeObj getContent(String searchPnum);
+	
+	public NoticeObj getView(String searchPnum);
 
 	public int updateNotice(String title, String msg, String pnum);
 
