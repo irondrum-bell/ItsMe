@@ -1,5 +1,6 @@
 package com.its.me.service;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
@@ -15,10 +16,11 @@ public class FileUploadService {
 		// 리눅스 기준으로 파일 경로를 작성 ( 루트 경로인 /으로 시작한다. )
 		// 윈도우라면 workspace의 드라이브를 파악하여 JVM이 알아서 처리해준다.
 		// 따라서 workspace가 C드라이브에 있다면 C드라이브에 upload 폴더를 생성해 놓아야 한다.
-		private static final String SAVE_PATH = "C:\\upload";
+//		private static final String SAVE_PATH = "C:\\upload";
+		private static final String SAVE_PATH = "/home/rets/vixme/uploads";
 		private static final String PREFIX_URL = "/upload/";
 		
-		public Map<String, String> restore(MultipartFile multipartFile) {
+		public Map<String, String> restore(String num, MultipartFile multipartFile) {
 			System.out.println("dd");
 			String url = null;
 			Map<String, String> imgInfoMap = new HashMap<String, String>();
@@ -33,7 +35,8 @@ public class FileUploadService {
 				// 서버에서 저장 할 파일 이름
 				String saveFileName = genSaveFileName(extName);
 				
-				imgInfoMap.put("IMGPATH", SAVE_PATH);
+//				imgInfoMap.put("IMGPATH", SAVE_PATH + "\\" + num);
+				imgInfoMap.put("IMGPATH", SAVE_PATH + "/" + num);
 				imgInfoMap.put("ORIGINFILENM", originFilename);
 				imgInfoMap.put("SAVEFILENM", saveFileName);
 				System.out.println("originFilename : " + originFilename);
@@ -41,7 +44,7 @@ public class FileUploadService {
 				System.out.println("size : " + size);
 				System.out.println("saveFileName : " + saveFileName);
 				
-				writeFile(multipartFile, saveFileName);
+				writeFile(num, multipartFile, saveFileName);
 				url = PREFIX_URL + saveFileName;
 			}
 			catch (IOException e) {
@@ -71,15 +74,33 @@ public class FileUploadService {
 		
 		
 		// 파일을 실제로 write 하는 메서드
-		private boolean writeFile(MultipartFile multipartFile, String saveFileName)
+		private boolean writeFile(String num, MultipartFile multipartFile, String saveFileName)
 									throws IOException{
 			boolean result = false;
 
 			byte[] data = multipartFile.getBytes();
-			FileOutputStream fos = new FileOutputStream(SAVE_PATH + "\\" + saveFileName);
+			isDirectory(num);
+			FileOutputStream fos = new FileOutputStream(SAVE_PATH + "/" + num + "/" + saveFileName);
 			fos.write(data);
 			fos.close();
 			
 			return result;
 		}
+		
+		public void isDirectory(String num) {
+			
+			File dir = new File(SAVE_PATH + "/" + num);
+
+			// 해당 디렉토리가 없을경우 디렉토리를 생성합니다.
+			if (!dir.exists()) {
+				try{
+					dir.mkdir(); //폴더 생성합니다.
+				    System.out.println("폴더가 생성되었습니다.");
+		        } catch(Exception e) {
+				    e.getStackTrace();
+				}        
+	         } else {
+				System.out.println("이미 폴더가 생성되어 있습니다.");
+			}
+	    }
 }
