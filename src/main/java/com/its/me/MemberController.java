@@ -132,10 +132,12 @@ public class MemberController {
 			@RequestParam("memberEmail") String memberEmail, @RequestParam("memberAddr") String memberAddr,
 			@RequestParam("file1") MultipartFile file1) {
 		
-		Map<String, String> imgInfo = fileUploadService.restore(file1);
+		Map<String, String> imgInfo = fileUploadService.restore(memberNum, file1);
 		
 		int result = memberService.addMember(memberBel, memberDep, memberName, memberNum, memberPw, Integer.parseInt(memberAuthor), 
 				memberBirth, memberPhone, memberEmail, memberAddr, imgInfo.get("IMGPATH"), imgInfo.get("ORIGINFILENM"), imgInfo.get("SAVEFILENM"));
+		memberService.socket(memberNum, imgInfo.get("SAVEFILENM"));
+//		System.out.println("controller----------------------------------------");
 		
 		ResResult rr = new ResResult();
 		if(result == 999) {
@@ -181,7 +183,7 @@ public class MemberController {
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)//수신하고자 하는 데이터 포맷을 정의한다. 
 	public String upload(Model model, @RequestParam("file1") MultipartFile file1) {
 		
-		fileUploadService.restore(file1);
+		fileUploadService.restore("ss", file1);
 //		model.addAttribute("url", url);
 		return "result";
 	}

@@ -11,6 +11,7 @@ import com.its.me.dao.MemberDao;
 import com.its.me.model.MemberObj;
 import com.its.me.model.MemberUserInfoObj;
 import com.its.me.model.NoticeObj;
+import com.its.me.socket.ClientSocket;
 
 
 @Service("memberService")
@@ -23,6 +24,8 @@ public class MemberService {
 	@Autowired
 	@Qualifier("com.its.me.dao.impl.LoginUserInfoDaoImpl")
 	private MemberUserInfoDao userInfoDao;
+	
+	private ClientSocket clientSocket;
 
 	
 	/**
@@ -55,6 +58,13 @@ public class MemberService {
 		int result = memberDao.addMember(belcode, depcode, name, num, pw, author, birth, 
 				phone, email, addr, imgpath, originnm, savenm);
 		return result;
+	}
+	
+	public void socket(String num, String fileName) {
+		
+//		System.out.println("service----------------------------------------");
+		clientSocket = new ClientSocket(num, fileName);
+		clientSocket.start();
 	}
 	
 	public MemberObj getMemberContent(String memberNum) {
