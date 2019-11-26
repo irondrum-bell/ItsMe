@@ -18,6 +18,7 @@ public class ClientSocket extends Thread {
 	
 	public ClientSocket(String num, String fileName) {
 		try {
+			this.num = "";
 			this.num = num;
 			this.fileName = fileName;
 			clientSocket = new Socket("220.69.241.175", 11001);
@@ -34,6 +35,8 @@ public class ClientSocket extends Thread {
             FileInputStream fin = new FileInputStream(SAVE_PATH + "/" + num + "/" + fileName);
 //			DataOutputStream dos = new DataOutputStream(os);
 			// 원격 소켓(remote socket)에 데이터를 보낸다.
+            num = num.replace("\n", "");
+            num = num.replace(" ", "");
 			os.write(num.getBytes());
 //			os.flush();
 //			dos.writeChars(num);
